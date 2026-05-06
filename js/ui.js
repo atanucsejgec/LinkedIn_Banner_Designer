@@ -7,8 +7,14 @@
 /* ===== TABS ===== */
 function switchTab(name) {
   const names = ['content','design','media','templates','overlays'];
-  document.querySelectorAll('.tab').forEach((t,i) => {
-    t.classList.toggle('active', names[i]===name);
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach((t,i) => {
+    const isActive = names[i]===name;
+    t.classList.toggle('active', isActive);
+    // Scroll the active tab into view within the tab bar
+    if (isActive) {
+      t.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   });
   document.querySelectorAll('.tab-content').forEach(t => {
     t.classList.remove('active');

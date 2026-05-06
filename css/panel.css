@@ -25,11 +25,20 @@
     border-bottom: 1px solid var(--border-color);
     flex-shrink: 0;
     z-index: 10;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
 }
 
+/* Hide scrollbar but keep scroll functionality */
+.tabs::-webkit-scrollbar { height: 0; display: none; }
+.tabs { -ms-overflow-style: none; scrollbar-width: none; }
+
 .tab {
-    flex: 1;
-    padding: 11px 4px;
+    flex: 0 0 auto;
+    min-width: 64px;
+    padding: 11px 12px;
     text-align: center;
     cursor: pointer;
     font-size: 11px;
@@ -37,6 +46,7 @@
     color: var(--text-gray);
     border-bottom: 2px solid transparent;
     transition: all 0.2s;
+    white-space: nowrap;
 }
 
 .tab.active {
