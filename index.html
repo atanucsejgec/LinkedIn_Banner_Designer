@@ -1,0 +1,2228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Banner Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0f0f13;
+            --panel-bg: #1a1a2e;
+            --card-bg: #16213e;
+            --accent-purple: #6750A4;
+            --accent-teal: #03DAC5;
+            --accent-gold: #FFD700;
+            --text-white: #ffffff;
+            --text-gray: #CAC4D0;
+            --border-color: #2d2d4a;
+            --input-bg: #0d0d1a;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ===== TOP NAV ===== */
+        .top-nav {
+            background: var(--panel-bg);
+            border-bottom: 2px solid var(--accent-purple);
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-white);
+        }
+
+        .nav-logo span {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 8px 18px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), #9c27b0);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(103, 80, 164, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--text-white);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-teal);
+            color: var(--accent-teal);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #03DAC5, #00897b);
+            color: #000;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(3, 218, 197, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e53935, #b71c1c);
+            color: white;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            flex: 1;
+            height: calc(100vh - 60px);
+        }
+
+        /* ===== LEFT PANEL ===== */
+        .left-panel {
+            background: var(--panel-bg);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 0;
+        }
+
+        .left-panel::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .left-panel::-webkit-scrollbar-track {
+            background: var(--panel-bg);
+        }
+
+        .left-panel::-webkit-scrollbar-thumb {
+            background: var(--accent-purple);
+            border-radius: 10px;
+        }
+
+        /* ===== TABS ===== */
+        .tabs {
+            display: flex;
+            background: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 12px 6px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-gray);
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab.active {
+            color: var(--accent-teal);
+            border-bottom-color: var(--accent-teal);
+            background: rgba(3, 218, 197, 0.05);
+        }
+
+        .tab:hover:not(.active) {
+            color: var(--text-white);
+            background: rgba(255,255,255,0.03);
+        }
+
+        /* ===== TAB CONTENT ===== */
+        .tab-content {
+            display: none;
+            padding: 16px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== FORM SECTIONS ===== */
+        .section {
+            margin-bottom: 20px;
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--accent-teal);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 11px;
+            color: var(--text-gray);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            background: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-white);
+            padding: 8px 10px;
+            font-size: 12px;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--accent-purple);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 70px;
+            line-height: 1.5;
+        }
+
+        .form-select option {
+            background: var(--input-bg);
+        }
+
+        /* ===== COLOR PICKER ===== */
+        .color-picker-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-picker-row input[type="color"] {
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background: none;
+            padding: 2px;
+        }
+
+        .color-picker-row .form-input {
+            flex: 1;
+        }
+
+        /* ===== TOGGLE ===== */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .toggle-label {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .toggle {
+            position: relative;
+            width: 40px;
+            height: 22px;
+        }
+
+        .toggle input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: var(--border-color);
+            border-radius: 22px;
+            transition: 0.3s;
+        }
+
+        .toggle-slider:before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            left: 3px;
+            bottom: 3px;
+            background: white;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .toggle input:checked + .toggle-slider {
+            background: var(--accent-purple);
+        }
+
+        .toggle input:checked + .toggle-slider:before {
+            transform: translateX(18px);
+        }
+
+        /* ===== RANGE ===== */
+        .range-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            -webkit-appearance: none;
+            background: var(--border-color);
+            outline: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--accent-purple);
+            cursor: pointer;
+        }
+
+        .range-value {
+            font-size: 11px;
+            color: var(--accent-teal);
+            min-width: 30px;
+            text-align: right;
+        }
+
+        /* ===== IMAGE UPLOAD ===== */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: var(--accent-purple);
+            background: rgba(103, 80, 164, 0.05);
+        }
+
+        .upload-area.has-image {
+            border-color: var(--accent-teal);
+            padding: 8px;
+        }
+
+        .upload-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .upload-text {
+            font-size: 11px;
+            color: var(--text-gray);
+        }
+
+        .upload-preview {
+            width: 100%;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .upload-area.has-image .upload-preview {
+            display: block;
+        }
+
+        .upload-area.has-image .upload-icon,
+        .upload-area.has-image .upload-text {
+            display: none;
+        }
+
+        .upload-area input[type="file"] {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* ===== BADGE LIST ===== */
+        .badge-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .badge-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(103, 80, 164, 0.2);
+            border: 1px solid var(--accent-purple);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: 11px;
+            color: var(--text-white);
+        }
+
+        .badge-item .remove-badge {
+            cursor: pointer;
+            color: #ff5252;
+            font-size: 14px;
+            line-height: 1;
+            margin-left: 2px;
+        }
+
+        .badge-add-row {
+            display: flex;
+            gap: 6px;
+        }
+
+        .badge-add-row .form-input {
+            flex: 1;
+        }
+
+        .badge-add-row .btn {
+            padding: 6px 10px;
+            font-size: 14px;
+        }
+
+        /* ===== FEATURE LIST ===== */
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 8px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--input-bg);
+            border-radius: 6px;
+            padding: 6px 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .feature-item input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-white);
+            font-size: 12px;
+            outline: none;
+        }
+
+        .feature-item .remove-feature {
+            cursor: pointer;
+            color: #ff5252;
+            font-size: 16px;
+            line-height: 1;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+
+        /* ===== TEMPLATE GRID ===== */
+        .template-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .template-card {
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .template-card:hover {
+            border-color: var(--accent-purple);
+            transform: scale(1.02);
+        }
+
+        .template-card.selected {
+            border-color: var(--accent-teal);
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .template-name {
+            padding: 5px 8px;
+            font-size: 10px;
+            color: var(--text-gray);
+            background: var(--input-bg);
+            text-align: center;
+        }
+
+        /* ===== RIGHT PANEL ===== */
+        .right-panel {
+            display: flex;
+            flex-direction: column;
+            background: #0a0a0f;
+            overflow: hidden;
+        }
+
+        .canvas-toolbar {
+            background: var(--panel-bg);
+            border-bottom: 1px solid var(--border-color);
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .canvas-info {
+            font-size: 11px;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .canvas-info span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .zoom-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .zoom-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .zoom-value {
+            font-size: 12px;
+            color: var(--text-gray);
+            min-width: 40px;
+            text-align: center;
+        }
+
+        /* ===== CANVAS AREA ===== */
+        .canvas-area {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: auto;
+            padding: 30px;
+            background: repeating-conic-gradient(#1a1a2e 0% 25%, #0f0f13 0% 50%) 0 0 / 20px 20px;
+        }
+
+        .canvas-wrapper {
+            position: relative;
+            transform-origin: center center;
+            transition: transform 0.2s;
+        }
+
+        /* ===== THE BANNER CANVAS ===== */
+        #bannerCanvas {
+            width: 1200px;
+            height: 627px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+        }
+
+        .banner-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #1C1B1F 0%, #2D1B69 100%);
+        }
+
+        .banner-bg-circle1 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(103,80,164,0.3) 0%, transparent 70%);
+            top: -100px;
+            right: -80px;
+        }
+
+        .banner-bg-circle2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(3,218,197,0.2) 0%, transparent 70%);
+            bottom: -80px;
+            left: -60px;
+        }
+
+        .banner-bg-circle3 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, transparent 70%);
+            top: 50%;
+            left: 40%;
+        }
+
+        /* Top accent bar */
+        .banner-top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #6750A4, #03DAC5, #6750A4);
+        }
+
+        /* Shipped badge */
+        .banner-badge {
+            position: absolute;
+            top: 22px;
+            left: 40px;
+            background: linear-gradient(135deg, #6750A4, #9c27b0);
+            border-radius: 20px;
+            padding: 5px 14px;
+            font-size: 13px;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 2px 10px rgba(103,80,164,0.5);
+        }
+
+        /* Left Zone - Screenshot */
+        .banner-left {
+            position: absolute;
+            left: 40px;
+            top: 65px;
+            width: 420px;
+            bottom: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 220px;
+            height: 440px;
+        }
+
+        .phone-frame {
+            position: absolute;
+            inset: 0;
+            border-radius: 36px;
+            border: 3px solid rgba(255,255,255,0.15);
+            background: #000;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.05),
+                0 20px 60px rgba(0,0,0,0.8),
+                0 0 40px rgba(103,80,164,0.3);
+        }
+
+        .phone-screen {
+            position: absolute;
+            inset: 3px;
+            border-radius: 34px;
+            overflow: hidden;
+            background: #1a1a2e;
+        }
+
+        .phone-screenshot {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .phone-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #1C1B1F, #2D1B69);
+        }
+
+        .phone-placeholder-icon {
+            font-size: 40px;
+        }
+
+        .phone-placeholder-text {
+            font-size: 10px;
+            color: var(--text-gray);
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 18px;
+            background: #000;
+            border-radius: 10px;
+            z-index: 10;
+        }
+
+        .phone-glow {
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(103,80,164,0.25) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+        /* Sparkle dots */
+        .sparkle {
+            position: absolute;
+            color: var(--accent-gold);
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.7); }
+        }
+
+        /* Right Zone - Text */
+        .banner-right {
+            position: absolute;
+            left: 490px;
+            top: 65px;
+            right: 30px;
+            bottom: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .banner-headline {
+            font-size: 42px;
+            font-weight: 900;
+            line-height: 1.15;
+            color: white;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        .banner-headline .highlight {
+            background: linear-gradient(135deg, #FFD700, #FF8C00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .banner-subtitle {
+            font-size: 16px;
+            color: var(--text-gray);
+            font-weight: 400;
+        }
+
+        .banner-divider {
+            width: 300px;
+            height: 3px;
+            background: linear-gradient(90deg, #6750A4, #03DAC5);
+            border-radius: 2px;
+        }
+
+        .banner-features {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .banner-feature-item {
+            font-size: 13px;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .banner-feature-item .check {
+            color: var(--accent-teal);
+            font-size: 14px;
+        }
+
+        .banner-life-stages {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        .banner-badges-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .banner-tech-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+        }
+
+        /* Footer */
+        .banner-footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 62px;
+            background: rgba(103, 80, 164, 0.3);
+            border-top: 1px solid rgba(103,80,164,0.4);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            justify-content: space-between;
+            backdrop-filter: blur(10px);
+        }
+
+        .banner-github {
+            font-size: 12px;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .banner-author {
+            font-size: 11px;
+            color: rgba(202,196,208,0.7);
+        }
+
+        /* ===== BOTTOM STATUS BAR ===== */
+        .status-bar {
+            background: var(--panel-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 11px;
+            color: var(--text-gray);
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* ===== TEMPLATE PREVIEWS ===== */
+        .t1 { background: linear-gradient(135deg, #1C1B1F, #2D1B69); }
+        .t2 { background: linear-gradient(135deg, #0d1117, #1f6feb); }
+        .t3 { background: linear-gradient(135deg, #0f2027, #203a43, #2c5364); }
+        .t4 { background: linear-gradient(135deg, #1a1a1a, #4CAF50, #1a1a1a); }
+        .t5 { background: linear-gradient(135deg, #2d1b00, #ff6f00); }
+        .t6 { background: linear-gradient(135deg, #1a0533, #e040fb); }
+
+        /* ===== MODAL ===== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--panel-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            padding: 24px;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--accent-teal);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 900px) {
+            .main-layout {
+                grid-template-columns: 1fr;
+            }
+            .left-panel {
+                height: 50vh;
+            }
+        }
+
+        /* ===== NOTIFICATION ===== */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent-purple), #9c27b0);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 3000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(103,80,164,0.5);
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+    <div class="nav-logo">
+        🎨 <span>LinkedIn Banner Designer</span>
+    </div>
+    <div class="nav-actions">
+        <button class="btn btn-secondary" onclick="resetToDefault()">↺ Reset</button>
+        <button class="btn btn-secondary" onclick="showPreview()">👁 Preview</button>
+        <button class="btn btn-primary" onclick="copyDesign()">📋 Duplicate</button>
+        <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
+    </div>
+</nav>
+
+<!-- MAIN LAYOUT -->
+<div class="main-layout">
+
+    <!-- LEFT PANEL -->
+    <div class="left-panel">
+
+        <!-- TABS -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('content')">📝 Content</div>
+            <div class="tab" onclick="switchTab('design')">🎨 Design</div>
+            <div class="tab" onclick="switchTab('media')">📸 Media</div>
+            <div class="tab" onclick="switchTab('templates')">📐 Templates</div>
+        </div>
+
+        <!-- ====== CONTENT TAB ====== -->
+        <div class="tab-content active" id="tab-content">
+
+            <!-- Badge -->
+            <div class="section">
+                <div class="section-title">🚀 Top Badge</div>
+                <div class="form-group">
+                    <label class="form-label">Badge Text</label>
+                    <input type="text" class="form-input" id="badgeText" value="🚀 JUST SHIPPED" oninput="updateBanner()">
+                </div>
+            </div>
+
+            <!-- Headline -->
+            <div class="section">
+                <div class="section-title">✍️ Headline</div>
+                <div class="form-group">
+                    <label class="form-label">Main Title (Line 1)</label>
+                    <input type="text" class="form-input" id="headline1" value="🎂 Age Calculator" oninput="updateBanner()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Main Title (Line 2)</label>
+                    <input type="text" class="form-input" id="headline2" value="Android App" oninput="updateBanner()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Subtitle</label>
+                    <input type="text" class="form-input" id="subtitle" value="Built with Jetpack Compose" oninput="updateBanner()">
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="section">
+                <div class="section-title">✅ Feature Points</div>
+                <div class="feature-list" id="featureList"></div>
+                <div class="badge-add-row">
+                    <input type="text" class="form-input" id="newFeature" placeholder="Add feature...">
+                    <button class="btn btn-primary" onclick="addFeature()">+</button>
+                </div>
+            </div>
+
+            <!-- Life Stages -->
+            <div class="section">
+                <div class="section-title">👶 Life Stages Row</div>
+                <div class="form-group">
+                    <label class="form-label">Stages Text</label>
+                    <input type="text" class="form-input" id="lifeStages" value="👶 Child  →  🧑 Teen  →  👔 Adult  →  👴 Senior" oninput="updateBanner()">
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Life Stages</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showLifeStages" checked onchange="updateBanner()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Tech Badges -->
+            <div class="section">
+                <div class="section-title">🏷️ Tech Badges</div>
+                <div class="badge-list" id="badgeList"></div>
+                <div class="badge-add-row">
+                    <input type="text" class="form-input" id="newBadge" placeholder="Add badge (e.g. Flutter)">
+                    <button class="btn btn-primary" onclick="addBadge()">+</button>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="section">
+                <div class="section-title">📍 Footer</div>
+                <div class="form-group">
+                    <label class="form-label">GitHub / Link</label>
+                    <input type="text" class="form-input" id="githubLink" value="📂 github.com/atanucsejgec/AgeCalculator" oninput="updateBanner()">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Name / Handle</label>
+                    <input type="text" class="form-input" id="authorName" value="@atanucsejgec | Android Developer" oninput="updateBanner()">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== DESIGN TAB ====== -->
+        <div class="tab-content" id="tab-design">
+
+            <!-- Background -->
+            <div class="section">
+                <div class="section-title">🎨 Background Colors</div>
+                <div class="form-group">
+                    <label class="form-label">Color 1 (Dark)</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="bgColor1" value="#1C1B1F" oninput="updateDesign()">
+                        <input type="text" class="form-input" id="bgColor1Hex" value="#1C1B1F" oninput="syncColor('bgColor1')">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Color 2 (Accent)</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="bgColor2" value="#2D1B69" oninput="updateDesign()">
+                        <input type="text" class="form-input" id="bgColor2Hex" value="#2D1B69" oninput="syncColor('bgColor2')">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Gradient Direction</label>
+                    <select class="form-select" id="gradientDir" onchange="updateDesign()">
+                        <option value="135deg">↘ Diagonal</option>
+                        <option value="90deg">→ Horizontal</option>
+                        <option value="180deg">↓ Vertical</option>
+                        <option value="45deg">↗ Diagonal 2</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Accent Colors -->
+            <div class="section">
+                <div class="section-title">💜 Accent Colors</div>
+                <div class="form-group">
+                    <label class="form-label">Primary Accent</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="accentColor1" value="#6750A4" oninput="updateDesign()">
+                        <input type="text" class="form-input" id="accentColor1Hex" value="#6750A4" oninput="syncColor('accentColor1')">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Secondary Accent (Teal)</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="accentColor2" value="#03DAC5" oninput="updateDesign()">
+                        <input type="text" class="form-input" id="accentColor2Hex" value="#03DAC5" oninput="syncColor('accentColor2')">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Headline Highlight</label>
+                    <div class="color-picker-row">
+                        <input type="color" id="highlightColor" value="#FFD700" oninput="updateDesign()">
+                        <input type="text" class="form-input" id="highlightColorHex" value="#FFD700" oninput="syncColor('highlightColor')">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typography -->
+            <div class="section">
+                <div class="section-title">🔤 Typography</div>
+                <div class="form-group">
+                    <label class="form-label">Headline Size</label>
+                    <div class="range-row">
+                        <input type="range" id="headlineSize" min="28" max="60" value="42" oninput="updateDesign()">
+                        <span class="range-value" id="headlineSizeVal">42px</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Subtitle Size</label>
+                    <div class="range-row">
+                        <input type="range" id="subtitleSize" min="12" max="24" value="16" oninput="updateDesign()">
+                        <span class="range-value" id="subtitleSizeVal">16px</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Feature Text Size</label>
+                    <div class="range-row">
+                        <input type="range" id="featureSize" min="10" max="18" value="13" oninput="updateDesign()">
+                        <span class="range-value" id="featureSizeVal">13px</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Layout -->
+            <div class="section">
+                <div class="section-title">📐 Layout Options</div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Top Bar</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showTopBar" checked onchange="updateDesign()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Footer</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showFooter" checked onchange="updateDesign()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Background Circles</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showBgCircles" checked onchange="updateDesign()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Sparkles ✨</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showSparkles" checked onchange="updateDesign()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-row">
+                    <span class="toggle-label">Show Phone Frame</span>
+                    <label class="toggle">
+                        <input type="checkbox" id="showPhoneFrame" checked onchange="updateDesign()">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== MEDIA TAB ====== -->
+        <div class="tab-content" id="tab-media">
+
+            <!-- Screenshot Upload -->
+            <div class="section">
+                <div class="section-title">📱 App Screenshot</div>
+                <div class="upload-area" id="screenshotUploadArea">
+                    <input type="file" accept="image/*" id="screenshotInput" onchange="handleScreenshot(event)">
+                    <div class="upload-icon">📱</div>
+                    <div class="upload-text">Click or drag app screenshot<br><small>PNG, JPG supported</small></div>
+                    <img class="upload-preview" id="screenshotPreview" alt="Screenshot">
+                </div>
+                <div style="margin-top:8px; display:flex; gap:6px;">
+                    <button class="btn btn-secondary" style="flex:1;font-size:11px;" onclick="removeScreenshot()">✕ Remove</button>
+                    <button class="btn btn-secondary" style="flex:1;font-size:11px;" onclick="document.getElementById('screenshotInput').click()">↑ Change</button>
+                </div>
+            </div>
+
+            <!-- Phone Tilt -->
+            <div class="section">
+                <div class="section-title">📐 Phone Mockup Settings</div>
+                <div class="form-group">
+                    <label class="form-label">Tilt Angle</label>
+                    <div class="range-row">
+                        <input type="range" id="phoneTilt" min="-15" max="15" value="-3" oninput="updateDesign()">
+                        <span class="range-value" id="phoneTiltVal">-3°</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone Size</label>
+                    <div class="range-row">
+                        <input type="range" id="phoneSize" min="150" max="350" value="220" oninput="updateDesign()">
+                        <span class="range-value" id="phoneSizeVal">220</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Glow Intensity</label>
+                    <div class="range-row">
+                        <input type="range" id="glowIntensity" min="0" max="100" value="30" oninput="updateDesign()">
+                        <span class="range-value" id="glowIntensityVal">30%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Presets -->
+            <div class="section">
+                <div class="section-title">⚡ Quick App Swap</div>
+                <p style="font-size:11px;color:var(--text-gray);margin-bottom:10px;">
+                    Quickly switch to a new app project:
+                </p>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                    <button class="btn btn-secondary" style="font-size:11px;" onclick="loadPreset('compose')">🎂 Age Calculator (Current)</button>
+                    <button class="btn btn-secondary" style="font-size:11px;" onclick="loadPreset('todo')">📝 Todo App</button>
+                    <button class="btn btn-secondary" style="font-size:11px;" onclick="loadPreset('weather')">🌤️ Weather App</button>
+                    <button class="btn btn-secondary" style="font-size:11px;" onclick="loadPreset('chat')">💬 Chat App</button>
+                    <button class="btn btn-secondary" style="font-size:11px;" onclick="loadPreset('quiz')">🧠 Quiz App</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ====== TEMPLATES TAB ====== -->
+        <div class="tab-content" id="tab-templates">
+
+            <div class="section">
+                <div class="section-title">🎨 Color Themes</div>
+                <div class="template-grid">
+                    <div class="template-card selected" onclick="applyTheme('purple', this)">
+                        <div class="template-preview t1">💜 Material</div>
+                        <div class="template-name">MD3 Purple</div>
+                    </div>
+                    <div class="template-card" onclick="applyTheme('blue', this)">
+                        <div class="template-preview t2">💙 GitHub</div>
+                        <div class="template-name">Dark Blue</div>
+                    </div>
+                    <div class="template-card" onclick="applyTheme('ocean', this)">
+                        <div class="template-preview t3">🌊 Ocean</div>
+                        <div class="template-name">Ocean Teal</div>
+                    </div>
+                    <div class="template-card" onclick="applyTheme('green', this)">
+                        <div class="template-preview t4">💚 Matrix</div>
+                        <div class="template-name">Android Green</div>
+                    </div>
+                    <div class="template-card" onclick="applyTheme('orange', this)">
+                        <div class="template-preview t5">🔥 Fire</div>
+                        <div class="template-name">Kotlin Orange</div>
+                    </div>
+                    <div class="template-card" onclick="applyTheme('pink', this)">
+                        <div class="template-preview t6">💗 Neon</div>
+                        <div class="template-name">Neon Pink</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📋 Saved Designs</div>
+                <div id="savedDesigns" style="display:flex;flex-direction:column;gap:8px;">
+                    <p style="font-size:11px;color:var(--text-gray);">No saved designs yet. Click "Save" to save current design.</p>
+                </div>
+                <button class="btn btn-primary" style="width:100%;margin-top:10px;justify-content:center;" onclick="saveDesign()">💾 Save Current Design</button>
+            </div>
+
+        </div>
+    </div>
+    <!-- END LEFT PANEL -->
+
+    <!-- RIGHT PANEL -->
+    <div class="right-panel">
+
+        <!-- Canvas Toolbar -->
+        <div class="canvas-toolbar">
+            <div class="canvas-info">
+                <span>📐 1200 × 627 px</span>
+                <span>🖼️ LinkedIn Post (1.91:1)</span>
+            </div>
+            <div class="zoom-controls">
+                <button class="zoom-btn" onclick="zoom(-10)">−</button>
+                <span class="zoom-value" id="zoomValue">55%</span>
+                <button class="zoom-btn" onclick="zoom(10)">+</button>
+                <button class="btn btn-secondary" style="font-size:11px;padding:5px 10px;" onclick="fitToScreen()">Fit</button>
+            </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-area" id="canvasArea">
+            <div class="canvas-wrapper" id="canvasWrapper">
+
+                <!-- THE BANNER -->
+                <div id="bannerCanvas">
+
+                    <!-- Background -->
+                    <div class="banner-bg" id="bannerBg"></div>
+                    <div class="banner-bg-circle1" id="bgCircle1"></div>
+                    <div class="banner-bg-circle2" id="bgCircle2"></div>
+                    <div class="banner-bg-circle3" id="bgCircle3"></div>
+
+                    <!-- Top Bar -->
+                    <div class="banner-top-bar" id="bannerTopBar"></div>
+
+                    <!-- Badge -->
+                    <div class="banner-badge" id="bannerBadge">🚀 JUST SHIPPED</div>
+
+                    <!-- Sparkles -->
+                    <div class="sparkle" id="sp1" style="top:40px;right:200px;font-size:16px;animation-delay:0s;">✦</div>
+                    <div class="sparkle" id="sp2" style="top:120px;right:120px;font-size:10px;animation-delay:0.5s;">✦</div>
+                    <div class="sparkle" id="sp3" style="top:280px;left:450px;font-size:14px;animation-delay:1s;">✦</div>
+                    <div class="sparkle" id="sp4" style="bottom:100px;right:60px;font-size:12px;animation-delay:1.5s;">★</div>
+                    <div class="sparkle" id="sp5" style="top:200px;right:300px;font-size:8px;animation-delay:0.8s;">✦</div>
+
+                    <!-- Left Zone - Phone -->
+                    <div class="banner-left">
+                        <div class="phone-glow" id="phoneGlow"></div>
+                        <div class="phone-mockup" id="phoneMockup">
+                            <div class="phone-frame" id="phoneFrame">
+                                <div class="phone-screen">
+                                    <div class="phone-notch"></div>
+                                    <div class="phone-placeholder" id="phonePlaceholder">
+                                        <div class="phone-placeholder-icon">📱</div>
+                                        <div class="phone-placeholder-text">Upload app screenshot<br>from Media tab</div>
+                                    </div>
+                                    <img class="phone-screenshot" id="bannerScreenshot" alt="App Screenshot" style="display:none;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Zone - Text -->
+                    <div class="banner-right">
+                        <div class="banner-headline" id="bannerHeadline">
+                            <span class="highlight" id="headlineSpan1">🎂 Age Calculator</span><br>
+                            <span id="headlineSpan2">Android App</span>
+                        </div>
+                        <div class="banner-subtitle" id="bannerSubtitle">Built with Jetpack Compose</div>
+                        <div class="banner-divider" id="bannerDivider"></div>
+                        <div class="banner-features" id="bannerFeatures"></div>
+                        <div class="banner-life-stages" id="bannerLifeStages">
+                            👶 Child  →  🧑 Teen  →  👔 Adult  →  👴 Senior
+                        </div>
+                        <div class="banner-badges-row" id="bannerBadgesRow"></div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="banner-footer" id="bannerFooter">
+                        <div class="banner-github" id="bannerGithub">
+                            📂 github.com/atanucsejgec/AgeCalculator
+                        </div>
+                        <div class="banner-author" id="bannerAuthor">
+                            @atanucsejgec | Android Developer
+                        </div>
+                    </div>
+
+                </div>
+                <!-- END BANNER -->
+
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-dot"></div>
+            <span id="statusText">Ready to design</span>
+            <span>|</span>
+            <span>Auto-preview: ON</span>
+            <span>|</span>
+            <span id="lastUpdate">Not saved</span>
+        </div>
+
+    </div>
+    <!-- END RIGHT PANEL -->
+
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification"></div>
+
+<!-- PREVIEW MODAL -->
+<div class="modal-overlay" id="previewModal">
+    <div class="modal" style="max-width:800px;width:95%;">
+        <div class="modal-title">👁 Banner Preview</div>
+        <div style="background:#000;border-radius:8px;overflow:hidden;margin-bottom:16px;">
+            <img id="previewImg" style="width:100%;display:block;" alt="Preview">
+        </div>
+        <p style="font-size:12px;color:var(--text-gray);margin-bottom:8px;">
+            ⚠️ Note: Download uses html2canvas for full-quality PNG export.
+        </p>
+        <div class="modal-actions">
+            <button class="btn btn-secondary" onclick="closeModal('previewModal')">✕ Close</button>
+            <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
+        </div>
+    </div>
+</div>
+
+<!-- html2canvas CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+
+// ===================================================
+// STATE
+// ===================================================
+let currentZoom = 55;
+let features = [
+    "Kotlin + Jetpack Compose",
+    "Material 3 Design",
+    "State Management (remember + mutableStateOf)",
+    "Dark / Light Theme Support",
+    "Open Source on GitHub"
+];
+let badges = [
+    { label: "Kotlin", color: "#7F52FF" },
+    { label: "Compose", color: "#03DAC5" },
+    { label: "Material 3", color: "#6750A4" },
+    { label: "GitHub", color: "#333333" }
+];
+let screenshotDataUrl = null;
+let savedDesigns = [];
+
+const badgeColors = [
+    "#7F52FF","#03DAC5","#6750A4","#e53935",
+    "#00897b","#FF6F00","#1565C0","#558B2F"
+];
+let badgeColorIndex = 4;
+
+// ===================================================
+// INIT
+// ===================================================
+window.addEventListener('DOMContentLoaded', () => {
+    setZoom(currentZoom);
+    renderFeatureList();
+    renderBadgeList();
+    renderBannerFeatures();
+    renderBannerBadges();
+    updateBanner();
+});
+
+// ===================================================
+// TABS
+// ===================================================
+function switchTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelectorAll('.tab')[['content','design','media','templates'].indexOf(name)].classList.add('active');
+}
+
+// ===================================================
+// ZOOM
+// ===================================================
+function zoom(delta) {
+    currentZoom = Math.max(20, Math.min(100, currentZoom + delta));
+    setZoom(currentZoom);
+}
+
+function setZoom(val) {
+    currentZoom = val;
+    const scale = val / 100;
+    document.getElementById('canvasWrapper').style.transform = `scale(${scale})`;
+    document.getElementById('zoomValue').textContent = val + '%';
+}
+
+function fitToScreen() {
+    const area = document.getElementById('canvasArea');
+    const areaW = area.clientWidth - 60;
+    const areaH = area.clientHeight - 60;
+    const scaleW = (areaW / 1200) * 100;
+    const scaleH = (areaH / 627) * 100;
+    setZoom(Math.floor(Math.min(scaleW, scaleH)));
+}
+
+// ===================================================
+// UPDATE BANNER - CONTENT
+// ===================================================
+function updateBanner() {
+    // Badge
+    document.getElementById('bannerBadge').textContent =
+        document.getElementById('badgeText').value;
+
+    // Headline
+    document.getElementById('headlineSpan1').textContent =
+        document.getElementById('headline1').value;
+    document.getElementById('headlineSpan2').textContent =
+        document.getElementById('headline2').value;
+
+    // Subtitle
+    document.getElementById('bannerSubtitle').textContent =
+        document.getElementById('subtitle').value;
+
+    // Life stages
+    const showLS = document.getElementById('showLifeStages').checked;
+    const lsEl = document.getElementById('bannerLifeStages');
+    lsEl.style.display = showLS ? 'block' : 'none';
+    lsEl.textContent = document.getElementById('lifeStages').value;
+
+    // Footer
+    document.getElementById('bannerGithub').textContent =
+        document.getElementById('githubLink').value;
+    document.getElementById('bannerAuthor').textContent =
+        document.getElementById('authorName').value;
+
+    // Status
+    document.getElementById('statusText').textContent = 'Design updated ✓';
+    document.getElementById('lastUpdate').textContent = 'Updated ' + new Date().toLocaleTimeString();
+}
+
+// ===================================================
+// UPDATE BANNER - DESIGN
+// ===================================================
+function updateDesign() {
+    const bg1 = document.getElementById('bgColor1').value;
+    const bg2 = document.getElementById('bgColor2').value;
+    const dir = document.getElementById('gradientDir').value;
+    const accent1 = document.getElementById('accentColor1').value;
+    const accent2 = document.getElementById('accentColor2').value;
+    const highlight = document.getElementById('highlightColor').value;
+
+    // Sync hex inputs
+    document.getElementById('bgColor1Hex').value = bg1;
+    document.getElementById('bgColor2Hex').value = bg2;
+    document.getElementById('accentColor1Hex').value = accent1;
+    document.getElementById('accentColor2Hex').value = accent2;
+    document.getElementById('highlightColorHex').value = highlight;
+
+    // Background
+    document.getElementById('bannerBg').style.background =
+        `linear-gradient(${dir}, ${bg1} 0%, ${bg2} 100%)`;
+
+    // Accent elements
+    document.getElementById('bannerDivider').style.background =
+        `linear-gradient(90deg, ${accent1}, ${accent2})`;
+    document.getElementById('bannerTopBar').style.background =
+        `linear-gradient(90deg, ${accent1}, ${accent2}, ${accent1})`;
+    document.getElementById('bannerBadge').style.background =
+        `linear-gradient(135deg, ${accent1}, ${accent2})`;
+    document.getElementById('bannerFooter').style.background =
+        `rgba(${hexToRgb(accent1)}, 0.3)`;
+    document.getElementById('bannerFooter').style.borderTop =
+        `1px solid rgba(${hexToRgb(accent1)}, 0.4)`;
+    document.getElementById('phoneGlow').style.background =
+        `radial-gradient(circle, rgba(${hexToRgb(accent1)},0.25) 0%, transparent 70%)`;
+
+    // Highlight color
+    document.getElementById('headlineSpan1').style.background =
+        `linear-gradient(135deg, ${highlight}, ${shiftHue(highlight)})`;
+    document.getElementById('headlineSpan1').style.webkitBackgroundClip = 'text';
+    document.getElementById('headlineSpan1').style.webkitTextFillColor = 'transparent';
+
+    // Typography
+    const hSize = document.getElementById('headlineSize').value;
+    const sSize = document.getElementById('subtitleSize').value;
+    const fSize = document.getElementById('featureSize').value;
+    document.getElementById('headlineSizeVal').textContent = hSize + 'px';
+    document.getElementById('subtitleSizeVal').textContent = sSize + 'px';
+    document.getElementById('featureSizeVal').textContent = fSize + 'px';
+    document.getElementById('bannerHeadline').style.fontSize = hSize + 'px';
+    document.getElementById('bannerSubtitle').style.fontSize = sSize + 'px';
+    document.querySelectorAll('.banner-feature-item').forEach(el => {
+        el.style.fontSize = fSize + 'px';
+    });
+
+    // Layout toggles
+    document.getElementById('bannerTopBar').style.display =
+        document.getElementById('showTopBar').checked ? 'block' : 'none';
+    document.getElementById('bannerFooter').style.display =
+        document.getElementById('showFooter').checked ? 'flex' : 'none';
+
+    const showCircles = document.getElementById('showBgCircles').checked;
+    ['bgCircle1','bgCircle2','bgCircle3'].forEach(id => {
+        document.getElementById(id).style.display = showCircles ? 'block' : 'none';
+    });
+
+    const showSparkles = document.getElementById('showSparkles').checked;
+    ['sp1','sp2','sp3','sp4','sp5'].forEach(id => {
+        document.getElementById(id).style.display = showSparkles ? 'block' : 'none';
+    });
+
+    // Phone frame
+    document.getElementById('phoneFrame').style.display =
+        document.getElementById('showPhoneFrame').checked ? 'block' : 'none';
+
+    // Phone tilt
+    const tilt = document.getElementById('phoneTilt').value;
+    document.getElementById('phoneTiltVal').textContent = tilt + '°';
+    document.getElementById('phoneMockup').style.transform = `rotate(${tilt}deg)`;
+
+    // Phone size
+    const pSize = document.getElementById('phoneSize').value;
+    document.getElementById('phoneSizeVal').textContent = pSize;
+    const ratio = pSize / 220;
+    document.getElementById('phoneMockup').style.width = pSize + 'px';
+    document.getElementById('phoneMockup').style.height = (pSize * 2) + 'px';
+
+    // Glow intensity
+    const glow = document.getElementById('glowIntensity').value;
+    document.getElementById('glowIntensityVal').textContent = glow + '%';
+    document.getElementById('phoneGlow').style.opacity = glow / 100;
+
+    // Bg circle colors
+    document.getElementById('bgCircle1').style.background =
+        `radial-gradient(circle, rgba(${hexToRgb(accent1)},0.3) 0%, transparent 70%)`;
+    document.getElementById('bgCircle2').style.background =
+        `radial-gradient(circle, rgba(${hexToRgb(accent2)},0.2) 0%, transparent 70%)`;
+}
+
+function syncColor(id) {
+    const hexInput = document.getElementById(id + 'Hex');
+    const colorInput = document.getElementById(id);
+    if (/^#[0-9A-Fa-f]{6}$/.test(hexInput.value)) {
+        colorInput.value = hexInput.value;
+        updateDesign();
+    }
+}
+
+function hexToRgb(hex) {
+    const r = parseInt(hex.slice(1,3),16);
+    const g = parseInt(hex.slice(3,5),16);
+    const b = parseInt(hex.slice(5,7),16);
+    return `${r},${g},${b}`;
+}
+
+function shiftHue(hex) {
+    // Simple warm shift for gradient
+    const r = Math.min(255, parseInt(hex.slice(1,3),16) + 40);
+    const g = Math.max(0, parseInt(hex.slice(3,5),16) - 40);
+    const b = Math.max(0, parseInt(hex.slice(5,7),16) - 80);
+    return `rgb(${r},${g},${b})`;
+}
+
+// ===================================================
+// FEATURES
+// ===================================================
+function renderFeatureList() {
+    const list = document.getElementById('featureList');
+    list.innerHTML = '';
+    features.forEach((f, i) => {
+        const item = document.createElement('div');
+        item.className = 'feature-item';
+        item.innerHTML = `
+            <span style="color:#03DAC5;font-size:14px;">✅</span>
+            <input type="text" value="${f}" oninput="features[${i}]=this.value;renderBannerFeatures()">
+            <button class="remove-feature" onclick="removeFeature(${i})">×</button>
+        `;
+        list.appendChild(item);
+    });
+}
+
+function addFeature() {
+    const input = document.getElementById('newFeature');
+    if (!input.value.trim()) return;
+    features.push(input.value.trim());
+    input.value = '';
+    renderFeatureList();
+    renderBannerFeatures();
+    showNotification('✅ Feature added!');
+}
+
+function removeFeature(i) {
+    features.splice(i, 1);
+    renderFeatureList();
+    renderBannerFeatures();
+}
+
+function renderBannerFeatures() {
+    const container = document.getElementById('bannerFeatures');
+    const fSize = document.getElementById('featureSize')?.value || 13;
+    container.innerHTML = '';
+    features.forEach(f => {
+        const div = document.createElement('div');
+        div.className = 'banner-feature-item';
+        div.style.fontSize = fSize + 'px';
+        div.innerHTML = `<span class="check">✅</span> ${f}`;
+        container.appendChild(div);
+    });
+}
+
+// ===================================================
+// BADGES
+// ===================================================
+function renderBadgeList() {
+    const list = document.getElementById('badgeList');
+    list.innerHTML = '';
+    badges.forEach((b, i) => {
+        const item = document.createElement('div');
+        item.className = 'badge-item';
+        item.innerHTML = `
+            <span style="width:8px;height:8px;border-radius:50%;background:${b.color};display:inline-block;"></span>
+            ${b.label}
+            <span class="remove-badge" onclick="removeBadge(${i})">×</span>
+        `;
+        list.appendChild(item);
+    });
+}
+
+function addBadge() {
+    const input = document.getElementById('newBadge');
+    if (!input.value.trim()) return;
+    const color = badgeColors[badgeColorIndex % badgeColors.length];
+    badgeColorIndex++;
+    badges.push({ label: input.value.trim(), color });
+    input.value = '';
+    renderBadgeList();
+    renderBannerBadges();
+    showNotification('🏷️ Badge added!');
+}
+
+function removeBadge(i) {
+    badges.splice(i, 1);
+    renderBadgeList();
+    renderBannerBadges();
+}
+
+function renderBannerBadges() {
+    const row = document.getElementById('bannerBadgesRow');
+    row.innerHTML = '';
+    badges.forEach(b => {
+        const span = document.createElement('span');
+        span.className = 'banner-tech-badge';
+        span.style.background = b.color;
+        span.textContent = b.label;
+        row.appendChild(span);
+    });
+}
+
+// ===================================================
+// SCREENSHOT / MEDIA
+// ===================================================
+function handleScreenshot(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        screenshotDataUrl = e.target.result;
+
+        // Show in upload area
+        const preview = document.getElementById('screenshotPreview');
+        const area = document.getElementById('screenshotUploadArea');
+        preview.src = screenshotDataUrl;
+        area.classList.add('has-image');
+
+        // Show in banner
+        const bannerImg = document.getElementById('bannerScreenshot');
+        const placeholder = document.getElementById('phonePlaceholder');
+        bannerImg.src = screenshotDataUrl;
+        bannerImg.style.display = 'block';
+        placeholder.style.display = 'none';
+
+        showNotification('📸 Screenshot uploaded!');
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeScreenshot() {
+    screenshotDataUrl = null;
+    const preview = document.getElementById('screenshotPreview');
+    const area = document.getElementById('screenshotUploadArea');
+    preview.src = '';
+    area.classList.remove('has-image');
+
+    const bannerImg = document.getElementById('bannerScreenshot');
+    const placeholder = document.getElementById('phonePlaceholder');
+    bannerImg.style.display = 'none';
+    bannerImg.src = '';
+    placeholder.style.display = 'flex';
+
+    showNotification('🗑️ Screenshot removed');
+}
+
+// ===================================================
+// PRESETS (Quick App Swap)
+// ===================================================
+const presets = {
+    compose: {
+        badge: "🚀 JUST SHIPPED",
+        h1: "🎂 Age Calculator",
+        h2: "Android App",
+        subtitle: "Built with Jetpack Compose",
+        features: [
+            "Kotlin + Jetpack Compose",
+            "Material 3 Design",
+            "State Management (remember + mutableStateOf)",
+            "Dark / Light Theme Support",
+            "Open Source on GitHub"
+        ],
+        badges: [
+            { label: "Kotlin", color: "#7F52FF" },
+            { label: "Compose", color: "#03DAC5" },
+            { label: "Material 3", color: "#6750A4" },
+            { label: "GitHub", color: "#333333" }
+        ],
+        lifeStages: "👶 Child  →  🧑 Teen  →  👔 Adult  →  👴 Senior",
+        github: "📂 github.com/atanucsejgec/AgeCalculator",
+        author: "@atanucsejgec | Android Developer"
+    },
+    todo: {
+        badge: "✅ NEW RELEASE",
+        h1: "📝 Todo Master",
+        h2: "Android App",
+        subtitle: "Built with Room DB + Jetpack Compose",
+        features: [
+            "Room Database for persistence",
+            "MVVM Architecture",
+            "LiveData + ViewModel",
+            "CRUD Operations",
+            "Category filters & search"
+        ],
+        badges: [
+            { label: "Kotlin", color: "#7F52FF" },
+            { label: "Room DB", color: "#00897b" },
+            { label: "MVVM", color: "#6750A4" },
+            { label: "Compose", color: "#03DAC5" }
+        ],
+        lifeStages: "📋 Add  →  ✏️ Edit  →  ✅ Done  →  🗑️ Delete",
+        github: "📂 github.com/username/TodoMaster",
+        author: "@username | Android Developer"
+    },
+    weather: {
+        badge: "🌤️ LIVE WEATHER",
+        h1: "🌤️ WeatherNow",
+        h2: "Android App",
+        subtitle: "Real-time Weather with Retrofit + API",
+        features: [
+            "OpenWeatherMap API integration",
+            "Retrofit + OkHttp networking",
+            "Coroutines + Flow",
+            "GPS Location detection",
+            "5-day weather forecast"
+        ],
+        badges: [
+            { label: "Kotlin", color: "#7F52FF" },
+            { label: "Retrofit", color: "#e53935" },
+            { label: "Coroutines", color: "#FF6F00" },
+            { label: "API", color: "#1565C0" }
+        ],
+        lifeStages: "☀️ Sunny  →  🌧️ Rainy  →  ❄️ Snow  →  ⛅ Cloudy",
+        github: "📂 github.com/username/WeatherNow",
+        author: "@username | Android Developer"
+    },
+    chat: {
+        badge: "💬 JUST LAUNCHED",
+        h1: "💬 ChatSphere",
+        h2: "Android App",
+        subtitle: "Real-time Chat with Firebase",
+        features: [
+            "Firebase Realtime Database",
+            "Firebase Authentication",
+            "Push Notifications (FCM)",
+            "Image sharing support",
+            "Online/offline status"
+        ],
+        badges: [
+            { label: "Kotlin", color: "#7F52FF" },
+            { label: "Firebase", color: "#FF6F00" },
+            { label: "Compose", color: "#03DAC5" },
+            { label: "FCM", color: "#e53935" }
+        ],
+        lifeStages: "👤 Login  →  💬 Chat  →  📸 Share  →  🔔 Notify",
+        github: "📂 github.com/username/ChatSphere",
+        author: "@username | Android Developer"
+    },
+    quiz: {
+        badge: "🧠 BRAIN TESTER",
+        h1: "🧠 QuizMaster",
+        h2: "Android App",
+        subtitle: "Interactive Quiz App with Leaderboard",
+        features: [
+            "10+ Quiz Categories",
+            "Timer-based questions",
+            "Leaderboard with SQLite",
+            "Animations with Compose",
+            "Score sharing feature"
+        ],
+        badges: [
+            { label: "Kotlin", color: "#7F52FF" },
+            { label: "SQLite", color: "#558B2F" },
+            { label: "Compose", color: "#03DAC5" },
+            { label: "Animations", color: "#9c27b0" }
+        ],
+        lifeStages: "🎯 Start  →  ❓ Quiz  →  ⏱️ Timer  →  🏆 Score",
+        github: "📂 github.com/username/QuizMaster",
+        author: "@username | Android Developer"
+    }
+};
+
+function loadPreset(key) {
+    const p = presets[key];
+    if (!p) return;
+
+    document.getElementById('badgeText').value = p.badge;
+    document.getElementById('headline1').value = p.h1;
+    document.getElementById('headline2').value = p.h2;
+    document.getElementById('subtitle').value = p.subtitle;
+    document.getElementById('lifeStages').value = p.lifeStages;
+    document.getElementById('githubLink').value = p.github;
+    document.getElementById('authorName').value = p.author;
+
+    features = [...p.features];
+    badges = [...p.badges];
+
+    renderFeatureList();
+    renderBadgeList();
+    renderBannerFeatures();
+    renderBannerBadges();
+    updateBanner();
+    removeScreenshot();
+
+    showNotification('📱 Preset loaded: ' + p.h1);
+}
+
+// ===================================================
+// THEMES
+// ===================================================
+const themes = {
+    purple: {
+        bg1: "#1C1B1F", bg2: "#2D1B69",
+        a1: "#6750A4", a2: "#03DAC5", hl: "#FFD700"
+    },
+    blue: {
+        bg1: "#0d1117", bg2: "#1f6feb",
+        a1: "#1f6feb", a2: "#58a6ff", hl: "#ffa657"
+    },
+    ocean: {
+        bg1: "#0f2027", bg2: "#2c5364",
+        a1: "#20B2AA", a2: "#00CED1", hl: "#7FFFD4"
+    },
+    green: {
+        bg1: "#1a1a1a", bg2: "#1b5e20",
+        a1: "#4CAF50", a2: "#3DDC84", hl: "#B2FF59"
+    },
+    orange: {
+        bg1: "#2d1b00", bg2: "#3e2000",
+        a1: "#FF6F00", a2: "#FFA000", hl: "#FFD54F"
+    },
+    pink: {
+        bg1: "#1a0533", bg2: "#4a0080",
+        a1: "#e040fb", a2: "#f48fb1", hl: "#ff80ab"
+    }
+};
+
+function applyTheme(name, card) {
+    const t = themes[name];
+    if (!t) return;
+
+    document.getElementById('bgColor1').value = t.bg1;
+    document.getElementById('bgColor1Hex').value = t.bg1;
+    document.getElementById('bgColor2').value = t.bg2;
+    document.getElementById('bgColor2Hex').value = t.bg2;
+    document.getElementById('accentColor1').value = t.a1;
+    document.getElementById('accentColor1Hex').value = t.a1;
+    document.getElementById('accentColor2').value = t.a2;
+    document.getElementById('accentColor2Hex').value = t.a2;
+    document.getElementById('highlightColor').value = t.hl;
+    document.getElementById('highlightColorHex').value = t.hl;
+
+    document.querySelectorAll('.template-card').forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+
+    updateDesign();
+    showNotification('🎨 Theme applied: ' + name);
+}
+
+// ===================================================
+// SAVE / DUPLICATE
+// ===================================================
+function saveDesign() {
+    const design = {
+        id: Date.now(),
+        name: `Design ${savedDesigns.length + 1}`,
+        badge: document.getElementById('badgeText').value,
+        h1: document.getElementById('headline1').value,
+        h2: document.getElementById('headline2').value,
+        features: [...features],
+        badges: [...badges],
+        time: new Date().toLocaleTimeString()
+    };
+    savedDesigns.push(design);
+    renderSavedDesigns();
+    showNotification('💾 Design saved!');
+}
+
+function renderSavedDesigns() {
+    const container = document.getElementById('savedDesigns');
+    container.innerHTML = '';
+    if (savedDesigns.length === 0) {
+        container.innerHTML = '<p style="font-size:11px;color:var(--text-gray);">No saved designs yet.</p>';
+        return;
+    }
+    savedDesigns.forEach((d, i) => {
+        const div = document.createElement('div');
+        div.style.cssText = 'background:var(--card-bg);border:1px solid var(--border-color);border-radius:8px;padding:10px;';
+        div.innerHTML = `
+            <div style="font-size:12px;font-weight:700;margin-bottom:4px;">${d.name}</div>
+            <div style="font-size:10px;color:var(--text-gray);">${d.h1} ${d.h2}</div>
+            <div style="font-size:10px;color:var(--text-gray);">Saved at ${d.time}</div>
+            <div style="display:flex;gap:6px;margin-top:8px;">
+                <button class="btn btn-secondary" style="flex:1;font-size:10px;padding:4px;" onclick="loadSaved(${i})">Load</button>
+                <button class="btn btn-danger" style="font-size:10px;padding:4px 8px;" onclick="deleteSaved(${i})">✕</button>
+            </div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function loadSaved(i) {
+    const d = savedDesigns[i];
+    document.getElementById('badgeText').value = d.badge;
+    document.getElementById('headline1').value = d.h1;
+    document.getElementById('headline2').value = d.h2;
+    features = [...d.features];
+    badges = [...d.badges];
+    renderFeatureList();
+    renderBadgeList();
+    renderBannerFeatures();
+    renderBannerBadges();
+    updateBanner();
+    showNotification('📂 Design loaded: ' + d.name);
+}
+
+function deleteSaved(i) {
+    savedDesigns.splice(i, 1);
+    renderSavedDesigns();
+    showNotification('🗑️ Design deleted');
+}
+
+function copyDesign() {
+    saveDesign();
+    showNotification('📋 Design duplicated & saved!');
+}
+
+// ===================================================
+// RESET
+// ===================================================
+function resetToDefault() {
+    loadPreset('compose');
+    document.getElementById('bgColor1').value = '#1C1B1F';
+    document.getElementById('bgColor2').value = '#2D1B69';
+    document.getElementById('accentColor1').value = '#6750A4';
+    document.getElementById('accentColor2').value = '#03DAC5';
+    document.getElementById('highlightColor').value = '#FFD700';
+    document.getElementById('headlineSize').value = 42;
+    document.getElementById('subtitleSize').value = 16;
+    document.getElementById('featureSize').value = 13;
+    document.getElementById('phoneTilt').value = -3;
+    document.getElementById('phoneSize').value = 220;
+    document.getElementById('glowIntensity').value = 30;
+    ['showTopBar','showFooter','showBgCircles','showSparkles','showPhoneFrame','showLifeStages'].forEach(id => {
+        document.getElementById(id).checked = true;
+    });
+    updateDesign();
+    updateBanner();
+    showNotification('↺ Reset to default!');
+}
+
+// ===================================================
+// PREVIEW
+// ===================================================
+function showPreview() {
+    document.getElementById('previewModal').classList.add('show');
+    showNotification('👁 Opening preview...');
+}
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove('show');
+}
+
+// ===================================================
+// DOWNLOAD PNG
+// ===================================================
+function downloadBanner() {
+    showNotification('⏳ Generating PNG...');
+
+    const banner = document.getElementById('bannerCanvas');
+    const originalTransform = document.getElementById('canvasWrapper').style.transform;
+    document.getElementById('canvasWrapper').style.transform = 'scale(1)';
+
+    setTimeout(() => {
+        html2canvas(banner, {
+            width: 1200,
+            height: 627,
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: null,
+            logging: false
+        }).then(canvas => {
+            document.getElementById('canvasWrapper').style.transform = originalTransform;
+
+            // Update preview
+            document.getElementById('previewImg').src = canvas.toDataURL('image/png');
+
+            // Download
+            const link = document.createElement('a');
+            link.download = 'linkedin-banner-' + Date.now() + '.png';
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+
+            showNotification('✅ PNG Downloaded! (1200×627)');
+        }).catch(err => {
+            document.getElementById('canvasWrapper').style.transform = originalTransform;
+            showNotification('⚠️ Download failed. Try again.');
+            console.error(err);
+        });
+    }, 100);
+}
+
+// ===================================================
+// NOTIFICATION
+// ===================================================
+function showNotification(msg) {
+    const n = document.getElementById('notification');
+    n.textContent = msg;
+    n.classList.add('show');
+    setTimeout(() => n.classList.remove('show'), 2500);
+}
+
+// ===================================================
+// KEYBOARD SHORTCUTS
+// ===================================================
+document.addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey) {
+        if (e.key === 's') { e.preventDefault(); saveDesign(); }
+        if (e.key === 'd') { e.preventDefault(); downloadBanner(); }
+        if (e.key === '=') { e.preventDefault(); zoom(10); }
+        if (e.key === '-') { e.preventDefault(); zoom(-10); }
+        if (e.key === '0') { e.preventDefault(); fitToScreen(); }
+    }
+});
+
+// Enter key for badge/feature inputs
+document.getElementById('newBadge').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addBadge();
+});
+document.getElementById('newFeature').addEventListener('keydown', e => {
+    if (e.key === 'Enter') addFeature();
+});
+
+// Close modal on overlay click
+document.getElementById('previewModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal('previewModal');
+});
+
+// Init design update
+setTimeout(() => {
+    updateDesign();
+}, 100);
+
+</script>
+</body>
+</html>
