@@ -6,7 +6,7 @@
 
 /* ===== TABS ===== */
 function switchTab(name) {
-  const names = ['content','design','media','templates'];
+  const names = ['content','design','media','templates','overlays'];
   document.querySelectorAll('.tab').forEach((t,i) => {
     t.classList.toggle('active', names[i]===name);
   });
@@ -36,6 +36,23 @@ function fitToScreen() {
   const sh    = (areaH / 627)  * 100;
   AppState.zoom = Math.max(15, Math.floor(Math.min(sw, sh)));
   applyZoom();
+}
+
+/* ===== PREVIEW OFFSET ===== */
+function adjustPreviewOffset(value) {
+  const wrapper = document.getElementById('canvasWrapper');
+  const val = parseInt(value) || 0;
+  // Store offset, apply as margin-top
+  AppState.previewOffsetY = val;
+  wrapper.style.marginTop = val + 'px';
+  document.getElementById('previewOffsetVal').textContent = val + 'px';
+}
+
+function resetPreviewOffset() {
+  AppState.previewOffsetY = 0;
+  document.getElementById('previewOffsetY').value = 0;
+  document.getElementById('canvasWrapper').style.marginTop = '0px';
+  document.getElementById('previewOffsetVal').textContent = '0px';
 }
 
 /* ===== NOTIFICATION ===== */

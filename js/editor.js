@@ -55,7 +55,14 @@ function renderBanner() {
     fs: parseInt(document.getElementById('featureSize').value)  || 13,
   };
 
-  document.getElementById('bannerCanvas').innerHTML = tmpl.render(data);
+  let bannerHtml = tmpl.render(data);
+
+  // Append active overlay layers
+  if (typeof renderOverlays === 'function') {
+    bannerHtml += renderOverlays(data.colors);
+  }
+
+  document.getElementById('bannerCanvas').innerHTML = bannerHtml;
   setStatus('Banner rendered ✓');
 }
 

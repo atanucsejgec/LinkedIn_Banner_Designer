@@ -43,7 +43,7 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,5);
+      const feats = d.state.features.slice(0, 5);
       const badges = d.state.badges;
       return `
         <!-- BG -->
@@ -101,7 +101,7 @@ const TEMPLATES = [
             style="width:280px;background:linear-gradient(90deg,${c.a1},${c.a2});"></div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div class="feat-item">
                 <span class="feat-check" style="color:${c.a2};">✅</span>
                 <span style="font-size:${d.fs}px;">${f}</span>
@@ -115,7 +115,7 @@ const TEMPLATES = [
           </div>` : ''}
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${badges.map(b=>`
+            ${badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -172,7 +172,7 @@ const TEMPLATES = [
 
         <!-- HEADLINE LEFT -->
         <div style="position:absolute;left:44px;top:65px;width:560px;">
-          <div style="font-size:${Math.min(d.hs+4,58)}px;font-weight:900;
+          <div style="font-size:${Math.min(d.hs + 4, 58)}px;font-weight:900;
             line-height:1.1;color:#fff;margin-bottom:12px;">
             <span style="background:linear-gradient(135deg,${c.hl},${shiftHue(c.hl)});
               -webkit-background-clip:text;-webkit-text-fill-color:transparent;
@@ -186,7 +186,7 @@ const TEMPLATES = [
             ${d.state.description}
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px;">
-            ${badges.map(b=>`
+            ${badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -203,7 +203,7 @@ const TEMPLATES = [
           <div class="glow-blob" style="width:260px;height:260px;
             background:radial-gradient(circle,${c.a2}44,transparent 70%);
             top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-          ${phoneMockup(ss, Math.min(d.phoneW+10,300), d.phoneTilt, d.glowOpacity, c.a2)}
+          ${phoneMockup(ss, Math.min(d.phoneW + 10, 300), d.phoneTilt, d.glowOpacity, c.a2)}
         </div>
 
         <!-- Sparkles -->
@@ -238,7 +238,7 @@ const TEMPLATES = [
       const c = d.colors;
       const ss1 = d.screenshots[0];
       const ss2 = d.screenshots[1];
-      const feats = d.state.features.slice(0,4);
+      const feats = d.state.features.slice(0, 4);
       const smallW = Math.round(d.phoneW * 0.82);
       return `
         <div style="position:absolute;inset:0;
@@ -276,7 +276,7 @@ const TEMPLATES = [
             background:linear-gradient(90deg,${c.a1},${c.a2});"></div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div class="feat-item">
                 <span style="color:${c.a2};">✅</span>
                 <span style="font-size:${d.fs}px;">${f}</span>
@@ -284,7 +284,7 @@ const TEMPLATES = [
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -328,7 +328,7 @@ const TEMPLATES = [
     },
     render(d) {
       const c = d.colors;
-      const [ss1,ss2,ss3] = d.screenshots;
+      const [ss1, ss2, ss3] = d.screenshots;
       const pw = Math.round(d.phoneW * 0.68);
       return `
         <div style="position:absolute;inset:0;
@@ -348,7 +348,7 @@ const TEMPLATES = [
             ${phoneMockup(ss1, pw, 0, d.glowOpacity, c.a1)}
           </div>
           <div style="transform:translateY(-10px);">
-            ${phoneMockup(ss2, pw+10, 0, d.glowOpacity*1.2, c.a2)}
+            ${phoneMockup(ss2, pw + 10, 0, d.glowOpacity * 1.2, c.a2)}
           </div>
           <div style="transform:rotate(8deg) translateY(30px);">
             ${phoneMockup(ss3, pw, 0, d.glowOpacity, c.hl)}
@@ -366,19 +366,19 @@ const TEMPLATES = [
             ${d.state.badge}
           </div>
 
-          <div style="font-size:${Math.min(d.hs,38)}px;font-weight:900;
+          <div style="font-size:${Math.min(d.hs, 38)}px;font-weight:900;
             color:#fff;margin-bottom:4px;">
             <span style="background:linear-gradient(135deg,${c.hl},${c.hl}cc);
               -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
               ${d.state.h1}</span>
-            &nbsp;<span style="font-size:${Math.min(d.hs-4,32)}px;">${d.state.h2}</span>
+            &nbsp;<span style="font-size:${Math.min(d.hs - 4, 32)}px;">${d.state.h2}</span>
           </div>
 
           <div style="display:flex;align-items:center;
             justify-content:space-between;flex-wrap:wrap;gap:8px;">
             <div style="font-size:13px;color:#CAC4D0;">${d.state.subtitle}</div>
             <div style="display:flex;gap:6px;flex-wrap:wrap;">
-              ${d.state.badges.slice(0,4).map(b=>`
+              ${d.state.badges.slice(0, 4).map(b => `
                 <span class="tech-badge" style="background:${b.color};">${b.label}</span>
               `).join('')}
             </div>
@@ -409,7 +409,7 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,4);
+      const feats = d.state.features.slice(0, 4);
       return `
         <div style="position:absolute;inset:0;
           background:linear-gradient(${c.gradDir},${c.bg1},#0a0a0f);"></div>
@@ -433,7 +433,7 @@ const TEMPLATES = [
           <div class="terminal-dot" style="background:#febc2e;"></div>
           <div class="terminal-dot" style="background:#28c840;"></div>
           <span style="font-size:11px;color:#666;margin-left:8px;font-family:monospace;">
-            ${d.state.h1.replace(/[^a-zA-Z0-9 ]/g,'').toLowerCase().replace(/ /g,'-')}.kt
+            ${d.state.h1.replace(/[^a-zA-Z0-9 ]/g, '').toLowerCase().replace(/ /g, '-')}.kt
           </span>
           <div style="margin-left:auto;">
             <span class="top-badge-pill" style="font-size:10px;padding:3px 10px;
@@ -447,22 +447,22 @@ const TEMPLATES = [
         <div style="position:absolute;left:28px;top:52px;width:520px;bottom:60px;
           display:flex;flex-direction:column;justify-content:center;gap:8px;">
 
-          <div style="font-size:${d.hs-4}px;font-weight:900;color:#fff;
+          <div style="font-size:${d.hs - 4}px;font-weight:900;color:#fff;
             margin-bottom:6px;">
             <span style="color:${c.a2};">fun </span>
-            <span style="color:${c.hl};">${d.state.h1.replace(/[^a-zA-Z0-9 ]/g,'').trim().replace(/ (.)/g,(_,c)=>c.toUpperCase())}</span>
+            <span style="color:${c.hl};">${d.state.h1.replace(/[^a-zA-Z0-9 ]/g, '').trim().replace(/ (.)/g, (_, c) => c.toUpperCase())}</span>
             <span style="color:#fff;">() {</span>
           </div>
 
           <div class="code-block" style="border-color:${c.a1}33;">
-            ${feats.slice(0,3).map((f,i)=>`
+            ${feats.slice(0, 3).map((f, i) => `
               <div><span class="code-comment">// ${f}</span></div>
             `).join('')}
             <div style="margin-top:6px;">
               <span class="code-keyword">val </span>
               <span class="code-var">stack</span>
               <span style="color:#fff;"> = listOf(</span>
-              ${d.state.badges.slice(0,3).map(b=>`
+              ${d.state.badges.slice(0, 3).map(b => `
                 <span class="code-string">"${b.label}"</span>
               `).join('<span style="color:#fff;">, </span>')}
               <span style="color:#fff;">)</span>
@@ -473,10 +473,10 @@ const TEMPLATES = [
             </div>
           </div>
 
-          <div style="font-size:${d.hs-6}px;font-weight:900;color:#fff;">}</div>
+          <div style="font-size:${d.hs - 6}px;font-weight:900;color:#fff;">}</div>
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -526,11 +526,11 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,3);
+      const feats = d.state.features.slice(0, 3);
       const stats = [
-        { n:'100%', l:'Kotlin' },
-        { n:'MD3',  l:'Design' },
-        { n:'∞',    l:'Compose' }
+        { n: '100%', l: 'Kotlin' },
+        { n: 'MD3', l: 'Design' },
+        { n: '∞', l: 'Compose' }
       ];
       return `
         <div style="position:absolute;inset:0;
@@ -562,9 +562,9 @@ const TEMPLATES = [
 
           <!-- STAT BOXES -->
           <div style="display:flex;gap:10px;margin-top:2px;">
-            ${stats.map((s,i)=>`
+            ${stats.map((s, i) => `
               <div class="stat-box">
-                <div class="stat-number" style="color:${[c.a1,c.a2,c.hl][i]};">${s.n}</div>
+                <div class="stat-number" style="color:${[c.a1, c.a2, c.hl][i]};">${s.n}</div>
                 <div class="stat-label">${s.l}</div>
               </div>
             `).join('')}
@@ -574,7 +574,7 @@ const TEMPLATES = [
             background:linear-gradient(90deg,${c.a1},${c.a2});"></div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div class="feat-item">
                 <span style="color:${c.a2};">✅</span>
                 <span style="font-size:${d.fs}px;">${f}</span>
@@ -582,7 +582,7 @@ const TEMPLATES = [
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -594,7 +594,7 @@ const TEMPLATES = [
           <div class="glow-blob" style="width:240px;height:240px;
             background:radial-gradient(circle,${c.a1}44,transparent 70%);
             top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-          ${phoneMockup(ss, Math.min(d.phoneW+10,260), d.phoneTilt, d.glowOpacity, c.a1)}
+          ${phoneMockup(ss, Math.min(d.phoneW + 10, 260), d.phoneTilt, d.glowOpacity, c.a1)}
         </div>
 
         <!-- FOOTER -->
@@ -624,8 +624,8 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,4);
-      const icons = ['⚡','🎯','🔧','🚀'];
+      const feats = d.state.features.slice(0, 4);
+      const icons = ['⚡', '🎯', '🔧', '🚀'];
       return `
         <div style="position:absolute;inset:0;
           background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
@@ -644,12 +644,12 @@ const TEMPLATES = [
               background:linear-gradient(135deg,${c.a1},${c.a2});">
               ${d.state.badge}
             </div>
-            <div style="font-size:${Math.min(d.hs,36)}px;font-weight:900;
+            <div style="font-size:${Math.min(d.hs, 36)}px;font-weight:900;
               line-height:1.1;color:#fff;">
               <span style="background:linear-gradient(135deg,${c.hl},${c.hl}cc);
                 -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
                 ${d.state.h1}</span>
-              <span style="font-size:${Math.min(d.hs-6,28)}px;"> ${d.state.h2}</span>
+              <span style="font-size:${Math.min(d.hs - 6, 28)}px;"> ${d.state.h2}</span>
             </div>
             <div style="font-size:${d.ss}px;color:#CAC4D0;margin-top:4px;">
               ${d.state.subtitle}</div>
@@ -668,10 +668,10 @@ const TEMPLATES = [
         <div style="position:absolute;left:34px;bottom:68px;
           right:230px;display:grid;grid-template-columns:1fr 1fr;
           gap:10px;align-content:end;padding-bottom:10px;">
-          ${feats.map((f,i)=>`
+          ${feats.map((f, i) => `
             <div class="grid-card">
-              <div class="grid-card-icon">${icons[i]||'✅'}</div>
-              <div class="grid-card-title">${f.split(' ').slice(0,3).join(' ')}</div>
+              <div class="grid-card-icon">${icons[i] || '✅'}</div>
+              <div class="grid-card-title">${f.split(' ').slice(0, 3).join(' ')}</div>
               <div class="grid-card-sub">${f}</div>
             </div>
           `).join('')}
@@ -680,7 +680,7 @@ const TEMPLATES = [
         <!-- BADGES BOTTOM RIGHT -->
         <div style="position:absolute;right:30px;bottom:76px;
           width:190px;display:flex;flex-direction:column;gap:6px;">
-          ${d.state.badges.map(b=>`
+          ${d.state.badges.map(b => `
             <span class="tech-badge" style="background:${b.color};
               display:block;text-align:center;">${b.label}</span>
           `).join('')}
@@ -713,7 +713,7 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,4);
+      const feats = d.state.features.slice(0, 4);
       return `
         <!-- LEFT PANEL -->
         <div style="position:absolute;inset:0;background:${c.bg1};"></div>
@@ -751,7 +751,7 @@ const TEMPLATES = [
             background:linear-gradient(90deg,${c.a2},${c.a1});"></div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div class="feat-item">
                 <span style="color:${c.a2};">▶</span>
                 <span style="font-size:${d.fs}px;">${f}</span>
@@ -759,7 +759,7 @@ const TEMPLATES = [
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -804,9 +804,9 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,4);
+      const feats = d.state.features.slice(0, 4);
       const textDark = '#1a1a2e';
-      const textMid  = '#555577';
+      const textMid = '#555577';
       return `
         <div style="position:absolute;inset:0;
           background:linear-gradient(${c.gradDir},#f0f0ff,#e8e0ff);"></div>
@@ -848,7 +848,7 @@ const TEMPLATES = [
             background:linear-gradient(90deg,${c.a1},${c.a2});"></div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div style="display:flex;align-items:center;gap:7px;
                 font-size:${d.fs}px;color:${textDark};">
                 <span style="color:${c.a1};font-size:15px;">✔</span> ${f}
@@ -856,7 +856,7 @@ const TEMPLATES = [
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span style="padding:4px 12px;border-radius:20px;
                 font-size:11px;font-weight:700;
                 background:${b.color}22;color:${b.color};
@@ -868,7 +868,7 @@ const TEMPLATES = [
         <!-- PHONE RIGHT -->
         <div style="position:absolute;right:28px;top:28px;bottom:68px;
           width:360px;display:flex;align-items:center;justify-content:center;">
-          ${phoneMockup(ss, d.phoneW, d.phoneTilt, d.glowOpacity*0.6, c.a1)}
+          ${phoneMockup(ss, d.phoneW, d.phoneTilt, d.glowOpacity * 0.6, c.a1)}
         </div>
 
         <!-- FOOTER -->
@@ -898,7 +898,7 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,4);
+      const feats = d.state.features.slice(0, 4);
       return `
         <div style="position:absolute;inset:0;background:#050510;"></div>
 
@@ -950,7 +950,7 @@ const TEMPLATES = [
             box-shadow:0 0 8px ${c.a2};border-radius:2px;"></div>
 
           <div style="display:flex;flex-direction:column;gap:6px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div style="display:flex;align-items:center;gap:8px;
                 font-size:${d.fs}px;color:#ccc;">
                 <span style="color:${c.a2};
@@ -959,7 +959,7 @@ const TEMPLATES = [
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span style="padding:4px 14px;border-radius:20px;
                 font-size:11px;font-weight:700;color:${b.color};
                 border:1px solid ${b.color};
@@ -974,7 +974,7 @@ const TEMPLATES = [
           <div class="glow-blob" style="width:280px;height:280px;
             background:radial-gradient(circle,${c.a1}55,transparent 65%);
             top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-          ${phoneMockup(ss, d.phoneW, d.phoneTilt, d.glowOpacity*1.3, c.a1)}
+          ${phoneMockup(ss, d.phoneW, d.phoneTilt, d.glowOpacity * 1.3, c.a1)}
         </div>
 
         <!-- Sparkles -->
@@ -1011,9 +1011,9 @@ const TEMPLATES = [
     },
     render(d) {
       const c = d.colors;
-      const feats = d.state.features.slice(0,6);
-      const mid = Math.ceil(feats.length/2);
-      const left = feats.slice(0,mid);
+      const feats = d.state.features.slice(0, 6);
+      const mid = Math.ceil(feats.length / 2);
+      const left = feats.slice(0, mid);
       const right = feats.slice(mid);
       return `
         <div style="position:absolute;inset:0;
@@ -1037,7 +1037,7 @@ const TEMPLATES = [
           </div>
 
           <div style="text-align:center;">
-            <div style="font-size:${Math.min(d.hs+4,54)}px;font-weight:900;
+            <div style="font-size:${Math.min(d.hs + 4, 54)}px;font-weight:900;
               line-height:1.1;margin-bottom:6px;">
               <span style="background:linear-gradient(135deg,${c.hl},${c.hl}bb);
                 -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
@@ -1054,7 +1054,7 @@ const TEMPLATES = [
 
           <!-- TWO COL FEATURES -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 30px;width:100%;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div style="display:flex;align-items:center;gap:7px;
                 font-size:${d.fs}px;color:#e0e0e0;">
                 <span style="color:${c.a2};">✅</span> ${f}
@@ -1063,7 +1063,7 @@ const TEMPLATES = [
 
           <!-- BADGES ROW -->
           <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -1102,7 +1102,7 @@ const TEMPLATES = [
     render(d) {
       const c = d.colors;
       const ss = d.screenshots[0];
-      const feats = d.state.features.slice(0,3);
+      const feats = d.state.features.slice(0, 3);
       return `
         <div style="position:absolute;inset:0;
           background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
@@ -1126,26 +1126,26 @@ const TEMPLATES = [
             ${d.state.badge}
           </div>
 
-          <div style="font-size:${Math.min(d.hs+6,56)}px;font-weight:900;
+          <div style="font-size:${Math.min(d.hs + 6, 56)}px;font-weight:900;
             line-height:1.0;color:#fff;letter-spacing:-1px;">
             ${d.state.h1}<br>
             <span style="color:${c.hl};">${d.state.h2}</span>
           </div>
 
-          <div style="font-size:${d.ss+1}px;color:#ddd;max-width:440px;">
+          <div style="font-size:${d.ss + 1}px;color:#ddd;max-width:440px;">
             ${d.state.subtitle}
           </div>
 
           <div style="display:flex;flex-direction:column;gap:5px;">
-            ${feats.map(f=>`
+            ${feats.map(f => `
               <div style="display:flex;align-items:center;gap:8px;
-                font-size:${d.fs+1}px;color:#eee;">
+                font-size:${d.fs + 1}px;color:#eee;">
                 <span style="color:${c.hl};font-size:16px;">→</span> ${f}
               </div>`).join('')}
           </div>
 
           <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:4px;">
-            ${d.state.badges.map(b=>`
+            ${d.state.badges.map(b => `
               <span class="tech-badge" style="background:${b.color};">${b.label}</span>
             `).join('')}
           </div>
@@ -1157,7 +1157,7 @@ const TEMPLATES = [
           <div class="glow-blob" style="width:300px;height:300px;
             background:radial-gradient(circle,${c.hl}33,transparent 65%);
             top:50%;left:50%;transform:translate(-50%,-50%);"></div>
-          ${phoneMockup(ss, Math.min(d.phoneW+20,280), d.phoneTilt, d.glowOpacity, c.a1)}
+          ${phoneMockup(ss, Math.min(d.phoneW + 20, 280), d.phoneTilt, d.glowOpacity, c.a1)}
         </div>
 
         <!-- FOOTER -->
@@ -1170,26 +1170,26 @@ const TEMPLATES = [
     }
   },
 
-/* ══════════════════════════════════════════
-   TEMPLATE — Neon Wireframe
-   Blueprint / wireframe aesthetic with neon grid
-══════════════════════════════════════════ */
-{
-  id: 'neon-wireframe',
-  name: 'Neon Wireframe',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg,#0a0a2e,#1a0a3e)',
-    emoji: '📐',
-    label: 'Wireframe'
-  },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    return `
+  /* ══════════════════════════════════════════
+     TEMPLATE — Neon Wireframe
+     Blueprint / wireframe aesthetic with neon grid
+  ══════════════════════════════════════════ */
+  {
+    id: 'neon-wireframe',
+    name: 'Neon Wireframe',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#0a0a2e,#1a0a3e)',
+      emoji: '📐',
+      label: 'Wireframe'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1231,7 +1231,7 @@ const TEMPLATES = [
       <!-- PHONE LEFT -->
       <div style="position:absolute;left:36px;top:70px;bottom:76px;
         width:380px;display:flex;align-items:center;justify-content:center;">
-        <div style="position:absolute;width:${d.phoneW+60}px;height:${d.phoneW*2+60}px;
+        <div style="position:absolute;width:${d.phoneW + 60}px;height:${d.phoneW * 2 + 60}px;
           border:1px dashed ${c.a1}44;border-radius:28px;"></div>
         ${phoneMockup(ss, d.phoneW, d.phoneTilt, d.glowOpacity, c.a1)}
       </div>
@@ -1259,7 +1259,7 @@ const TEMPLATES = [
         <div style="display:flex;flex-direction:column;gap:6px;">
           ${feats.map((f, i) => `
             <div class="feat-item" style="font-family:monospace;">
-              <span style="color:${c.a1};font-size:13px;">[${String(i+1).padStart(2,'0')}]</span>
+              <span style="color:${c.a1};font-size:13px;">[${String(i + 1).padStart(2, '0')}]</span>
               <span style="font-size:${d.fs}px;">${f}</span>
             </div>`).join('')}
         </div>
@@ -1284,29 +1284,29 @@ const TEMPLATES = [
         </span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Retro Terminal
-   Green-on-black terminal / hacker aesthetic
-══════════════════════════════════════════ */
-{
-  id: 'retro-terminal',
-  name: 'Retro Terminal',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg,#0d1117,#001a00)',
-    emoji: '💻',
-    label: 'Terminal'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Retro Terminal
+     Green-on-black terminal / hacker aesthetic
+  ══════════════════════════════════════════ */
+  {
+    id: 'retro-terminal',
+    name: 'Retro Terminal',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#0d1117,#001a00)',
+      emoji: '💻',
+      label: 'Terminal'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      return `
       <div style="position:absolute;inset:0;background:#0d1117;"></div>
 
       <!-- SCANLINES -->
@@ -1409,29 +1409,29 @@ const TEMPLATES = [
         </span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Glassmorphism Trio
-   Three frosted-glass cards with phones
-══════════════════════════════════════════ */
-{
-  id: 'glass-trio',
-  name: 'Glassmorphism Trio',
-  tag: '3 Screenshots',
-  screenshots: 3,
-  thumb: {
-    bg: 'linear-gradient(135deg,#1a1a2e,#16213e)',
-    emoji: '🪟',
-    label: 'Glass Trio'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const phones = d.screenshots;
-    const feats = d.state.features.slice(0, 3);
-    const smallPhone = Math.max(d.phoneW - 60, 120);
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Glassmorphism Trio
+     Three frosted-glass cards with phones
+  ══════════════════════════════════════════ */
+  {
+    id: 'glass-trio',
+    name: 'Glassmorphism Trio',
+    tag: '3 Screenshots',
+    screenshots: 3,
+    thumb: {
+      bg: 'linear-gradient(135deg,#1a1a2e,#16213e)',
+      emoji: '🪟',
+      label: 'Glass Trio'
+    },
+    render(d) {
+      const c = d.colors;
+      const phones = d.screenshots;
+      const feats = d.state.features.slice(0, 3);
+      const smallPhone = Math.max(d.phoneW - 60, 120);
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1468,7 +1468,7 @@ const TEMPLATES = [
       <!-- THREE GLASS CARDS -->
       <div style="position:absolute;top:115px;left:28px;right:28px;bottom:74px;
         display:flex;gap:16px;align-items:stretch;">
-        ${[0,1,2].map((i) => `
+        ${[0, 1, 2].map((i) => `
           <div class="grid-card" style="flex:1;
             background:rgba(255,255,255,0.06);
             backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
@@ -1477,8 +1477,8 @@ const TEMPLATES = [
             justify-content:center;gap:8px;padding:12px;position:relative;
             overflow:hidden;">
             <div style="position:absolute;top:0;left:0;right:0;height:2px;
-              background:linear-gradient(90deg,${[c.a1,c.a2,c.hl][i]},transparent);"></div>
-            ${phoneMockup(phones[i], smallPhone, 0, d.glowOpacity, [c.a1,c.a2,c.hl][i])}
+              background:linear-gradient(90deg,${[c.a1, c.a2, c.hl][i]},transparent);"></div>
+            ${phoneMockup(phones[i], smallPhone, 0, d.glowOpacity, [c.a1, c.a2, c.hl][i])}
             <div style="font-size:${d.fs + 1}px;color:#fff;font-weight:600;
               text-align:center;margin-top:4px;">
               ${feats[i] || ''}
@@ -1504,29 +1504,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Isometric Showcase
-   Tilted phones in isometric-like perspective
-══════════════════════════════════════════ */
-{
-  id: 'isometric-showcase',
-  name: 'Isometric Showcase',
-  tag: '2 Screenshots',
-  screenshots: 2,
-  thumb: {
-    bg: 'linear-gradient(135deg,#0f0c29,#302b63)',
-    emoji: '🔷',
-    label: 'Isometric'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    const pw = Math.max(d.phoneW - 30, 140);
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Isometric Showcase
+     Tilted phones in isometric-like perspective
+  ══════════════════════════════════════════ */
+  {
+    id: 'isometric-showcase',
+    name: 'Isometric Showcase',
+    tag: '2 Screenshots',
+    screenshots: 2,
+    thumb: {
+      bg: 'linear-gradient(135deg,#0f0c29,#302b63)',
+      emoji: '🔷',
+      label: 'Isometric'
+    },
+    render(d) {
+      const c = d.colors;
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      const pw = Math.max(d.phoneW - 30, 140);
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1620,34 +1620,34 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Stats Dashboard
-   No phone, pure stats & metrics showcase
-══════════════════════════════════════════ */
-{
-  id: 'stats-dashboard',
-  name: 'Stats Dashboard',
-  tag: '0 Screenshots',
-  screenshots: 0,
-  thumb: {
-    bg: 'linear-gradient(135deg,#1a1a2e,#0f3460)',
-    emoji: '📊',
-    label: 'Dashboard'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const feats = d.state.features.slice(0, 6);
-    const badges = d.state.badges;
-    const stats = [
-      { num: '99%', label: 'Uptime' },
-      { num: '4.9★', label: 'Rating' },
-      { num: '50K+', label: 'Users' },
-      { num: '<1s', label: 'Response' }
-    ];
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Stats Dashboard
+     No phone, pure stats & metrics showcase
+  ══════════════════════════════════════════ */
+  {
+    id: 'stats-dashboard',
+    name: 'Stats Dashboard',
+    tag: '0 Screenshots',
+    screenshots: 0,
+    thumb: {
+      bg: 'linear-gradient(135deg,#1a1a2e,#0f3460)',
+      emoji: '📊',
+      label: 'Dashboard'
+    },
+    render(d) {
+      const c = d.colors;
+      const feats = d.state.features.slice(0, 6);
+      const badges = d.state.badges;
+      const stats = [
+        { num: '99%', label: 'Uptime' },
+        { num: '4.9★', label: 'Rating' },
+        { num: '50K+', label: 'Users' },
+        { num: '<1s', label: 'Response' }
+      ];
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1675,7 +1675,7 @@ const TEMPLATES = [
           ${d.state.badge}
         </div>
         <div style="display:flex;gap:6px;">
-          ${badges.slice(0,4).map(b => `
+          ${badges.slice(0, 4).map(b => `
             <span class="tech-badge" style="background:${b.color};">${b.label}</span>
           `).join('')}
         </div>
@@ -1718,11 +1718,11 @@ const TEMPLATES = [
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
             ${stats.map((s, i) => `
               <div class="stat-box" style="background:rgba(255,255,255,0.06);
-                border:1px solid ${[c.a1,c.a2,c.hl,c.a1][i]}33;border-radius:12px;
+                border:1px solid ${[c.a1, c.a2, c.hl, c.a1][i]}33;border-radius:12px;
                 padding:14px;text-align:center;">
                 <div style="font-size:26px;font-weight:900;
-                  color:${[c.a1,c.a2,c.hl,c.a1][i]};
-                  text-shadow:0 0 16px ${[c.a1,c.a2,c.hl,c.a1][i]}44;">
+                  color:${[c.a1, c.a2, c.hl, c.a1][i]};
+                  text-shadow:0 0 16px ${[c.a1, c.a2, c.hl, c.a1][i]}44;">
                   ${s.num}
                 </div>
                 <div style="font-size:11px;color:#888;margin-top:2px;">${s.label}</div>
@@ -1748,29 +1748,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Polaroid Stack
-   Photos scattered like polaroid snapshots
-══════════════════════════════════════════ */
-{
-  id: 'polaroid-stack',
-  name: 'Polaroid Stack',
-  tag: '2 Screenshots',
-  screenshots: 2,
-  thumb: {
-    bg: 'linear-gradient(135deg,#2c1810,#1a0a2e)',
-    emoji: '📸',
-    label: 'Polaroid'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    const pw = Math.max(d.phoneW - 40, 130);
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Polaroid Stack
+     Photos scattered like polaroid snapshots
+  ══════════════════════════════════════════ */
+  {
+    id: 'polaroid-stack',
+    name: 'Polaroid Stack',
+    tag: '2 Screenshots',
+    screenshots: 2,
+    thumb: {
+      bg: 'linear-gradient(135deg,#2c1810,#1a0a2e)',
+      emoji: '📸',
+      label: 'Polaroid'
+    },
+    render(d) {
+      const c = d.colors;
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      const pw = Math.max(d.phoneW - 40, 130);
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1830,8 +1830,8 @@ const TEMPLATES = [
           <div style="width:${pw}px;height:${pw * 1.8}px;overflow:hidden;
             border-radius:2px;background:#111;">
             ${d.screenshots[1]
-              ? `<img src="${d.screenshots[1]}" style="width:100%;height:100%;object-fit:cover;">`
-              : `<div style="width:100%;height:100%;display:flex;align-items:center;
+          ? `<img src="${d.screenshots[1]}" style="width:100%;height:100%;object-fit:cover;">`
+          : `<div style="width:100%;height:100%;display:flex;align-items:center;
                   justify-content:center;color:#555;font-size:24px;">📱</div>`}
           </div>
           <div style="text-align:center;margin-top:8px;font-family:cursive;
@@ -1844,11 +1844,11 @@ const TEMPLATES = [
           background:#fefefe;border-radius:4px;padding:12px 12px 40px 12px;
           box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px ${c.a1}22;
           z-index:2;">
-          <div style="width:${pw + 10}px;height:${(pw+10) * 1.8}px;overflow:hidden;
+          <div style="width:${pw + 10}px;height:${(pw + 10) * 1.8}px;overflow:hidden;
             border-radius:2px;background:#111;">
             ${d.screenshots[0]
-              ? `<img src="${d.screenshots[0]}" style="width:100%;height:100%;object-fit:cover;">`
-              : `<div style="width:100%;height:100%;display:flex;align-items:center;
+          ? `<img src="${d.screenshots[0]}" style="width:100%;height:100%;object-fit:cover;">`
+          : `<div style="width:100%;height:100%;display:flex;align-items:center;
                   justify-content:center;color:#555;font-size:24px;">📱</div>`}
           </div>
           <div style="text-align:center;margin-top:8px;font-family:cursive;
@@ -1866,29 +1866,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Sunrise Horizon
-   Warm gradient with a radial sunrise behind phone
-══════════════════════════════════════════ */
-{
-  id: 'sunrise-horizon',
-  name: 'Sunrise Horizon',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(180deg,#0a0a2e,#ff6b35,#ffd93d)',
-    emoji: '🌅',
-    label: 'Sunrise'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Sunrise Horizon
+     Warm gradient with a radial sunrise behind phone
+  ══════════════════════════════════════════ */
+  {
+    id: 'sunrise-horizon',
+    name: 'Sunrise Horizon',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(180deg,#0a0a2e,#ff6b35,#ffd93d)',
+      emoji: '🌅',
+      label: 'Sunrise'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -1904,7 +1904,7 @@ const TEMPLATES = [
           transparent 5%,${c.hl}55 30%,${c.a1}55 70%,transparent 95%);"></div>
 
       <!-- HORIZONTAL RAYS -->
-      ${[0,1,2,3,4].map(i => `
+      ${[0, 1, 2, 3, 4].map(i => `
         <div style="position:absolute;bottom:140px;left:50%;
           width:${300 + i * 160}px;height:1px;opacity:${0.12 - i * 0.02};
           transform:translateX(-50%) translateY(-${i * 18}px);
@@ -1937,7 +1937,7 @@ const TEMPLATES = [
           ${d.state.h1}
         </div>
         <div style="font-size:${d.ss}px;color:#ccc;">${d.state.subtitle}</div>
-        ${feats.slice(0,2).map(f => `
+        ${feats.slice(0, 2).map(f => `
           <div class="feat-item">
             <span style="color:${c.hl};">☀</span>
             <span style="font-size:${d.fs}px;">${f}</span>
@@ -1951,7 +1951,7 @@ const TEMPLATES = [
         <div style="font-size:${d.hs - 4}px;font-weight:900;line-height:1.15;">
           <span style="color:${c.hl};">${d.state.h2}</span>
         </div>
-        ${feats.slice(2,4).map(f => `
+        ${feats.slice(2, 4).map(f => `
           <div class="feat-item" style="flex-direction:row-reverse;">
             <span style="color:${c.hl};">☀</span>
             <span style="font-size:${d.fs}px;">${f}</span>
@@ -1971,29 +1971,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#999;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Magazine Cover
-   Editorial / magazine-style layout
-══════════════════════════════════════════ */
-{
-  id: 'magazine-cover',
-  name: 'Magazine Cover',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg,#1a1a1a,#333)',
-    emoji: '📰',
-    label: 'Magazine'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 3);
-    const badges = d.state.badges;
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Magazine Cover
+     Editorial / magazine-style layout
+  ══════════════════════════════════════════ */
+  {
+    id: 'magazine-cover',
+    name: 'Magazine Cover',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#1a1a1a,#333)',
+      emoji: '📰',
+      label: 'Magazine'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 3);
+      const badges = d.state.badges;
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -2089,39 +2089,39 @@ const TEMPLATES = [
         </span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Orbit
-   Phone in center with orbiting feature rings
-══════════════════════════════════════════ */
-{
-  id: 'orbit-rings',
-  name: 'Orbit',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg,#0a0020,#1a0040)',
-    emoji: '🪐',
-    label: 'Orbit'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 6);
-    const badges = d.state.badges;
-    const cx = 580; // orbit center X
-    const cy = 160; // orbit center Y
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Orbit
+     Phone in center with orbiting feature rings
+  ══════════════════════════════════════════ */
+  {
+    id: 'orbit-rings',
+    name: 'Orbit',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#0a0020,#1a0040)',
+      emoji: '🪐',
+      label: 'Orbit'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 6);
+      const badges = d.state.badges;
+      const cx = 580; // orbit center X
+      const cy = 160; // orbit center Y
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
       <!-- STARS -->
-      ${Array.from({length:20}, (_, i) => `
+      ${Array.from({ length: 20 }, (_, i) => `
         <div style="position:absolute;width:2px;height:2px;border-radius:50%;
-          background:rgba(255,255,255,${0.1 + Math.random()*0.3});
-          top:${Math.random()*85}%;left:${Math.random()*100}%;"></div>
+          background:rgba(255,255,255,${0.1 + Math.random() * 0.3});
+          top:${Math.random() * 85}%;left:${Math.random() * 100}%;"></div>
       `).join('')}
 
       <!-- ORBIT RINGS -->
@@ -2134,7 +2134,7 @@ const TEMPLATES = [
 
       <!-- ORBIT DOTS (features) -->
       ${feats.map((f, i) => {
-        const angle = (i / feats.length) * Math.PI * 2 - Math.PI/2;
+        const angle = (i / feats.length) * Math.PI * 2 - Math.PI / 2;
         const rx = 210, ry = 210;
         const x = cx + Math.cos(angle) * rx;
         const y = cy + Math.sin(angle) * ry;
@@ -2198,29 +2198,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Split Diagonal
-   Diagonal split with contrasting halves
-══════════════════════════════════════════ */
-{
-  id: 'split-diagonal',
-  name: 'Split Diagonal',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg,#1a1a2e 50%,#e94560 50%)',
-    emoji: '📐',
-    label: 'Diagonal'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const ss = d.screenshots[0];
-    const feats = d.state.features.slice(0, 4);
-    const badges = d.state.badges;
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Split Diagonal
+     Diagonal split with contrasting halves
+  ══════════════════════════════════════════ */
+  {
+    id: 'split-diagonal',
+    name: 'Split Diagonal',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#1a1a2e 50%,#e94560 50%)',
+      emoji: '📐',
+      label: 'Diagonal'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const feats = d.state.features.slice(0, 4);
+      const badges = d.state.badges;
+      return `
       <!-- BASE BG -->
       <div style="position:absolute;inset:0;
         background:${c.bg1};"></div>
@@ -2302,29 +2302,29 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#999;">${d.state.author}</span>
       </div>
     `;
-  }
-},
-
-/* ══════════════════════════════════════════
-   TEMPLATE — Floating Cards
-   No phone — content displayed as floating cards
-══════════════════════════════════════════ */
-{
-  id: 'floating-cards',
-  name: 'Floating Cards',
-  tag: '0 Screenshots',
-  screenshots: 0,
-  thumb: {
-    bg: 'linear-gradient(135deg,#0f172a,#1e293b)',
-    emoji: '🃏',
-    label: 'Cards'
+    }
   },
-  render(d) {
-    const c = d.colors;
-    const feats = d.state.features.slice(0, 6);
-    const badges = d.state.badges;
-    const cardEmojis = ['🚀','⚡','🛡️','🎯','💎','🔥'];
-    return `
+
+  /* ══════════════════════════════════════════
+     TEMPLATE — Floating Cards
+     No phone — content displayed as floating cards
+  ══════════════════════════════════════════ */
+  {
+    id: 'floating-cards',
+    name: 'Floating Cards',
+    tag: '0 Screenshots',
+    screenshots: 0,
+    thumb: {
+      bg: 'linear-gradient(135deg,#0f172a,#1e293b)',
+      emoji: '🃏',
+      label: 'Cards'
+    },
+    render(d) {
+      const c = d.colors;
+      const feats = d.state.features.slice(0, 6);
+      const badges = d.state.badges;
+      const cardEmojis = ['🚀', '⚡', '🛡️', '🎯', '💎', '🔥'];
+      return `
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1},${c.bg2});"></div>
 
@@ -2376,9 +2376,9 @@ const TEMPLATES = [
         display:grid;grid-template-columns:repeat(3, 1fr);gap:14px;
         align-content:center;">
         ${feats.map((f, i) => {
-          const rotation = (i % 2 === 0 ? -1 : 1) * (1 + i * 0.3);
-          const colors3 = [c.a1, c.a2, c.hl, c.a1, c.a2, c.hl];
-          return `
+        const rotation = (i % 2 === 0 ? -1 : 1) * (1 + i * 0.3);
+        const colors3 = [c.a1, c.a2, c.hl, c.a1, c.a2, c.hl];
+        return `
             <div class="grid-card" style="
               background:rgba(255,255,255,0.05);
               backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
@@ -2402,7 +2402,7 @@ const TEMPLATES = [
                   color:#fff;">${f}</span>
               </div>
             </div>`;
-        }).join('')}
+      }).join('')}
       </div>
 
       ${d.state.showLifeStages ? `
@@ -2426,10 +2426,397 @@ const TEMPLATES = [
         <span style="font-size:11px;color:#888;">${d.state.author}</span>
       </div>
     `;
-  }
-}
+    }
+  },
 
-  
+  /* ==== TEMPLATE — GitHub Project Showcase ==== */
+  {
+    id: 'github-project-showcase',
+    name: 'GitHub Project Showcase',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg, #0D1117, #161B22, #1f2a3c)',
+      emoji: '🐙',
+      label: 'GitHub Showcase'
+    },
+
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const st = d.state;
+
+      /* ── Derived values ── */
+      const feats = st.features.slice(0, 5);
+      const badges = st.badges.slice(0, 6);
+
+      /* ── GitHub-flavoured stat cards ── */
+      const ghStats = [
+        { icon: '⭐', value: '2.4k', label: 'Stars' },
+        { icon: '🍴', value: '318', label: 'Forks' },
+        { icon: '👁️', value: '12k', label: 'Views' },
+        { icon: '🔀', value: '94', label: 'PRs' },
+      ];
+
+      /* ── Code snippet lines ── */
+      const codeLines = [
+        { type: 'comment', indent: 0, text: '// Initialize project' },
+        { type: 'keyword', indent: 0, text: 'fun <span style="color:#82AAFF">main</span>() {' },
+        { type: 'var', indent: 1, text: 'val project = Project(' },
+        { type: 'string', indent: 2, text: `name = "${st.h1}",` },
+        { type: 'string', indent: 2, text: `version = "1.0.0"` },
+        { type: 'plain', indent: 1, text: ')' },
+        { type: 'fn', indent: 1, text: 'project.launch()' },
+        { type: 'keyword', indent: 0, text: '}' },
+      ];
+
+      /* ── Activity bar values (commit-surge shape) ── */
+      const actVals = [
+        .2, .3, .2, .5, .4, .3, .6, .4, .2, .3,
+        .5, .7, .6, .9, .8, 1, .9, .7, .8, .6,
+        .9, 1, .8, .7, .5, .6, .4, .3
+      ];
+
+      /* ── Accent-tinted panel bg ── */
+      const panelBg = `${c.a1}18`;
+      const panelBdr = `${c.a1}30`;
+
+      return `
+      <!-- ===================== BACKGROUND ===================== -->
+      <div style="
+        position:absolute;inset:0;
+        background:linear-gradient(${c.gradDir}, ${c.bg1} 0%, ${c.bg2} 100%);
+      "></div>
+
+      <!-- Subtle grid overlay -->
+      <div style="
+        position:absolute;inset:0;
+        background-image:
+          linear-gradient(${c.a1}0a 1px, transparent 1px),
+          linear-gradient(90deg, ${c.a1}0a 1px, transparent 1px);
+        background-size: 40px 40px;
+        opacity:0.6;
+      "></div>
+
+      <!-- ===================== GLOW BLOBS ===================== -->
+      <!-- Top-right glow -->
+      <div class="glow-blob" style="
+        width:520px;height:520px;
+        top:-180px;right:-60px;
+        background:radial-gradient(circle, ${c.a1}2a 0%, transparent 68%);
+      "></div>
+
+      <!-- Bottom-left glow -->
+      <div class="glow-blob" style="
+        width:380px;height:380px;
+        bottom:-140px;left:80px;
+        background:radial-gradient(circle, ${c.a2}22 0%, transparent 68%);
+      "></div>
+
+      <!-- Highlight glow near code card -->
+      <div class="glow-blob" style="
+        width:260px;height:260px;
+        top:160px;right:330px;
+        background:radial-gradient(circle, ${c.hl}15 0%, transparent 68%);
+      "></div>
+
+      <!-- ===================== TOP ACCENT BAR ===================== -->
+      <div style="
+        position:absolute;top:0;left:0;right:0;height:4px;
+        background:linear-gradient(90deg, ${c.a1}, ${c.a2}, ${c.hl});
+      "></div>
+
+      <!-- ===================== GITHUB OCTOCAT WATERMARK ===================== -->
+      <div style="
+        position:absolute;right:36px;top:14px;
+        font-size:13px;font-weight:700;letter-spacing:1px;
+        color:${c.a1};opacity:0.7;
+        font-family:'Courier New',monospace;
+      ">⬡ github</div>
+
+      <!-- ===================== LEFT COLUMN ===================== -->
+      <div style="
+        position:absolute;
+        left:0;top:4px;bottom:62px;width:46px;
+        display:flex;flex-direction:column;align-items:center;
+        padding-top:28px;gap:0;
+        border-right:1px solid ${c.a1}22;
+      ">
+        <!-- Vertical repo label -->
+        <div style="
+          writing-mode:vertical-rl;
+          text-orientation:mixed;
+          transform:rotate(180deg);
+          font-size:9px;
+          font-weight:700;
+          letter-spacing:2.5px;
+          color:${c.a1};
+          opacity:0.5;
+          text-transform:uppercase;
+          font-family:'Courier New',monospace;
+          white-space:nowrap;
+        ">repository</div>
+
+        <!-- Decorative dots -->
+        <div style="margin-top:auto;margin-bottom:24px;display:flex;flex-direction:column;gap:5px;align-items:center;">
+          <div style="width:5px;height:5px;border-radius:50%;background:${c.a1};opacity:0.6;"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:${c.a2};opacity:0.4;"></div>
+          <div style="width:5px;height:5px;border-radius:50%;background:${c.hl};opacity:0.35;"></div>
+        </div>
+      </div>
+
+      <!-- ===================== MAIN CONTENT AREA ===================== -->
+      <div style="
+        position:absolute;
+        left:56px;top:14px;right:460px;bottom:68px;
+        display:flex;flex-direction:column;justify-content:center;
+        gap:14px;
+        padding-right:8px;
+      ">
+
+        <!-- Badge pill -->
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="top-badge-pill" style="
+            position:static;
+            background:linear-gradient(135deg,${c.a1},${c.a2});
+            font-size:10px;font-weight:800;letter-spacing:1.2px;
+          ">${st.badge}</div>
+          <!-- Branch chip -->
+          <div style="
+            display:inline-flex;align-items:center;gap:5px;
+            background:${panelBg};
+            border:1px solid ${panelBdr};
+            border-radius:20px;
+            padding:3px 10px 3px 8px;
+            font-size:10px;font-weight:600;
+            color:${c.a2};
+            font-family:'Courier New',monospace;
+          ">
+            <span style="color:${c.hl};font-size:11px;">⎇</span> main
+          </div>
+        </div>
+
+        <!-- ── Headline ── -->
+<div style="line-height:1.08;margin-bottom:2px;">
+
+  <div style="
+    font-size:${d.hs + 2}px;
+    font-weight:900;
+    letter-spacing:-1.5px;
+    color:#FFFFFF;
+    display:inline;
+  ">
+    <!-- First word with marker-style background box -->
+    <span style="
+      background:${c.hl};
+      color:${c.bg1};
+      padding:0 8px 2px 4px;
+      border-radius:4px;
+      margin-right:6px;
+    ">${st.h1.split(' ')[0]}</span>
+    <span>${st.h1.split(' ').slice(1).join(' ')}</span>
+  </div>
+
+  <div style="
+    font-size:${Math.round(d.hs * 0.62)}px;
+    font-weight:700;
+    color:${c.a2};
+    letter-spacing:-0.3px;
+    margin-top:8px;
+  ">${st.h2}</div>
+
+</div>
+
+        <!-- Subtitle -->
+        <div style="
+          font-size:${d.ss - 1}px;
+          color:#9E9CA8;
+          line-height:1.5;
+          max-width:380px;
+        ">${st.subtitle}</div>
+
+        <!-- Divider with language dots -->
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="divider-line" style="
+            width:180px;
+            background:linear-gradient(90deg,${c.a1},${c.a2}55);
+          "></div>
+          ${badges.slice(0, 3).map(b => `
+            <div style="
+              width:8px;height:8px;border-radius:50%;
+              background:${b.color};
+              box-shadow:0 0 6px ${b.color}88;
+            "></div>
+          `).join('')}
+        </div>
+
+        <!-- Features list -->
+        <div style="
+          display:flex;flex-direction:column;gap:6px;
+        ">
+          ${feats.map(f => `
+            <div class="feat-item" style="gap:8px;">
+              <span style="
+                color:${c.a2};
+                font-size:12px;
+                flex-shrink:0;
+              ">▸</span>
+              <span style="
+                font-size:${d.fs}px;
+                color:#CDD3DE;
+                font-family:'Courier New',monospace;
+                letter-spacing:0.2px;
+              ">${f}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Tech badge pills -->
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:2px;">
+          ${badges.map(b => `
+            <span class="tech-badge" style="
+              background:${b.color}22;
+              border:1px solid ${b.color}55;
+              color:${b.color};
+              font-size:10px;
+              font-weight:700;
+            ">${b.label}</span>
+          `).join('')}
+        </div>
+
+        <!-- Stat counters row -->
+        <div style="margin-top:2px;">
+          ${statCounterRow(ghStats, c.a1, c.hl)}
+        </div>
+
+      </div>
+
+      <!-- ===================== RIGHT PANEL ===================== -->
+      <div style="
+        position:absolute;
+        right:0;top:4px;bottom:62px;width:450px;
+        display:flex;flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:16px;
+        padding:24px 28px 20px 20px;
+      ">
+
+        <!-- Code snippet card -->
+        <div style="width:100%;">
+          ${codeSnippetCard(codeLines, c.a1, 394)}
+        </div>
+
+        <!-- Phone mockup (smaller, below code) OR screenshot panel -->
+        ${ss ? `
+          <div style="
+            width:100%;
+            display:flex;align-items:center;justify-content:center;
+            flex:1;
+          ">
+            ${phoneMockup(ss, Math.min(d.phoneW, 148), d.phoneTilt, d.glowOpacity, c.a1)}
+          </div>
+        ` : `
+          <!-- Activity graph when no screenshot -->
+          <div style="
+            width:100%;
+            background:${panelBg};
+            border:1px solid ${panelBdr};
+            border-radius:10px;
+            padding:14px 16px 10px;
+          ">
+            <div style="
+              font-size:10px;font-weight:700;
+              color:${c.a2};letter-spacing:1px;
+              text-transform:uppercase;
+              margin-bottom:8px;
+              font-family:'Courier New',monospace;
+            ">⬡ Commit activity</div>
+            <div style="height:48px;width:100%;">
+              ${githubActivityBar(actVals, c.a1, c.hl, 28)}
+            </div>
+            <div style="
+              display:flex;justify-content:space-between;
+              margin-top:5px;
+              font-size:9px;color:#4A4A5A;
+              font-family:'Courier New',monospace;
+            ">
+              <span>Jan</span><span>Apr</span><span>Jul</span><span>Now</span>
+            </div>
+          </div>
+        `}
+
+      </div>
+
+      <!-- ===================== CENTER DIVIDER (vertical) ===================== -->
+      <div style="
+        position:absolute;
+        left:742px;top:24px;bottom:80px;width:1px;
+        background:linear-gradient(180deg,
+          transparent,
+          ${c.a1}33 20%,
+          ${c.a1}33 80%,
+          transparent);
+      "></div>
+
+      <!-- ===================== SPARKLES ===================== -->
+      <div class="sparkle" style="top:42px;left:520px;width:6px;height:6px;background:${c.hl};"></div>
+      <div class="sparkle" style="top:180px;left:600px;width:4px;height:4px;background:${c.a2};animation-delay:0.4s;"></div>
+      <div class="sparkle" style="top:520px;right:220px;width:5px;height:5px;background:${c.a1};animation-delay:0.8s;"></div>
+
+      <!-- ===================== FOOTER BAR ===================== -->
+      <div class="banner-footer-bar" style="
+        height:62px;
+        background:${c.bg1}ee;
+        border-top:1px solid ${c.a1}28;
+        backdrop-filter:blur(8px);
+      ">
+
+        <!-- Left: repo path -->
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="
+            font-size:11px;font-weight:700;
+            color:${c.a1};
+            font-family:'Courier New',monospace;
+            letter-spacing:0.3px;
+          ">🐙</span>
+          <span style="
+            font-size:12px;font-weight:600;
+            color:#9E9CA8;
+            font-family:'Courier New',monospace;
+          ">${st.github}</span>
+        </div>
+
+        <!-- Center: activity bar mini -->
+        <div style="
+          display:flex;align-items:center;gap:4px;
+          height:22px;width:120px;
+        ">
+          ${githubActivityBar(actVals.slice(18), c.a1, c.hl, 10)}
+        </div>
+
+        <!-- Right: license + author -->
+        <div style="display:flex;align-items:center;gap:14px;">
+          <span style="
+            font-size:10px;font-weight:600;
+            color:${c.a2};opacity:0.7;
+            letter-spacing:0.5px;
+            border:1px solid ${c.a2}33;
+            border-radius:4px;
+            padding:2px 7px;
+          ">MIT</span>
+          <span style="
+            font-size:12px;font-weight:700;
+            color:#CDD3DE;
+          ">${st.author}</span>
+        </div>
+
+      </div>
+    `;
+    }
+  }
+
+
 
 ];
 
@@ -2438,10 +2825,10 @@ const TEMPLATES = [
    Called by any template
 -------------------------------------------------- */
 function phoneMockup(screenshotSrc, width, tiltDeg, glowOpacity, glowColor) {
-  const w  = width  || 220;
-  const h  = w * 2;
+  const w = width || 220;
+  const h = w * 2;
   const tilt = tiltDeg || 0;
-  const gOpacity = Math.min((glowOpacity||30)/100, 1);
+  const gOpacity = Math.min((glowOpacity || 30) / 100, 1);
 
   const screenContent = screenshotSrc
     ? `<img class="phone-ss" src="${screenshotSrc}" alt="screenshot">`
@@ -2460,7 +2847,7 @@ function phoneMockup(screenshotSrc, width, tiltDeg, glowOpacity, glowColor) {
         box-shadow:
           0 0 0 1px rgba(255,255,255,0.05),
           0 20px 60px rgba(0,0,0,0.7),
-          0 0 40px ${glowColor||'#6750A4'}${Math.round(gOpacity*255).toString(16).padStart(2,'0')};
+          0 0 40px ${glowColor || '#6750A4'}${Math.round(gOpacity * 255).toString(16).padStart(2, '0')};
       ">
         <div class="phone-screen-inner">
           <div class="phone-notch"></div>
@@ -2476,9 +2863,9 @@ function phoneMockup(screenshotSrc, width, tiltDeg, glowOpacity, glowColor) {
 -------------------------------------------------- */
 function shiftHue(hex) {
   try {
-    const r = Math.min(255, parseInt(hex.slice(1,3),16)+40);
-    const g = Math.max(0,   parseInt(hex.slice(3,5),16)-30);
-    const b = Math.max(0,   parseInt(hex.slice(5,7),16)-60);
+    const r = Math.min(255, parseInt(hex.slice(1, 3), 16) + 40);
+    const g = Math.max(0, parseInt(hex.slice(3, 5), 16) - 30);
+    const b = Math.max(0, parseInt(hex.slice(5, 7), 16) - 60);
     return `rgb(${r},${g},${b})`;
   } catch { return hex; }
 }

@@ -1,0 +1,44 @@
+/* ============================================
+   STAT-COUNTER-ROW.CSS — GitHub stat metrics row
+   ============================================ */
+
+.comp-stat-counter-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 0px;
+}
+
+.comp-stat-counter-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 6px 18px 6px 14px;
+    gap: 1px;
+    position: relative;
+}
+
+.comp-stat-icon {
+    font-size: 13px;
+    line-height: 1;
+    margin-bottom: 1px;
+    opacity: 0.9;
+}
+
+.comp-stat-value {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    font-family: 'Courier New', monospace;
+}
+
+.comp-stat-label {
+    font-size: 10px;
+    color: #9E9CA8;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}

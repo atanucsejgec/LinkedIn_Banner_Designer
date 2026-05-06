@@ -1,0 +1,25 @@
+/* ============================================
+   GITHUB-ACTIVITY-BAR.CSS — Contribution bar chart
+   ============================================ */
+
+.comp-github-activity-bar {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 100%;
+    width: 100%;
+}
+
+.comp-gab-bar-wrap {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.comp-gab-bar {
+    width: 100%;
+    border-radius: 3px 3px 2px 2px;
+    min-height: 4px;
+    transition: none;
+}

@@ -1,0 +1,135 @@
+/* ============================================
+   OVERLAYS.CSS — Styles for overlay panel UI
+   ============================================ */
+
+/* ===== OVERLAY LAYER (rendered inside banner) ===== */
+.overlay-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* ===== OVERLAY CATEGORY ===== */
+.overlay-category {
+    margin-bottom: 14px;
+}
+
+.overlay-category-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-teal);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 8px;
+    padding-left: 2px;
+}
+
+/* ===== OVERLAY CARD ===== */
+.overlay-card {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.overlay-card.active {
+    border-color: var(--accent-purple);
+    box-shadow: 0 0 12px rgba(103, 80, 164, 0.15);
+}
+
+.overlay-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+}
+
+.overlay-card-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.overlay-icon {
+    font-size: 16px;
+    width: 24px;
+    text-align: center;
+}
+
+.overlay-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-white);
+}
+
+/* ===== OVERLAY CONTROLS (revealed when active) ===== */
+.overlay-controls {
+    padding: 0 12px 12px;
+    border-top: 1px solid var(--border-color);
+    animation: fadeIn 0.2s ease;
+}
+
+.overlay-ctrl-row {
+    margin-top: 8px;
+}
+
+.overlay-ctrl-row .form-label {
+    margin-bottom: 3px;
+}
+
+/* ===== OVERLAY FILE UPLOAD ===== */
+.overlay-file-drop {
+    min-height: 50px;
+    cursor: pointer;
+    border: 1px dashed var(--border-color);
+    border-radius: 6px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: border-color 0.2s;
+}
+
+.overlay-file-drop:hover {
+    border-color: var(--accent-purple);
+}
+
+.overlay-file-preview {
+    width: 100%;
+    max-height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
+/* ===== PREVIEW OFFSET SLIDER ===== */
+.preview-offset-bar {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 36px;
+}
+
+.preview-offset-bar label {
+    font-size: 10px;
+    color: var(--text-gray);
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.preview-offset-bar input[type="range"] {
+    flex: 1;
+}
+
+.preview-offset-bar .range-value {
+    min-width: 36px;
+    font-size: 10px;
+}

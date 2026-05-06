@@ -1,0 +1,98 @@
+/* ============================================
+   CODE-SNIPPET-CARD.CSS — Terminal code snippet card
+   ============================================ */
+
+.comp-code-snippet-card {
+    background: rgba(10, 10, 18, 0.82);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+        0 8px 40px rgba(0, 0, 0, 0.55),
+        0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    backdrop-filter: blur(12px);
+    font-family: 'Courier New', 'Fira Code', monospace;
+}
+
+/* ── Title bar ── */
+.comp-csc-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.comp-csc-titlebar .terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.comp-csc-filename {
+    margin-left: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.85;
+    letter-spacing: 0.3px;
+}
+
+/* ── Body ── */
+.comp-csc-body {
+    padding: 10px 0 14px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.comp-csc-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    min-height: 19px;
+    padding: 0 14px 0 0;
+}
+
+.comp-csc-linenum {
+    color: #3D3F4F;
+    font-size: 10.5px;
+    min-width: 36px;
+    text-align: right;
+    padding-right: 14px;
+    user-select: none;
+    flex-shrink: 0;
+    font-family: 'Courier New', monospace;
+}
+
+.comp-csc-code {
+    font-size: 11.5px;
+    line-height: 1.65;
+    white-space: pre;
+    letter-spacing: 0.1px;
+}
+
+/* Blinking cursor */
+.comp-csc-cursor {
+    display: inline-block;
+    width: 7px;
+    height: 14px;
+    border-radius: 1px;
+    opacity: 0.9;
+    animation: comp-blink 1.1s step-end infinite;
+    vertical-align: middle;
+    margin-left: 2px;
+}
+
+@keyframes comp-blink {
+
+    0%,
+    100% {
+        opacity: 0.9;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

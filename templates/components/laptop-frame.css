@@ -1,0 +1,75 @@
+/* ============================================
+   LAPTOP-FRAME.CSS — Styles for laptop mockup
+   ============================================ */
+
+.comp-laptop-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.comp-laptop-body {
+    background: #1a1a28;
+    border-radius: 10px 10px 0 0;
+    border: 6px solid #222233;
+    overflow: hidden;
+    position: relative;
+}
+
+.comp-laptop-bezel {
+    height: 20px;
+    background: #1e1e2e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.comp-laptop-camera {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #333;
+    border: 1px solid #444;
+}
+
+.comp-laptop-screen {
+    width: 100%;
+    overflow: hidden;
+    background: #0a0a12;
+}
+
+.comp-laptop-screen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.comp-laptop-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    color: #555;
+    font-size: 11px;
+    background: linear-gradient(135deg, #0d0d1a, #1a1a2e);
+}
+
+.comp-laptop-base {
+    height: 12px;
+    background: linear-gradient(180deg, #2a2a3a, #1a1a28);
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    margin-top: -2px;
+}
+
+.comp-laptop-base-edge {
+    height: 5px;
+    background: linear-gradient(180deg, #222230, #18182a);
+    border-radius: 0 0 4px 4px;
+}

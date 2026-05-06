@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,393 +8,412 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/banner.css">
+    <link rel="stylesheet" href="css/overlays.css">
+    <!-- Component Styles (add new component CSS here) -->
+    <link rel="stylesheet" href="templates/components/polaroid-card.css">
+    <link rel="stylesheet" href="templates/components/laptop-frame.css">
+    <link rel="stylesheet" href="templates/components/glass-card.css">
+    <link rel="stylesheet" href="templates/components/browser-window.css">
+    <link rel="stylesheet" href="templates/components/code-snippet-card.css">
+    <link rel="stylesheet" href="templates/components/stat-counter-row.css">
+    <link rel="stylesheet" href="templates/components/github-activity-bar.css">
+
 </head>
+
 <body>
 
-<!-- TOP NAV -->
-<nav class="top-nav">
-    <div class="nav-logo">
-        🎨 <span>LinkedIn Banner Designer</span>
-    </div>
-    <div class="nav-actions">
-        <button class="btn btn-secondary" onclick="resetToDefault()">↺ Reset</button>
-        <button class="btn btn-secondary" onclick="showPreview()">👁 Preview</button>
-        <button class="btn btn-primary" onclick="copyDesign()">📋 Duplicate</button>
-        <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
-    </div>
-</nav>
-
-<!-- MAIN LAYOUT -->
-<div class="main-layout">
-
-    <!-- LEFT PANEL -->
-    <div class="left-panel">
-        <div class="tabs">
-            <div class="tab active" onclick="switchTab('content')">📝 Content</div>
-            <div class="tab" onclick="switchTab('design')">🎨 Design</div>
-            <div class="tab" onclick="switchTab('media')">📸 Media</div>
-            <div class="tab" onclick="switchTab('templates')">📐 Templates</div>
+    <!-- TOP NAV -->
+    <nav class="top-nav">
+        <div class="nav-logo">
+            🎨 <span>LinkedIn Banner Designer</span>
         </div>
+        <div class="nav-actions">
+            <button class="btn btn-secondary" onclick="resetToDefault()">↺ Reset</button>
+            <button class="btn btn-secondary" onclick="showPreview()">👁 Preview</button>
+            <button class="btn btn-primary" onclick="copyDesign()">📋 Duplicate</button>
+            <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
+        </div>
+    </nav>
 
-        <!-- CONTENT TAB -->
-        <div class="tab-content active" id="tab-content">
-            <div class="section">
-                <div class="section-title">🚀 Top Badge</div>
-                <div class="form-group">
-                    <label class="form-label">Badge Text</label>
-                    <input type="text" class="form-input" id="badgeText"
-                           value="🚀 JUST SHIPPED" oninput="updateBanner()">
-                </div>
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+
+        <!-- LEFT PANEL -->
+        <div class="left-panel">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('content')">📝 Content</div>
+                <div class="tab" onclick="switchTab('design')">🎨 Design</div>
+                <div class="tab" onclick="switchTab('media')">📸 Media</div>
+                <div class="tab" onclick="switchTab('templates')">📐 Templates</div>
+                <div class="tab" onclick="switchTab('overlays')">🎭 Overlays</div>
             </div>
-            <div class="section">
-                <div class="section-title">✍️ Headline</div>
-                <div class="form-group">
-                    <label class="form-label">Main Title (Line 1)</label>
-                    <input type="text" class="form-input" id="headline1"
-                           value="🎂 Age Calculator" oninput="updateBanner()">
+
+            <!-- CONTENT TAB -->
+            <div class="tab-content active" id="tab-content">
+                <div class="section">
+                    <div class="section-title">🚀 Top Badge</div>
+                    <div class="form-group">
+                        <label class="form-label">Badge Text</label>
+                        <input type="text" class="form-input" id="badgeText" value="🚀 JUST SHIPPED"
+                            oninput="updateBanner()">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Main Title (Line 2)</label>
-                    <input type="text" class="form-input" id="headline2"
-                           value="Android App" oninput="updateBanner()">
+                <div class="section">
+                    <div class="section-title">✍️ Headline</div>
+                    <div class="form-group">
+                        <label class="form-label">Main Title (Line 1)</label>
+                        <input type="text" class="form-input" id="headline1" value="🎂 Age Calculator"
+                            oninput="updateBanner()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Main Title (Line 2)</label>
+                        <input type="text" class="form-input" id="headline2" value="Android App"
+                            oninput="updateBanner()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subtitle</label>
+                        <input type="text" class="form-input" id="subtitle" value="Built with Jetpack Compose"
+                            oninput="updateBanner()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-textarea" id="description"
+                            oninput="updateBanner()">A simple age calculator app that determines your life stage from Child to Senior.</textarea>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Subtitle</label>
-                    <input type="text" class="form-input" id="subtitle"
-                           value="Built with Jetpack Compose" oninput="updateBanner()">
+                <div class="section">
+                    <div class="section-title">✅ Feature Points</div>
+                    <div class="feature-list" id="featureList"></div>
+                    <div class="badge-add-row">
+                        <input type="text" class="form-input" id="newFeature" placeholder="Add feature...">
+                        <button class="btn btn-primary" onclick="addFeature()">+</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Description</label>
-                    <textarea class="form-textarea" id="description"
-                              oninput="updateBanner()">A simple age calculator app that determines your life stage from Child to Senior.</textarea>
+                <div class="section">
+                    <div class="section-title">👶 Life Stages Row</div>
+                    <div class="form-group">
+                        <label class="form-label">Stages Text</label>
+                        <input type="text" class="form-input" id="lifeStages"
+                            value="👶 Child → 🧑 Teen → 👔 Adult → 👴 Senior" oninput="updateBanner()">
+                    </div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Show Life Stages</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showLifeStages" checked onchange="updateBanner()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="section">
-                <div class="section-title">✅ Feature Points</div>
-                <div class="feature-list" id="featureList"></div>
-                <div class="badge-add-row">
-                    <input type="text" class="form-input" id="newFeature"
-                           placeholder="Add feature...">
-                    <button class="btn btn-primary" onclick="addFeature()">+</button>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-title">👶 Life Stages Row</div>
-                <div class="form-group">
-                    <label class="form-label">Stages Text</label>
-                    <input type="text" class="form-input" id="lifeStages"
-                           value="👶 Child → 🧑 Teen → 👔 Adult → 👴 Senior"
-                           oninput="updateBanner()">
-                </div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Show Life Stages</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showLifeStages"
-                               checked onchange="updateBanner()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-title">🏷️ Tech Badges</div>
-                <div class="badge-list" id="badgeList"></div>
-                <div class="badge-add-row">
-                    <input type="text" class="form-input" id="newBadge"
-                           placeholder="Add badge (e.g. Flutter)">
-                    <input type="color" id="newBadgeColor" value="#6750A4"
-                           title="Badge Color"
-                           style="width:34px;height:34px;border:none;
+                <div class="section">
+                    <div class="section-title">🏷️ Tech Badges</div>
+                    <div class="badge-list" id="badgeList"></div>
+                    <div class="badge-add-row">
+                        <input type="text" class="form-input" id="newBadge" placeholder="Add badge (e.g. Flutter)">
+                        <input type="color" id="newBadgeColor" value="#6750A4" title="Badge Color" style="width:34px;height:34px;border:none;
                                   border-radius:6px;cursor:pointer;">
-                    <button class="btn btn-primary" onclick="addBadge()">+</button>
+                        <button class="btn btn-primary" onclick="addBadge()">+</button>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">📍 Footer</div>
+                    <div class="form-group">
+                        <label class="form-label">GitHub / Link</label>
+                        <input type="text" class="form-input" id="githubLink"
+                            value="📂 github.com/atanucsejgec/AgeCalculator" oninput="updateBanner()">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Your Name / Handle</label>
+                        <input type="text" class="form-input" id="authorName" value="@atanucsejgec | Android Developer"
+                            oninput="updateBanner()">
+                    </div>
                 </div>
             </div>
-            <div class="section">
-                <div class="section-title">📍 Footer</div>
-                <div class="form-group">
-                    <label class="form-label">GitHub / Link</label>
-                    <input type="text" class="form-input" id="githubLink"
-                           value="📂 github.com/atanucsejgec/AgeCalculator"
-                           oninput="updateBanner()">
+
+            <!-- DESIGN TAB -->
+            <div class="tab-content" id="tab-design">
+                <div class="section">
+                    <div class="section-title">🎨 Background</div>
+                    <div class="form-group">
+                        <label class="form-label">Color 1</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="bgColor1" value="#1C1B1F" oninput="updateDesign()">
+                            <input type="text" class="form-input" id="bgColor1Hex" value="#1C1B1F"
+                                oninput="syncColor('bgColor1')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Color 2</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="bgColor2" value="#2D1B69" oninput="updateDesign()">
+                            <input type="text" class="form-input" id="bgColor2Hex" value="#2D1B69"
+                                oninput="syncColor('bgColor2')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Gradient Direction</label>
+                        <select class="form-select" id="gradientDir" onchange="updateDesign()">
+                            <option value="135deg">↘ Diagonal</option>
+                            <option value="90deg">→ Horizontal</option>
+                            <option value="180deg">↓ Vertical</option>
+                            <option value="45deg">↗ Diagonal 2</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label class="form-label">Your Name / Handle</label>
-                    <input type="text" class="form-input" id="authorName"
-                           value="@atanucsejgec | Android Developer"
-                           oninput="updateBanner()">
+                <div class="section">
+                    <div class="section-title">💜 Accent Colors</div>
+                    <div class="form-group">
+                        <label class="form-label">Primary Accent</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="accentColor1" value="#6750A4" oninput="updateDesign()">
+                            <input type="text" class="form-input" id="accentColor1Hex" value="#6750A4"
+                                oninput="syncColor('accentColor1')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Secondary Accent</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="accentColor2" value="#03DAC5" oninput="updateDesign()">
+                            <input type="text" class="form-input" id="accentColor2Hex" value="#03DAC5"
+                                oninput="syncColor('accentColor2')">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Headline Highlight</label>
+                        <div class="color-picker-row">
+                            <input type="color" id="highlightColor" value="#FFD700" oninput="updateDesign()">
+                            <input type="text" class="form-input" id="highlightColorHex" value="#FFD700"
+                                oninput="syncColor('highlightColor')">
+                        </div>
+                    </div>
                 </div>
+                <div class="section">
+                    <div class="section-title">🔤 Typography</div>
+                    <div class="form-group">
+                        <label class="form-label">Headline Size</label>
+                        <div class="range-row">
+                            <input type="range" id="headlineSize" min="24" max="64" value="42" oninput="updateDesign()">
+                            <span class="range-value" id="headlineSizeVal">42px</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Subtitle Size</label>
+                        <div class="range-row">
+                            <input type="range" id="subtitleSize" min="12" max="28" value="16" oninput="updateDesign()">
+                            <span class="range-value" id="subtitleSizeVal">16px</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Feature Text Size</label>
+                        <div class="range-row">
+                            <input type="range" id="featureSize" min="10" max="20" value="13" oninput="updateDesign()">
+                            <span class="range-value" id="featureSizeVal">13px</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">📐 Layout Toggles</div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Show Top Bar</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showTopBar" checked onchange="updateDesign()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Show Footer</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showFooter" checked onchange="updateDesign()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Background Circles</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showBgCircles" checked onchange="updateDesign()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Show Sparkles ✨</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showSparkles" checked onchange="updateDesign()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-row">
+                        <span class="toggle-label">Phone Frame</span>
+                        <label class="toggle">
+                            <input type="checkbox" id="showPhoneFrame" checked onchange="updateDesign()">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MEDIA TAB -->
+            <div class="tab-content" id="tab-media">
+                <div class="section">
+                    <div class="section-title">📱 Screenshots</div>
+                    <p class="help-text">
+                        Upload up to 3 screenshots. Templates use
+                        different counts automatically.
+                    </p>
+                    <div id="screenshotSlots"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">📐 Phone Settings</div>
+                    <div class="form-group">
+                        <label class="form-label">Tilt Angle</label>
+                        <div class="range-row">
+                            <input type="range" id="phoneTilt" min="-15" max="15" value="-3" oninput="updateDesign()">
+                            <span class="range-value" id="phoneTiltVal">-3°</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Size</label>
+                        <div class="range-row">
+                            <input type="range" id="phoneSize" min="140" max="360" value="220" oninput="updateDesign()">
+                            <span class="range-value" id="phoneSizeVal">220</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Glow Intensity</label>
+                        <div class="range-row">
+                            <input type="range" id="glowIntensity" min="0" max="100" value="30"
+                                oninput="updateDesign()">
+                            <span class="range-value" id="glowIntensityVal">30%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">⚡ Quick App Swap</div>
+                    <div id="presetButtons"></div>
+                </div>
+            </div>
+
+            <!-- TEMPLATES TAB -->
+            <div class="tab-content" id="tab-templates">
+                <div class="section">
+                    <div class="section-title">📐 Choose Template</div>
+                    <p class="help-text">
+                        Each template has a unique layout, style & color scheme.
+                    </p>
+                    <div class="template-grid" id="templateGrid"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">💾 Saved Designs</div>
+                    <div id="savedDesigns">
+                        <p class="help-text">No saved designs yet.</p>
+                    </div>
+                    <button class="btn btn-primary full-width mt-10" onclick="saveDesign()">
+                        💾 Save Current Design
+                    </button>
+                </div>
+            </div>
+
+            <!-- OVERLAYS TAB -->
+            <div class="tab-content" id="tab-overlays">
+                <div class="section">
+                    <div class="section-title">🎭 Design Overlays</div>
+                    <p class="help-text">
+                        Toggle overlays to add extra design layers on top of your banner.
+                        Each overlay has its own controls.
+                    </p>
+                    <div id="overlayList"></div>
+                </div>
+            </div>
+
+        </div><!-- END LEFT PANEL -->
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+            <div class="canvas-toolbar">
+                <div class="canvas-info">
+                    <span>📐 1200 × 627 px</span>
+                    <span>🖼️ LinkedIn (1.91:1)</span>
+                    <span id="activeTemplateName">Template: Classic Split</span>
+                </div>
+                <div class="zoom-controls">
+                    <button class="zoom-btn" onclick="zoom(-10)">−</button>
+                    <span class="zoom-value" id="zoomValue">55%</span>
+                    <button class="zoom-btn" onclick="zoom(10)">+</button>
+                    <button class="btn btn-secondary sm-btn" onclick="fitToScreen()">Fit</button>
+                </div>
+            </div>
+
+            <!-- PREVIEW VERTICAL OFFSET -->
+            <div class="preview-offset-bar">
+                <label>↕ Preview Offset</label>
+                <input type="range" id="previewOffsetY" min="-200" max="200" value="0"
+                    oninput="adjustPreviewOffset(this.value)">
+                <span class="range-value" id="previewOffsetVal">0px</span>
+                <button class="btn btn-secondary sm-btn" onclick="resetPreviewOffset()">Reset</button>
+            </div>
+
+            <div class="canvas-area" id="canvasArea">
+                <div class="canvas-wrapper" id="canvasWrapper">
+                    <!-- Banner injected by templates.js -->
+                    <div id="bannerCanvas"></div>
+                </div>
+            </div>
+
+            <div class="status-bar">
+                <div class="status-dot"></div>
+                <span id="statusText">Ready</span>
+                <span>|</span>
+                <span>Ctrl+S: Save &nbsp; Ctrl+D: Download &nbsp; Ctrl+0: Fit</span>
+                <span>|</span>
+                <span id="lastUpdate">—</span>
             </div>
         </div>
 
-        <!-- DESIGN TAB -->
-        <div class="tab-content" id="tab-design">
-            <div class="section">
-                <div class="section-title">🎨 Background</div>
-                <div class="form-group">
-                    <label class="form-label">Color 1</label>
-                    <div class="color-picker-row">
-                        <input type="color" id="bgColor1" value="#1C1B1F"
-                               oninput="updateDesign()">
-                        <input type="text" class="form-input" id="bgColor1Hex"
-                               value="#1C1B1F" oninput="syncColor('bgColor1')">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Color 2</label>
-                    <div class="color-picker-row">
-                        <input type="color" id="bgColor2" value="#2D1B69"
-                               oninput="updateDesign()">
-                        <input type="text" class="form-input" id="bgColor2Hex"
-                               value="#2D1B69" oninput="syncColor('bgColor2')">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Gradient Direction</label>
-                    <select class="form-select" id="gradientDir"
-                            onchange="updateDesign()">
-                        <option value="135deg">↘ Diagonal</option>
-                        <option value="90deg">→ Horizontal</option>
-                        <option value="180deg">↓ Vertical</option>
-                        <option value="45deg">↗ Diagonal 2</option>
-                    </select>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-title">💜 Accent Colors</div>
-                <div class="form-group">
-                    <label class="form-label">Primary Accent</label>
-                    <div class="color-picker-row">
-                        <input type="color" id="accentColor1" value="#6750A4"
-                               oninput="updateDesign()">
-                        <input type="text" class="form-input" id="accentColor1Hex"
-                               value="#6750A4" oninput="syncColor('accentColor1')">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Secondary Accent</label>
-                    <div class="color-picker-row">
-                        <input type="color" id="accentColor2" value="#03DAC5"
-                               oninput="updateDesign()">
-                        <input type="text" class="form-input" id="accentColor2Hex"
-                               value="#03DAC5" oninput="syncColor('accentColor2')">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Headline Highlight</label>
-                    <div class="color-picker-row">
-                        <input type="color" id="highlightColor" value="#FFD700"
-                               oninput="updateDesign()">
-                        <input type="text" class="form-input" id="highlightColorHex"
-                               value="#FFD700" oninput="syncColor('highlightColor')">
-                    </div>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-title">🔤 Typography</div>
-                <div class="form-group">
-                    <label class="form-label">Headline Size</label>
-                    <div class="range-row">
-                        <input type="range" id="headlineSize"
-                               min="24" max="64" value="42"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="headlineSizeVal">42px</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Subtitle Size</label>
-                    <div class="range-row">
-                        <input type="range" id="subtitleSize"
-                               min="12" max="28" value="16"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="subtitleSizeVal">16px</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Feature Text Size</label>
-                    <div class="range-row">
-                        <input type="range" id="featureSize"
-                               min="10" max="20" value="13"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="featureSizeVal">13px</span>
-                    </div>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-title">📐 Layout Toggles</div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Show Top Bar</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showTopBar"
-                               checked onchange="updateDesign()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Show Footer</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showFooter"
-                               checked onchange="updateDesign()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Background Circles</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showBgCircles"
-                               checked onchange="updateDesign()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Show Sparkles ✨</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showSparkles"
-                               checked onchange="updateDesign()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-                <div class="toggle-row">
-                    <span class="toggle-label">Phone Frame</span>
-                    <label class="toggle">
-                        <input type="checkbox" id="showPhoneFrame"
-                               checked onchange="updateDesign()">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-            </div>
-        </div>
+    </div>
 
-        <!-- MEDIA TAB -->
-        <div class="tab-content" id="tab-media">
-            <div class="section">
-                <div class="section-title">📱 Screenshots</div>
-                <p class="help-text">
-                    Upload up to 3 screenshots. Templates use
-                    different counts automatically.
-                </p>
-                <div id="screenshotSlots"></div>
+    <!-- PREVIEW MODAL -->
+    <div class="modal-overlay" id="previewModal">
+        <div class="modal">
+            <div class="modal-title">👁 Banner Preview (1200×627)</div>
+            <div class="preview-img-wrap">
+                <img id="previewImg" alt="Preview">
             </div>
-            <div class="section">
-                <div class="section-title">📐 Phone Settings</div>
-                <div class="form-group">
-                    <label class="form-label">Tilt Angle</label>
-                    <div class="range-row">
-                        <input type="range" id="phoneTilt"
-                               min="-15" max="15" value="-3"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="phoneTiltVal">-3°</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Phone Size</label>
-                    <div class="range-row">
-                        <input type="range" id="phoneSize"
-                               min="140" max="360" value="220"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="phoneSizeVal">220</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Glow Intensity</label>
-                    <div class="range-row">
-                        <input type="range" id="glowIntensity"
-                               min="0" max="100" value="30"
-                               oninput="updateDesign()">
-                        <span class="range-value" id="glowIntensityVal">30%</span>
-                    </div>
-                </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('previewModal')">✕ Close</button>
+                <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
             </div>
-            <div class="section">
-                <div class="section-title">⚡ Quick App Swap</div>
-                <div id="presetButtons"></div>
-            </div>
-        </div>
-
-        <!-- TEMPLATES TAB -->
-        <div class="tab-content" id="tab-templates">
-            <div class="section">
-                <div class="section-title">📐 Choose Template</div>
-                <p class="help-text">
-                    Each template has a unique layout, style & color scheme.
-                </p>
-                <div class="template-grid" id="templateGrid"></div>
-            </div>
-            <div class="section">
-                <div class="section-title">💾 Saved Designs</div>
-                <div id="savedDesigns">
-                    <p class="help-text">No saved designs yet.</p>
-                </div>
-                <button class="btn btn-primary full-width mt-10"
-                        onclick="saveDesign()">
-                    💾 Save Current Design
-                </button>
-            </div>
-        </div>
-
-    </div><!-- END LEFT PANEL -->
-
-    <!-- RIGHT PANEL -->
-    <div class="right-panel">
-        <div class="canvas-toolbar">
-            <div class="canvas-info">
-                <span>📐 1200 × 627 px</span>
-                <span>🖼️ LinkedIn (1.91:1)</span>
-                <span id="activeTemplateName">Template: Classic Split</span>
-            </div>
-            <div class="zoom-controls">
-                <button class="zoom-btn" onclick="zoom(-10)">−</button>
-                <span class="zoom-value" id="zoomValue">55%</span>
-                <button class="zoom-btn" onclick="zoom(10)">+</button>
-                <button class="btn btn-secondary sm-btn"
-                        onclick="fitToScreen()">Fit</button>
-            </div>
-        </div>
-
-        <div class="canvas-area" id="canvasArea">
-            <div class="canvas-wrapper" id="canvasWrapper">
-                <!-- Banner injected by templates.js -->
-                <div id="bannerCanvas"></div>
-            </div>
-        </div>
-
-        <div class="status-bar">
-            <div class="status-dot"></div>
-            <span id="statusText">Ready</span>
-            <span>|</span>
-            <span>Ctrl+S: Save &nbsp; Ctrl+D: Download &nbsp; Ctrl+0: Fit</span>
-            <span>|</span>
-            <span id="lastUpdate">—</span>
         </div>
     </div>
 
-</div>
+    <!-- NOTIFICATION -->
+    <div class="notification" id="notification"></div>
 
-<!-- PREVIEW MODAL -->
-<div class="modal-overlay" id="previewModal">
-    <div class="modal">
-        <div class="modal-title">👁 Banner Preview (1200×627)</div>
-        <div class="preview-img-wrap">
-            <img id="previewImg" alt="Preview">
-        </div>
-        <div class="modal-actions">
-            <button class="btn btn-secondary"
-                    onclick="closeModal('previewModal')">✕ Close</button>
-            <button class="btn btn-success"
-                    onclick="downloadBanner()">⬇ Download PNG</button>
-        </div>
-    </div>
-</div>
-
-<!-- NOTIFICATION -->
-<div class="notification" id="notification"></div>
-
-<!-- SCRIPTS — ORDER MATTERS -->
-<script src="templates/templates.js"></script>
-<script src="js/presets.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/media.js"></script>
-<script src="js/editor.js"></script>
-<script src="js/export.js"></script>
-<script src="js/app.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- SCRIPTS — ORDER MATTERS -->
+    <!-- 1. Component loader MUST come first (defines registerComponent) -->
+    <script src="templates/components/component-loader.js"></script>
+    <!-- 2. All component JS files (call registerComponent) -->
+    <script src="templates/components/polaroid-card.js"></script>
+    <script src="templates/components/laptop-frame.js"></script>
+    <script src="templates/components/glass-card.js"></script>
+    <script src="templates/components/browser-window.js"></script>
+    <script src="templates/components/stat-counter-row.js"></script>
+    <script src="templates/components/code-snippet-card.js"></script>
+    <script src="templates/components/github-activity-bar.js"></script>
+    <!-- 3. Templates (uses component functions in render) -->
+    <script src="templates/templates.js"></script>
+    <!-- Overlay System -->
+    <script src="templates/overlays/overlay-manager.js"></script>
+    <script src="templates/overlays/corner-accents.js"></script>
+    <script src="templates/overlays/dot-grid.js"></script>
+    <script src="templates/overlays/photo-frame.js"></script>
+    <script src="templates/overlays/computer-mockup.js"></script>
+    <script src="templates/overlays/wave-divider.js"></script>
+    <script src="templates/overlays/vignette.js"></script>
+    <script src="js/presets.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/media.js"></script>
+    <script src="js/editor.js"></script>
+    <script src="js/export.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>
+
 </html>

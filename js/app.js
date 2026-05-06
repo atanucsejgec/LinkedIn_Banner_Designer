@@ -21,7 +21,8 @@ window.AppState = {
   screenshots: [null, null, null],   // up to 3 slots
   currentTemplateId: 'classic-split',
   savedDesigns: [],
-  zoom: 55
+  zoom: 55,
+  previewOffsetY: 0
 };
 
 /* ===== BOOT ===== */
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildTemplateGrid();
   buildPresetButtons();
   buildScreenshotSlots();
+  buildOverlayPanel();
   renderFeatureList();
   renderBadgeList();
   applyTemplate('classic-split');

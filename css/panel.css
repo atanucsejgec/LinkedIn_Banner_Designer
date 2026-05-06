@@ -5,9 +5,10 @@
 .left-panel {
     background: var(--panel-bg);
     border-right: 1px solid var(--border-color);
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
 
 .left-panel::-webkit-scrollbar { width: 4px; }
@@ -22,10 +23,8 @@
     display: flex;
     background: var(--card-bg);
     border-bottom: 1px solid var(--border-color);
-    position: sticky;
-    top: 0;
-    z-index: 10;
     flex-shrink: 0;
+    z-index: 10;
 }
 
 .tab {
@@ -56,8 +55,18 @@
     display: none;
     padding: 14px;
     flex: 1;
+    overflow-y: auto;
+    min-height: 0;
 }
-.tab-content.active { display: block; }
+.tab-content.active { display: flex; flex-direction: column; }
+
+/* Scrollbar for tab content */
+.tab-content::-webkit-scrollbar { width: 4px; }
+.tab-content::-webkit-scrollbar-track { background: var(--panel-bg); }
+.tab-content::-webkit-scrollbar-thumb {
+    background: var(--accent-purple);
+    border-radius: 10px;
+}
 
 /* ===== SECTION ===== */
 .section {
