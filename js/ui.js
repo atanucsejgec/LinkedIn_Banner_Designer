@@ -38,8 +38,8 @@ function fitToScreen() {
   const area  = document.getElementById('canvasArea');
   const areaW = area.clientWidth  - 60;
   const areaH = area.clientHeight - 60;
-  const sw    = (areaW / 1200) * 100;
-  const sh    = (areaH / 627)  * 100;
+  const sw    = (areaW / AppState.bannerW) * 100;
+  const sh    = (areaH / AppState.bannerH) * 100;
   AppState.zoom = Math.max(15, Math.floor(Math.min(sw, sh)));
   applyZoom();
 }
@@ -135,3 +135,91 @@ function setStatus(msg) {
   document.getElementById('lastUpdate').textContent =
     'Updated ' + new Date().toLocaleTimeString();
 }
+
+/* ===== BANNER SIZE MANAGEMENT ===== */
+const BANNER_SIZE_PRESETS = {
+  '1200x627':  { label: 'LinkedIn', ratio: '1.91:1' },
+  '1080x1080': { label: 'Square',   ratio: '1:1' },
+  '1080x1350': { label: 'Portrait', ratio: '4:5' },
+  '1080x1920': { label: 'Story',    ratio: '9:16' },
+  '1500x500':  { label: 'Twitter',  ratio: '3:1' },
+  '1584x396':  { label: 'LI Cover', ratio: '4:1' },
+};
+
+function applyBannerSize(w, h, btn) {
+  // Update width/height inputs
+  document.getElementById('bannerWidth').value = w;
+  document.getElementById('bannerHeight').value = h;
+
+  // Update preset button selection
+  document.querySelectorAll('.size-preset-btn').forEach(b => b.classList.remove('selected'));
+  if (btn) btn.classList.add('selected');
+
+  applySizeToCanvas(w, h);
+}
+
+function applyCustomBannerSize() {
+  const w = Math.max(200, Math.min(4000, parseInt(document.getElementById('bannerWidth').value) || 1200));
+  const h = Math.max(200, Math.min(4000, parseInt(document.getElementById('bannerHeight').value) || 627));
+
+  // Deselect all preset buttons (user is typing custom)
+  document.querySelectorAll('.size-preset-btn').forEach(b => {
+    const match = parseInt(b.dataset.w) === w && parseInt(b.dataset.h) === h;
+    b.classList.toggle('selected', match);
+  });
+
+  applySizeToCanvas(w, h);
+}
+
+function applySizeToCanvas(w, h) {
+  AppState.bannerW = w;
+  AppState.bannerH = h;
+
+  // Resize the banner canvas element
+  const canvas = document.getElementById('bannerCanvas');
+  canvas.style.width  = w + 'px';
+  canvas.style.height = h + 'px';
+
+  // Update toolbar labels
+  const sizeKey = `${w}x${h}`;
+  const preset = BANNER_SIZE_PRESETS[sizeKey];
+  const ratioStr = preset ? preset.ratio : calcRatio(w, h);
+  const label = preset ? preset.label : 'Custom';
+
+  document.getElementById('canvasSizeLabel').textContent = `📐 ${w} × ${h} px`;
+  document.getElementById('canvasRatioLabel').textContent = `🖼️ ${label} (${ratioStr})`;
+
+  // Update preview modal title
+  const modalTitle = document.getElementById('previewModalTitle');
+  if (modalTitle) modalTitle.textContent = `👁 Banner Preview (${w}×${h})`;
+
+  // Update size info bar
+  const infoBar = document.getElementById('sizeInfoBar');
+  if (infoBar) {
+    infoBar.innerHTML = `<span>📐 ${w} × ${h} px</span><span>Ratio: ${ratioStr}</span>`;
+  }
+
+  // Re-fit and re-render
+  fitToScreen();
+  renderBanner();
+}
+
+function lockAspectRatio() {
+  AppState.aspectLocked = !AppState.aspectLocked;
+  const btn = document.getElementById('aspectLockBtn');
+  btn.textContent = AppState.aspectLocked ? '🔒' : '🔓';
+  showNotification(AppState.aspectLocked ? '🔒 Aspect ratio locked' : '🔓 Aspect ratio unlocked');
+}
+
+function calcRatio(w, h) {
+  const g = gcd(w, h);
+  const rw = w / g;
+  const rh = h / g;
+  // Simplify to common ratios if close
+  if (rw > 10 || rh > 10) {
+    return (w / h).toFixed(2) + ':1';
+  }
+  return rw + ':' + rh;
+}
+
+function gcd(a, b) { return b === 0 ? a : gcd(b, a % b); }

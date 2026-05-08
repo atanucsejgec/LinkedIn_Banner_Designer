@@ -17,7 +17,13 @@
     <link rel="stylesheet" href="templates/components/code-snippet-card.css">
     <link rel="stylesheet" href="templates/components/stat-counter-row.css">
     <link rel="stylesheet" href="templates/components/github-activity-bar.css">
-
+    <link rel="stylesheet" href="templates/components/recruiter-code-chips.css">
+    <link rel="stylesheet" href="templates/components/source-qr-card.css">
+    <link rel="stylesheet" href="templates/components/internship-badge.css">
+    <link rel="stylesheet" href="templates/components/floating-feat-tag.css">
+    <link rel="stylesheet" href="templates/components/kotlin-code-card.css">
+    <link rel="stylesheet" href="templates/components/gradient-text.css">
+    <link  rel="stylesheet" href="templates/components/grade-float-card.css">
 </head>
 
 <body>
@@ -131,6 +137,36 @@
 
             <!-- DESIGN TAB -->
             <div class="tab-content" id="tab-design">
+                <div class="section">
+                    <div class="section-title">📐 Banner Size</div>
+                    <p class="help-text">
+                        Choose a preset size or enter custom dimensions. Changing size does NOT affect existing templates.
+                    </p>
+                    <div class="size-preset-grid" id="sizePresetGrid">
+                        <button class="size-preset-btn selected" data-w="1200" data-h="627" onclick="applyBannerSize(1200,627,this)">🔗 LinkedIn<br><span>1200×627</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1080" onclick="applyBannerSize(1080,1080,this)">◻️ Square<br><span>1080×1080</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1350" onclick="applyBannerSize(1080,1350,this)">📱 Portrait<br><span>1080×1350</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1920" onclick="applyBannerSize(1080,1920,this)">📖 Story<br><span>1080×1920</span></button>
+                        <button class="size-preset-btn" data-w="1500" data-h="500" onclick="applyBannerSize(1500,500,this)">🐦 Twitter<br><span>1500×500</span></button>
+                        <button class="size-preset-btn" data-w="1584" data-h="396" onclick="applyBannerSize(1584,396,this)">💼 LI Cover<br><span>1584×396</span></button>
+                    </div>
+                    <div class="custom-size-row">
+                        <div class="custom-size-field">
+                            <label class="form-label">Width (px)</label>
+                            <input type="number" class="form-input" id="bannerWidth" value="1200" min="200" max="4000" oninput="applyCustomBannerSize()">
+                        </div>
+                        <span class="custom-size-x">×</span>
+                        <div class="custom-size-field">
+                            <label class="form-label">Height (px)</label>
+                            <input type="number" class="form-input" id="bannerHeight" value="627" min="200" max="4000" oninput="applyCustomBannerSize()">
+                        </div>
+                        <button class="btn btn-secondary sm-btn" style="margin-top:16px;" onclick="lockAspectRatio()" id="aspectLockBtn" title="Lock/Unlock aspect ratio">🔓</button>
+                    </div>
+                    <div class="size-info-bar" id="sizeInfoBar">
+                        <span>📐 1200 × 627 px</span>
+                        <span>Ratio: 1.91:1</span>
+                    </div>
+                </div>
                 <div class="section">
                     <div class="section-title">🎨 Background</div>
                     <div class="form-group">
@@ -329,8 +365,8 @@
         <div class="right-panel">
             <div class="canvas-toolbar">
                 <div class="canvas-info">
-                    <span>📐 1200 × 627 px</span>
-                    <span>🖼️ LinkedIn (1.91:1)</span>
+                    <span id="canvasSizeLabel">📐 1200 × 627 px</span>
+                    <span id="canvasRatioLabel">🖼️ LinkedIn (1.91:1)</span>
                     <span id="activeTemplateName">Template: Classic Split</span>
                 </div>
                 <div class="zoom-controls">
@@ -372,7 +408,7 @@
     <!-- PREVIEW MODAL -->
     <div class="modal-overlay" id="previewModal">
         <div class="modal">
-            <div class="modal-title">👁 Banner Preview (1200×627)</div>
+            <div class="modal-title" id="previewModalTitle">👁 Banner Preview (1200×627)</div>
             <div class="preview-img-wrap">
                 <img id="previewImg" alt="Preview">
             </div>
@@ -397,6 +433,15 @@
     <script src="templates/components/stat-counter-row.js"></script>
     <script src="templates/components/code-snippet-card.js"></script>
     <script src="templates/components/github-activity-bar.js"></script>
+    <script src="templates/components/recruiter-code-chips.js"></script>
+    <script src="templates/components/source-qr-card.js"></script>
+    <script src="templates/components/internship-badge.js"></script>
+    <script src="templates/components/floating-feat-tag.js"></script>
+    <script src="templates/components/kotlin-code-card.js"></script>
+    <script src="templates/components/gradient-text.js"></script>
+    <script src="templates/components/grade-float-card.js"></script>
+
+
     <!-- 3. Templates (uses component functions in render) -->
     <script src="templates/templates.js"></script>
     <!-- Overlay System -->

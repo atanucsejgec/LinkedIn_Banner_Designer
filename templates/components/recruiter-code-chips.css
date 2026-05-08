@@ -1,0 +1,22 @@
+/* ============================================
+   CODE-CHIP-STRIP.CSS — Code chip tag styles
+   ============================================ */
+
+.comp-code-chip-strip {
+  display:         flex;
+  flex-wrap:       wrap;
+  gap:             10px;
+  justify-content: center;
+  align-items:     center;
+}
+
+.comp-code-chip {
+  font-family:   'Fira Code', 'Courier New', monospace;
+  font-size:     13px;
+  font-weight:   600;
+  padding:       6px 16px;
+  border:        1px solid;
+  border-radius: 6px;
+  letter-spacing: 0.4px;
+  white-space:   nowrap;
+}

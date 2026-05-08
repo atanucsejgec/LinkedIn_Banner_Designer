@@ -2814,7 +2814,1867 @@ const TEMPLATES = [
       </div>
     `;
     }
+  },
+
+  /* ==== TEMPLATE — Recruiter Spotlight Dark ==== */
+  {
+    id: 'recruiter-spotlight-dark',
+    name: '🔦 Recruiter Spotlight',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg, #121212, #1a1a2e)',
+      emoji: '🔦',
+      label: 'Spotlight'
+    },
+
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+
+      /* ── Fixed dark theme colors ── */
+      const BG = '#0d0d0d';
+      const BG2 = '#111827';
+      const ACCENT = c.a1 || '#985EFF';
+      const ACCENT2 = c.a2 || '#03DAC5';
+      const TEXT_MAIN = '#F0F0F0';
+      const TEXT_SUB = '#9CA3AF';
+      const TEXT_MUTED = '#4B5563';
+      const GLOW_COLOR = ACCENT;
+
+      /* ── Tech chips ── */
+      const techTags = [
+        '[Kotlin]',
+        '[Jetpack Compose]',
+        '[Material 3]',
+        '[Single Activity]',
+      ];
+
+      /* ── Scan CTA arrow SVG ── */
+      const arrowSVG = `
+      <svg
+        width="48" height="16"
+        viewBox="0 0 48 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M0 8 H42 M34 2 L42 8 L34 14"
+          stroke="${TEXT_SUB}"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    `;
+
+      return `
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- BACKGROUND                               -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position: absolute;
+        inset:    0;
+        background: linear-gradient(160deg, ${BG} 60%, ${BG2} 100%);
+      "></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- SUBTLE GRID OVERLAY                      -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:   absolute;
+        inset:      0;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        background-size: 40px 40px;
+        pointer-events: none;
+      "></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- GLOW BEHIND PHONE                        -->
+      <!-- ════════════════════════════════════════ -->
+      <div class="glow-blob" style="
+        width:      420px;
+        height:     420px;
+        top:        -80px;
+        right:      -60px;
+        background: radial-gradient(
+          circle,
+          ${GLOW_COLOR}55 0%,
+          ${GLOW_COLOR}22 40%,
+          transparent 70%
+        );
+        filter: blur(30px);
+      "></div>
+
+      <!-- SECONDARY GLOW (bottom left) -->
+      <div class="glow-blob" style="
+        width:      300px;
+        height:     300px;
+        bottom:     -80px;
+        left:       80px;
+        background: radial-gradient(
+          circle,
+          ${ACCENT2}22 0%,
+          transparent 70%
+        );
+        filter: blur(25px);
+      "></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- TOP ACCENT LINE                          -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:   absolute;
+        top:        0;
+        left:       0;
+        right:      0;
+        height:     3px;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          ${ACCENT}  30%,
+          ${ACCENT2} 70%,
+          transparent 100%
+        );
+      "></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- LEFT LABEL — VERTICAL TEXT               -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:    absolute;
+        left:        20px;
+        top:         50%;
+        transform:   translateY(-50%) rotate(-90deg);
+        transform-origin: center center;
+        font-size:   10px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        color:       ${TEXT_MUTED};
+        text-transform: uppercase;
+        font-family: monospace;
+        white-space: nowrap;
+      "></div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- CENTER CONTENT BLOCK                     -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:        absolute;
+        left:            70px;
+        right:           370px;
+        top:             0;
+        bottom:          62px;
+        display:         flex;
+        flex-direction:  column;
+        justify-content: center;
+        align-items:     flex-start;
+        gap:             20px;
+        padding-left:    20px;
+      ">
+
+        <!-- TOP EYEBROW LABEL -->
+        <div style="
+          display:       flex;
+          align-items:   center;
+          gap:           10px;
+        ">
+          <div style="
+            width:        28px;
+            height:       2px;
+            background:   ${ACCENT};
+            border-radius: 2px;
+          "></div>
+          <span style="
+            font-size:    11px;
+            font-weight:  700;
+            letter-spacing: 3px;
+            color:        ${ACCENT};
+            text-transform: uppercase;
+            font-family:  monospace;
+          ">Portfolio Project</span>
+        </div>
+
+        <!-- MAIN HEADLINE -->
+        <div style="
+          display:        flex;
+          flex-direction: column;
+          gap:            6px;
+        ">
+          <div style="
+            font-size:   13px;
+            font-weight: 500;
+            color:       ${TEXT_SUB};
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: monospace;
+          ">Android Project Spotlight</div>
+
+          <div style="
+            font-size:   ${d.hs || 42}px;
+            font-weight: 900;
+            line-height: 1.05;
+            color:       ${TEXT_MAIN};
+            letter-spacing: -1px;
+          ">
+            Tip
+            <span style="
+              color: ${ACCENT};
+              position: relative;
+            ">Calculator</span>
+          </div>
+        </div>
+
+        <!-- SUB HEADLINE -->
+        <div style="
+          font-size:   15px;
+          color:       ${TEXT_SUB};
+          line-height: 1.7;
+          max-width:   420px;
+          font-weight: 400;
+        ">
+          Seamlessly calculate tips, split bills among friends,
+          and round up — all with a clean, reactive Compose UI.
+        </div>
+
+        <!-- THIN DIVIDER -->
+        <div style="
+          width:        60px;
+          height:       2px;
+          background:   linear-gradient(90deg, ${ACCENT}, transparent);
+          border-radius: 2px;
+        "></div>
+
+        <!-- CODE CHIPS -->
+        <div style="
+          display:     flex;
+          flex-wrap:   wrap;
+          gap:         10px;
+          align-items: center;
+        ">
+          ${techTags.map(tag => `
+            <div style="
+              font-family:   'Fira Code', 'Courier New', monospace;
+              font-size:     12px;
+              font-weight:   600;
+              color:         ${ACCENT};
+              border:        1px solid ${ACCENT}50;
+              background:    ${ACCENT}12;
+              padding:       5px 14px;
+              border-radius: 6px;
+              letter-spacing: 0.3px;
+              white-space:   nowrap;
+            ">${tag}</div>
+          `).join('')}
+        </div>
+
+        <!-- FEATURE BULLETS -->
+        <div style="
+          display:        flex;
+          flex-direction: column;
+          gap:            8px;
+          margin-top:     4px;
+        ">
+          ${[
+          '🎚️  Smooth tip slider — 0% to 30%',
+          '👥  Bill splitting for any group size',
+          '⬆️  One-tap round up toggle',
+        ].map(f => `
+            <div style="
+              display:     flex;
+              align-items: center;
+              gap:         10px;
+              font-size:   13px;
+              color:       ${TEXT_SUB};
+            ">${f}</div>
+          `).join('')}
+        </div>
+
+      </div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- RIGHT SIDE — PHONE MOCKUP                -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:        absolute;
+        right:           20px;
+        top:             0;
+        bottom:          62px;
+        width:           340px;
+        display:         flex;
+        align-items:     center;
+        justify-content: center;
+      ">
+        ${ss
+          ? phoneMockup(ss, d.phoneW || 230, d.phoneTilt || 5, 80, GLOW_COLOR)
+          : `
+            <!-- PLACEHOLDER WHEN NO SCREENSHOT -->
+            <div style="
+              width:           200px;
+              height:          380px;
+              border:          2px solid ${ACCENT}40;
+              border-radius:   32px;
+              background:      ${ACCENT}08;
+              display:         flex;
+              align-items:     center;
+              justify-content: center;
+              flex-direction:  column;
+              gap:             12px;
+              box-shadow:
+                0 0 40px ${ACCENT}30,
+                inset 0 0 30px ${ACCENT}10;
+            ">
+              <span style="font-size:36px;">📱</span>
+              <span style="
+                font-size:  11px;
+                color:      ${TEXT_MUTED};
+                font-family: monospace;
+                text-align: center;
+                padding: 0 20px;
+              ">Upload a screenshot<br>to preview</span>
+            </div>
+          `
+        }
+      </div>
+
+      <!-- ════════════════════════════════════════ -->
+      <!-- FOOTER BAR                               -->
+      <!-- ════════════════════════════════════════ -->
+      <div style="
+        position:        absolute;
+        bottom:          0;
+        left:            0;
+        right:           0;
+        height:          62px;
+        background:      rgba(255,255,255,0.03);
+        border-top:      1px solid rgba(255,255,255,0.06);
+        display:         flex;
+        align-items:     center;
+        justify-content: space-between;
+        padding:         0 38px 0 90px;
+      ">
+
+        <!-- LEFT — AUTHOR -->
+        <div style="
+          display:     flex;
+          align-items: center;
+          gap:         10px;
+        ">
+          <div style="
+            width:           32px;
+            height:          32px;
+            border-radius:   50%;
+            background:      linear-gradient(135deg, ${ACCENT}, ${ACCENT2});
+            display:         flex;
+            align-items:     center;
+            justify-content: center;
+            font-size:       15px;
+            flex-shrink:     0;
+          ">👤</div>
+          <div style="
+            display:        flex;
+            flex-direction: column;
+            gap:            1px;
+          ">
+            <span style="
+              font-size:   12px;
+              font-weight: 700;
+              color:       ${TEXT_MAIN};
+            ">${d.state.author || '@atanucsejgec'}</span>
+            <span style="
+              font-size: 10px;
+              color:     ${TEXT_MUTED};
+              font-family: monospace;
+            ">Android Developer</span>
+          </div>
+        </div>
+
+        <!-- CENTER — GITHUB LINK -->
+        <div style="
+          display:     flex;
+          align-items: center;
+          gap:         8px;
+        ">
+          <span style="font-size:14px;">🔗</span>
+          <span style="
+            font-size:   11px;
+            color:       ${TEXT_SUB};
+            font-family: monospace;
+          ">${d.state.github || 'https://github.com/atanucsejgec/Tip_Calculator'}</span>
+        </div>
+
+        <!-- RIGHT — SCAN QR CTA -->
+        <div style="
+          display:     flex;
+          align-items: center;
+          gap:         10px;
+        ">
+          <!-- CTA TEXT -->
+          <div style="
+            text-align:  right;
+            line-height: 1.5;
+          ">
+            <div style="
+              font-size:   10px;
+              color:       ${TEXT_MUTED};
+              font-family: monospace;
+              letter-spacing: 1px;
+              text-transform: uppercase;
+            ">Scan to view</div>
+            <div style="
+              font-size:   11px;
+              font-weight: 700;
+              color:       ${TEXT_SUB};
+            ">Source Code</div>
+          </div>
+
+          <!-- ARROW -->
+          <svg width="36" height="14" viewBox="0 0 36 14" fill="none">
+            <path
+              d="M0 7 H30 M24 2 L30 7 L24 12"
+              stroke="${TEXT_MUTED}"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <!-- QR CODE — small size 62px to fit footer -->
+          ${qrCode(62, '#ffffff', '#1a1a1a')}
+        </div>
+
+      </div>
+
+    `;
+    }
+  },
+
+  /* ==== TEMPLATE — Android Developer · Square ==== */
+{
+  id: 'android-dev-square',
+  name: 'Android Developer · Square',
+  tag: '1 Screenshot',
+  screenshots: 1,
+  thumb: {
+    bg: 'linear-gradient(135deg, #0A0F1E, #1A237E)',
+    emoji: '🤖',
+    label: 'Android Dev'
+  },
+
+  render(d) {
+    const c  = d.colors;
+    const ss = d.screenshots[0];
+
+    /* ── Canvas size ───────────────────────────────────────────── */
+    const W  = d.bannerW || 1080;
+    const H  = d.bannerH || 1080;
+    const sf = Math.min(W / 1080, H / 1080);
+
+    /* ── Layout zones ──────────────────────────────────────────── */
+    const PAD     = Math.round(44  * sf);
+    const LEFT_W  = Math.round(300 * sf);
+    const MID_W   = Math.round(360 * sf);
+    const RIGHT_W = W - LEFT_W - MID_W - PAD * 2;
+    const TOPBAR  = Math.round(6   * sf);
+    const FOOTER  = Math.round(72  * sf);
+    const INNER_T = Math.round(16  * sf);
+
+    /* Mid column start x */
+    const MID_START = PAD + LEFT_W;
+
+    /* Tag columns */
+    const TAG_W = Math.round(188 * sf);
+    const LT_X  = MID_START - TAG_W - Math.round(6 * sf);
+    const RT_X  = MID_START + MID_W + Math.round(6 * sf);
+
+    /* ── Font sizes ────────────────────────────────────────────── */
+    const FS_SUPER  = Math.round(11 * sf);
+    const FS_ROLE   = Math.round(36 * sf);
+    const FS_KOTLIN = Math.round(22 * sf);
+    const FS_SUB    = Math.round(13 * sf);
+    const FS_APP    = Math.round(15 * sf);
+    const FS_BADGE  = Math.round(11 * sf);
+    const FS_FOOT   = Math.round(11 * sf);
+    const FS_INTERN = Math.round(12 * sf);
+    const FS_TAG    = Math.round(10 * sf);
+
+    /* ── Phone ─────────────────────────────────────────────────── */
+    const phoneWidth = Math.round((d.phoneW || 200) * sf * 1.1);
+
+    /* ── Data ──────────────────────────────────────────────────── */
+    const appName    = d.state.subtitle || '📊 Student Grade Tracker App';
+    const githubUrl  = d.state.github   || 'github.com/atanucsejgec/Student_Grade_Tracker';
+    const author     = d.state.author   || '@atanucsejgec';
+    const bottomLine = d.state.description
+                       || 'Passionate about Clean Code • Scalable Architecture • Modern Android';
+
+    const featList = d.state.features.length
+      ? d.state.features.slice(0, 6)
+      : [
+          'State Management',
+          'Kotlin Data Classes',
+          'Functional Programming',
+          'Material 3 UI',
+          'Real-Time Filtering',
+          'Clean Architecture',
+        ];
+
+    const techBadges = d.state.badges.length
+      ? d.state.badges.slice(0, 6)
+      : [
+          { label: 'Kotlin',          color: '#7F52FF' },
+          { label: 'Jetpack Compose', color: '#3DDC84' },
+          { label: 'Material 3',      color: '#6750A4' },
+          { label: 'State Mgmt',      color: '#03A9F4' },
+          { label: 'Collection APIs', color: '#FF6D00' },
+          { label: 'MVVM',            color: '#E91E63' },
+        ];
+
+    /* ── Accent colours ────────────────────────────────────────── */
+    const androidGreen = '#3DDC84';
+    const accentMain   = c.a1 || '#6750A4';
+    const accentSec    = c.a2 || androidGreen;
+    const hlCol        = c.hl || '#FFD700';
+
+    /* ── Helpers ───────────────────────────────────────────────── */
+
+    /* Floating feature tag pill — solid colours, no gradient on text */
+    const tagPill = (text, accent, delay) => `
+      <div style="
+        display:inline-flex;align-items:center;gap:${Math.round(5*sf)}px;
+        background:rgba(10,15,30,0.82);
+        border:1px solid ${accent}66;
+        border-radius:${Math.round(20*sf)}px;
+        padding:${Math.round(4*sf)}px ${Math.round(10*sf)}px ${Math.round(4*sf)}px ${Math.round(8*sf)}px;
+        box-shadow:0 2px 12px rgba(0,0,0,0.45),0 0 0 0.5px rgba(255,255,255,0.04) inset;
+        white-space:nowrap;
+        animation:androidTagBob 3.4s ease-in-out ${delay}s infinite alternate;">
+        <span style="color:${accent};font-size:${FS_TAG}px;line-height:1;">✅</span>
+        <span style="
+          font-size:${FS_TAG}px;font-weight:600;
+          color:#E8EAF6;letter-spacing:0.2px;line-height:1;">${text}</span>
+      </div>`;
+
+    /* Left / right tag sets */
+    const leftTags  = featList.slice(0, 3);
+    const rightTags = featList.slice(3, 6);
+
+    /* Android ghost SVG (background watermark) */
+    const ghostSize = Math.round(320 * sf);
+    const androidGhost = `
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 128"
+        width="${ghostSize}" height="${ghostSize}"
+        style="position:absolute;
+          left:50%;bottom:${FOOTER + Math.round(10*sf)}px;
+          transform:translateX(-50%);
+          opacity:0.04;pointer-events:none;z-index:0;">
+        <g fill="${accentSec}">
+          <line x1="34" y1="20" x2="24" y2="6"
+            stroke="${accentSec}" stroke-width="4" stroke-linecap="round"/>
+          <line x1="66" y1="20" x2="76" y2="6"
+            stroke="${accentSec}" stroke-width="4" stroke-linecap="round"/>
+          <path d="M18,22 Q18,8 50,8 Q82,8 82,22 L82,56
+            Q82,68 70,68 L30,68 Q18,68 18,56 Z"/>
+          <circle cx="36" cy="36" r="5" fill="${c.bg1 || '#070B18'}"/>
+          <circle cx="64" cy="36" r="5" fill="${c.bg1 || '#070B18'}"/>
+          <rect x="13" y="70" width="74" height="42" rx="8"/>
+          <rect x="2"  y="70" width="9"  height="32" rx="4.5"/>
+          <rect x="89" y="70" width="9"  height="32" rx="4.5"/>
+          <rect x="22" y="113" width="13" height="22" rx="6.5"/>
+          <rect x="65" y="113" width="13" height="22" rx="6.5"/>
+        </g>
+      </svg>`;
+
+    /* Grid background SVG */
+    const gridSpacing = Math.round(48 * sf);
+    const gridBg = `
+      <div style="position:absolute;inset:0;overflow:hidden;
+        pointer-events:none;opacity:0.06;z-index:0;">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="androidGrid" width="${gridSpacing}" height="${gridSpacing}"
+              patternUnits="userSpaceOnUse">
+              <path d="M ${gridSpacing} 0 L 0 0 0 ${gridSpacing}"
+                fill="none" stroke="${accentSec}" stroke-width="0.5"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#androidGrid)"/>
+        </svg>
+      </div>`;
+
+    /* GitHub SVG icon */
+    const ghIconSize = Math.round(16 * sf);
+    const githubIcon = `
+      <svg width="${ghIconSize}" height="${ghIconSize}" viewBox="0 0 24 24"
+        fill="${accentSec}" style="flex-shrink:0;">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205
+          11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235
+          -3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695
+          -.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23
+          1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605
+          -2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225
+          -.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27
+          1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23
+          .66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225
+          0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22
+          0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57
+          A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>`;
+
+    /* ── Kotlin code lines ─────────────────────────────────────── */
+    const codeLines = [
+      { indent:0, tokens:[{ type:'comment', text:'// Filter & sort students' }] },
+      { indent:0, tokens:[
+        { type:'keyword', text:'val '              },
+        { type:'var',     text:'displayedStudents' },
+        { type:'plain',   text:' ='               },
+      ]},
+      { indent:1, tokens:[{ type:'var', text:'students' }] },
+      { indent:2, tokens:[
+        { type:'punct',   text:'.'        },
+        { type:'fn',      text:'filter'   },
+        { type:'plain',   text:' { '      },
+        { type:'keyword', text:'it'       },
+        { type:'punct',   text:'.'        },
+        { type:'var',     text:'isPassing'},
+        { type:'plain',   text:' }'       },
+      ]},
+      { indent:2, tokens:[
+        { type:'punct', text:'.'                  },
+        { type:'fn',    text:'sortedByDescending' },
+        { type:'plain', text:' {'                 },
+      ]},
+      { indent:3, tokens:[
+        { type:'keyword', text:'it'    },
+        { type:'punct',   text:'.'     },
+        { type:'var',     text:'grade' },
+      ]},
+      { indent:2, tokens:[{ type:'plain', text:'}' }] },
+    ];
+
+    /* ══════════════════════════════════════════════════════════════
+       RENDER
+       ══════════════════════════════════════════════════════════════ */
+    return `
+
+      <!-- ── Bob animation keyframes ──────────────────────────── -->
+      <style>
+        @keyframes androidTagBob {
+          0%   { transform:translateY(0px);  }
+          100% { transform:translateY(-5px); }
+        }
+        @keyframes androidPulse {
+          0%,100% { opacity:0.55; }
+          50%     { opacity:1;    }
+        }
+      </style>
+
+      <!-- ── BACKGROUND ──────────────────────────────────────── -->
+      <div style="position:absolute;inset:0;z-index:0;
+        background:linear-gradient(${c.gradDir || '150deg'},
+          ${c.bg1 || '#070B18'} 0%,
+          ${c.bg2 || '#0D1B4B'} 55%,
+          ${c.bg1 || '#070B18'} 100%);"></div>
+
+      <!-- Grid texture -->
+      ${gridBg}
+
+      <!-- Android ghost watermark -->
+      ${androidGhost}
+
+      <!-- Glow blobs -->
+      <div style="position:absolute;
+        width:${Math.round(500*sf)}px;height:${Math.round(500*sf)}px;
+        top:${Math.round(-160*sf)}px;left:${Math.round(-100*sf)}px;
+        background:radial-gradient(circle,${accentMain}28,transparent 65%);
+        border-radius:50%;pointer-events:none;z-index:0;"></div>
+      <div style="position:absolute;
+        width:${Math.round(400*sf)}px;height:${Math.round(400*sf)}px;
+        bottom:${Math.round(20*sf)}px;right:${Math.round(-80*sf)}px;
+        background:radial-gradient(circle,${accentSec}20,transparent 65%);
+        border-radius:50%;pointer-events:none;z-index:0;"></div>
+      <div style="position:absolute;
+        width:${Math.round(300*sf)}px;height:${Math.round(300*sf)}px;
+        top:50%;left:50%;transform:translate(-50%,-50%);
+        background:radial-gradient(circle,${accentSec}14,transparent 65%);
+        border-radius:50%;pointer-events:none;z-index:0;"></div>
+
+      <!-- ── TOP ACCENT BAR ───────────────────────────────────── -->
+      <div style="position:absolute;top:0;left:0;right:0;
+        height:${TOPBAR}px;z-index:20;
+        background:linear-gradient(90deg,${accentMain},${accentSec},${hlCol});"></div>
+
+      <!-- Sparkles -->
+      <div style="position:absolute;
+        top:${Math.round(88*sf)}px;left:${Math.round(255*sf)}px;
+        color:${accentSec};font-size:${Math.round(13*sf)}px;
+        opacity:0.65;z-index:5;
+        animation:androidPulse 2.5s ease-in-out infinite;">✦</div>
+      <div style="position:absolute;
+        top:${Math.round(195*sf)}px;right:${Math.round(108*sf)}px;
+        color:${hlCol};font-size:${Math.round(9*sf)}px;
+        opacity:0.55;z-index:5;
+        animation:androidPulse 3.1s ease-in-out 0.7s infinite;">✦</div>
+      <div style="position:absolute;
+        bottom:${Math.round(138*sf)}px;left:${Math.round(195*sf)}px;
+        color:${accentMain};font-size:${Math.round(11*sf)}px;
+        opacity:0.45;z-index:5;
+        animation:androidPulse 2.8s ease-in-out 1.3s infinite;">✦</div>
+
+      <!-- ══════════════════════════════════════════════════════
+           LEFT COLUMN
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${TOPBAR + INNER_T}px;
+        left:${PAD}px;
+        width:${LEFT_W}px;
+        bottom:${FOOTER + Math.round(8*sf)}px;
+        display:flex;flex-direction:column;
+        justify-content:center;
+        gap:${Math.round(12*sf)}px;
+        z-index:10;">
+
+        <!-- Super label -->
+        <div style="
+          display:flex;align-items:center;
+          gap:${Math.round(7*sf)}px;">
+          <div style="
+            width:${Math.round(3*sf)}px;
+            height:${Math.round(20*sf)}px;
+            background:${accentSec};
+            border-radius:2px;
+            flex-shrink:0;"></div>
+          <span style="
+            font-size:${FS_SUPER}px;
+            font-weight:700;
+            letter-spacing:${Math.round(2.5*sf)}px;
+            text-transform:uppercase;
+            color:${accentSec};">
+            OPEN TO OPPORTUNITIES
+          </span>
+        </div>
+
+        <!-- ANDROID gradient SVG text -->
+        ${gradientTextLines(
+          ['ANDROID', 'DEVELOPER'],
+          '#FFFFFF',
+          accentSec,
+          FS_ROLE,
+          900,
+          -1,
+          Math.round(6 * sf)
+        )}
+
+        <!-- (KOTLIN) label — plain solid colour, no gradient clip -->
+        <div style="
+          font-size:${FS_KOTLIN}px;
+          font-weight:800;
+          color:${accentSec};
+          text-transform:uppercase;
+          letter-spacing:${Math.round(2*sf)}px;
+          margin-top:${Math.round(-6*sf)}px;">
+          (KOTLIN)
+        </div>
+
+        <!-- Divider -->
+        <div style="
+          width:${Math.round(170*sf)}px;
+          height:${Math.round(2*sf)}px;
+          background:linear-gradient(90deg,${accentSec},${accentMain},transparent);
+          border-radius:2px;"></div>
+
+        <!-- Sub role — solid colours only -->
+        <div style="
+          font-size:${FS_SUB}px;
+          font-weight:500;
+          color:#B0BEC5;
+          line-height:1.5;">
+          Building Real&#8209;World Apps with
+          <span style="color:${accentSec};font-weight:700;">Jetpack Compose</span>
+        </div>
+
+        <!-- App name highlight box -->
+        <div style="
+          background:linear-gradient(135deg,${accentMain}1E,${accentSec}16);
+          border:1px solid ${accentSec}44;
+          border-radius:${Math.round(10*sf)}px;
+          padding:${Math.round(10*sf)}px ${Math.round(13*sf)}px;">
+          <div style="
+            font-size:${FS_APP}px;
+            font-weight:800;
+            color:#FFFFFF;
+            margin-bottom:${Math.round(4*sf)}px;">
+            ${appName}
+          </div>
+          <div style="
+            font-size:${Math.round(FS_SUB * 0.88)}px;
+            color:#78909C;
+            line-height:1.4;">
+            Track · Filter · Sort<br>Modern Android Architecture
+          </div>
+        </div>
+
+        <!-- Internship CTA -->
+        <div style="
+          display:inline-flex;align-items:center;
+          gap:${Math.round(7*sf)}px;
+          background:linear-gradient(135deg,${accentSec}1E,${hlCol}14);
+          border:1.5px solid ${accentSec}77;
+          border-radius:${Math.round(24*sf)}px;
+          padding:${Math.round(7*sf)}px ${Math.round(14*sf)}px;
+          width:fit-content;
+          box-shadow:0 0 18px ${accentSec}2A;
+          animation:androidTagBob 2.8s ease-in-out 0.3s infinite alternate;">
+          <span style="font-size:${Math.round(FS_INTERN*1.1)}px;">🚀</span>
+          <span style="
+            font-size:${FS_INTERN}px;
+            font-weight:800;
+            color:${accentSec};">
+            Seeking Android Internship
+          </span>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           LEFT FEATURE TAGS (beside phone, left side)
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        left:${LT_X}px;
+        width:${TAG_W}px;
+        top:${TOPBAR + Math.round(70*sf)}px;
+        bottom:${FOOTER + Math.round(20*sf)}px;
+        display:flex;flex-direction:column;
+        justify-content:space-evenly;
+        align-items:flex-end;
+        z-index:12;
+        gap:${Math.round(6*sf)}px;">
+        ${leftTags.map((t, i) => tagPill(t, accentSec, i * 0.22)).join('')}
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           CENTER — Phone Mockup
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        left:${MID_START}px;
+        width:${MID_W}px;
+        top:${TOPBAR + INNER_T}px;
+        bottom:${FOOTER}px;
+        display:flex;align-items:center;justify-content:center;
+        z-index:11;">
+
+        <!-- Phone glow -->
+        <div style="
+          position:absolute;
+          width:${Math.round(280*sf)}px;
+          height:${Math.round(280*sf)}px;
+          background:radial-gradient(circle,${accentSec}24,transparent 65%);
+          border-radius:50%;pointer-events:none;"></div>
+
+        ${phoneMockup(ss, phoneWidth, d.phoneTilt || -2, d.glowOpacity || 40, accentSec)}
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           RIGHT FEATURE TAGS (beside phone, right side)
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        left:${RT_X}px;
+        width:${TAG_W}px;
+        top:${TOPBAR + Math.round(70*sf)}px;
+        bottom:${FOOTER + Math.round(20*sf)}px;
+        display:flex;flex-direction:column;
+        justify-content:space-evenly;
+        align-items:flex-start;
+        z-index:12;
+        gap:${Math.round(6*sf)}px;">
+        ${rightTags.map((t, i) => tagPill(t, accentSec, (i + 3) * 0.22)).join('')}
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           RIGHT COLUMN — Tech Stack + Code + GitHub
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${TOPBAR + INNER_T}px;
+        right:${PAD}px;
+        width:${RIGHT_W}px;
+        bottom:${FOOTER + Math.round(8*sf)}px;
+        display:flex;flex-direction:column;
+        justify-content:center;
+        gap:${Math.round(13*sf)}px;
+        z-index:10;">
+
+        <!-- Tech Stack heading — solid colour, no gradient clip -->
+        <div style="
+          display:flex;align-items:center;
+          gap:${Math.round(8*sf)}px;">
+          <div style="
+            width:${Math.round(18*sf)}px;height:${Math.round(2*sf)}px;
+            background:${accentSec};border-radius:2px;flex-shrink:0;"></div>
+          <span style="
+            font-size:${Math.round(FS_SUPER * 1.15)}px;
+            font-weight:800;
+            letter-spacing:${Math.round(2*sf)}px;
+            text-transform:uppercase;
+            color:${accentSec};">
+            Tech Stack
+          </span>
+        </div>
+
+        <!-- Badge grid -->
+        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(6*sf)}px;">
+          ${techBadges.map(b => `
+            <span style="
+              display:inline-block;
+              background:${b.color}20;
+              border:1px solid ${b.color}88;
+              color:#FFFFFF;
+              font-size:${FS_BADGE}px;
+              font-weight:700;
+              padding:${Math.round(4*sf)}px ${Math.round(10*sf)}px;
+              border-radius:${Math.round(14*sf)}px;
+              white-space:nowrap;
+              box-shadow:0 0 8px ${b.color}28;
+              letter-spacing:0.2px;">
+              ${b.label}
+            </span>`).join('')}
+        </div>
+
+        <!-- Thin divider -->
+        <div style="
+          height:1px;
+          background:linear-gradient(90deg,${accentSec}44,${accentMain}22,transparent);"></div>
+
+        <!-- Kotlin code card -->
+        ${kotlinCodeCard(codeLines, accentSec, RIGHT_W)}
+
+        <!-- GitHub block -->
+        <div style="
+          background:rgba(255,255,255,0.03);
+          border:1px solid ${accentSec}33;
+          border-radius:${Math.round(10*sf)}px;
+          padding:${Math.round(10*sf)}px ${Math.round(13*sf)}px;
+          display:flex;flex-direction:column;
+          gap:${Math.round(5*sf)}px;">
+
+          <div style="display:flex;align-items:center;gap:${Math.round(8*sf)}px;">
+            ${githubIcon}
+            <span style="
+              font-size:${Math.round(FS_SUB * 0.95)}px;
+              font-weight:800;
+              color:${accentSec};">
+              GitHub Repository
+            </span>
+          </div>
+
+          <div style="
+            font-size:${Math.round(FS_BADGE * 1.05)}px;
+            font-weight:500;
+            color:#78909C;
+            line-height:1.45;
+            word-break:break-all;">
+            🔗 ${githubUrl}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ══════════════════════════════════════════════════════
+           FOOTER
+           ══════════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;left:0;right:0;bottom:0;
+        height:${FOOTER}px;
+        background:linear-gradient(90deg,
+          ${accentMain}20,${accentSec}16,${accentMain}20);
+        border-top:1px solid ${accentSec}2A;
+        display:flex;align-items:center;justify-content:space-between;
+        padding:0 ${PAD}px;
+        z-index:15;">
+
+        <!-- Passion tagline — plain colour, no gradient clip -->
+        <span style="
+          font-size:${FS_FOOT}px;
+          font-weight:500;
+          color:#607D8B;
+          font-style:italic;
+          letter-spacing:0.3px;">
+          ${bottomLine}
+        </span>
+
+        <!-- Author + badge -->
+        <div style="display:flex;align-items:center;gap:${Math.round(10*sf)}px;flex-shrink:0;">
+          <span style="
+            font-size:${FS_FOOT}px;
+            font-weight:700;
+            color:#ECEFF1;">
+            ${author}
+          </span>
+          <span style="
+            background:${androidGreen}1E;
+            border:1px solid ${androidGreen}77;
+            border-radius:${Math.round(12*sf)}px;
+            padding:${Math.round(3*sf)}px ${Math.round(9*sf)}px;
+            font-size:${Math.round(FS_BADGE * 0.95)}px;
+            font-weight:700;
+            color:${androidGreen};
+            white-space:nowrap;">
+            🤖 Android Dev
+          </span>
+        </div>
+
+      </div>
+
+    `;
   }
+},
+
+
+/* ==== TEMPLATE — Student Grade Tracker (Square) ==== */
+{
+  id: 'student-grade-tracker-square',
+  name: 'Student Grade Tracker',
+  tag: 'No Screenshot',
+  screenshots: 0,
+  thumb: {
+    bg: 'linear-gradient(135deg, #1C1B1F, #2D1B69)',
+    emoji: '🎓',
+    label: 'Grade Tracker'
+  },
+
+  render(d) {
+    const c     = d.colors;
+    const W     = d.bannerW || 1080;
+    const H     = d.bannerH || 1080;
+
+    const feats = (d.state.features && d.state.features.length)
+      ? d.state.features.slice(0, 6)
+      : [
+          'Grade Tracking',
+          'Subject-wise Analytics',
+          'Filtering System',
+          'Compose UI',
+          'Collection Operations',
+          'Reactive State Management'
+        ];
+
+    const techStack = (d.state.badges && d.state.badges.length)
+      ? d.state.badges
+      : [
+          { label: 'Kotlin',          color: '#7F52FF' },
+          { label: 'Jetpack Compose', color: '#03DAC5' },
+          { label: 'Material 3',      color: '#6750A4' },
+          { label: 'LazyColumn',      color: '#BB86FC' },
+          { label: 'Data Classes',    color: '#03DAC5' },
+          { label: 'Enums',           color: '#CF6679' }
+        ];
+
+    const badge  = d.state.badge       || '🚀 JUST SHIPPED';
+    const h1     = d.state.h1          || 'Student Grade';
+    const h2     = d.state.h2          || 'Tracker';
+    const sub    = d.state.subtitle    || 'Smart Grade Management App';
+    const desc   = d.state.description || 'Built with Kotlin & Jetpack Compose';
+    const github = d.state.github      || 'github.com/atanucsejgec/Student_Grade_Tracker';
+    const author = d.state.author      || '@atanucsejgec';
+
+    /* ── screenshot (may be null) ───────────────────────── */
+    const ss = d.screenshots[0] || null;
+
+    /* ── scale factor ───────────────────────────────────── */
+    const scale = W / 1080;
+
+    /* ── font sizes ─────────────────────────────────────── */
+    const hs  = Math.round((d.hs || 48) * scale);
+    const sss = Math.round((d.ss || 15) * scale);
+    const fs  = Math.round((d.fs || 12) * scale);
+
+    /* ── layout constants ───────────────────────────────── */
+    const PAD    = Math.round(36 * scale);
+    const FOOTER = Math.round(72 * scale);
+    const TOPBAR = Math.round(5  * scale);
+    const DIVH   = Math.round(3  * scale);
+
+    /* ── column widths ──────────────────────────────────── */
+    // Three columns: LEFT | PHONE | RIGHT
+    const LEFT_W  = Math.round(310 * scale);   // text + features
+    const PHONE_W = Math.round(240 * scale);   // phone mockup column
+    const RIGHT_W = Math.round(330 * scale);   // UI cards
+    const GAP     = Math.round(
+      (W - PAD * 2 - LEFT_W - PHONE_W - RIGHT_W) / 2
+    );
+
+    const LEFT_X  = PAD;
+    const PHONE_X = LEFT_X + LEFT_W + GAP;
+    const RIGHT_X = PHONE_X + PHONE_W + GAP;
+
+    /* ── phone dimensions ───────────────────────────────── */
+    const phoneFrameW  = PHONE_W;                          // frame outer width
+    const phoneTilt    = d.phoneTilt || 0;                 // keep upright in center
+    const glowOp       = d.glowOpacity || 35;
+
+    /* ── content top / bottom ───────────────────────────── */
+    const CONTENT_TOP    = Math.round(82  * scale);
+    const CONTENT_BOTTOM = FOOTER + Math.round(14 * scale);
+
+    /* ═══════════════════════════════════════════════════════
+       INLINE PHONE SCREEN — rendered inside the phone mockup
+       when no screenshot is uploaded.
+       We build a tiny HTML snapshot as a data-URI SVG so
+       phoneMockup() always has something to show.
+       ═══════════════════════════════════════════════════════ */
+    const buildFallbackScreen = () => {
+      // Pixel dims of the phone's inner screen at our scale
+      const SW = Math.round(200 * scale);
+      const SH = Math.round(400 * scale);
+      const bg1 = c.bg1;
+      const bg2 = c.bg2;
+      const ac1 = c.a1;
+      const ac2 = c.a2;
+      const hl  = c.hl;
+
+      // We embed a tiny SVG-based screen design
+      // (avoids any external image dependency)
+      const svgScreen = `
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}">
+          <defs>
+            <linearGradient id="sbg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="${bg1}"/>
+              <stop offset="100%" stop-color="${bg2}"/>
+            </linearGradient>
+            <linearGradient id="sbar" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stop-color="${ac1}"/>
+              <stop offset="100%" stop-color="${ac2}"/>
+            </linearGradient>
+            <linearGradient id="spb1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%"   stop-color="${ac1}"/>
+              <stop offset="100%" stop-color="${ac2}"/>
+            </linearGradient>
+            <clipPath id="sclip">
+              <rect width="${SW}" height="${SH}" rx="0" ry="0"/>
+            </clipPath>
+          </defs>
+
+          <!-- BG -->
+          <rect width="${SW}" height="${SH}" fill="url(#sbg)"/>
+
+          <!-- grid lines -->
+          ${Array.from({length:10},(_,i)=>`
+            <line x1="0" y1="${i*SH/10}" x2="${SW}" y2="${i*SH/10}"
+                  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+            <line x1="${i*SW/10}" y1="0" x2="${i*SW/10}" y2="${SH}"
+                  stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+          `).join('')}
+
+          <!-- top accent bar -->
+          <rect x="0" y="0" width="${SW}" height="${Math.round(3*scale)}"
+                fill="url(#sbar)"/>
+
+          <!-- app header -->
+          <rect x="${Math.round(10*scale)}" y="${Math.round(14*scale)}"
+                width="${SW - Math.round(20*scale)}"
+                height="${Math.round(36*scale)}"
+                rx="${Math.round(8*scale)}"
+                fill="rgba(255,255,255,0.07)"/>
+          <!-- app icon circle -->
+          <circle cx="${Math.round(26*scale)}"
+                  cy="${Math.round(14*scale)+Math.round(18*scale)}"
+                  r="${Math.round(11*scale)}"
+                  fill="${ac1}"/>
+          <text x="${Math.round(26*scale)}"
+                y="${Math.round(14*scale)+Math.round(23*scale)}"
+                font-size="${Math.round(12*scale)}"
+                text-anchor="middle" fill="#fff">🎓</text>
+          <text x="${Math.round(44*scale)}"
+                y="${Math.round(14*scale)+Math.round(15*scale)}"
+                font-size="${Math.round(9*scale)}"
+                font-weight="bold" fill="#fff"
+                font-family="sans-serif">Grade Tracker</text>
+          <text x="${Math.round(44*scale)}"
+                y="${Math.round(14*scale)+Math.round(27*scale)}"
+                font-size="${Math.round(7*scale)}"
+                fill="rgba(255,255,255,0.45)"
+                font-family="sans-serif">5 Students</text>
+
+          <!-- stats row -->
+          ${[
+            { lbl:'Avg',  val:'87%', x: Math.round(10*scale),  col: ac1 },
+            { lbl:'Top',  val:'A+',  x: Math.round(80*scale),  col: hl  },
+            { lbl:'Subj', val:'4',   x: Math.round(150*scale), col: ac2 },
+          ].map(s=>`
+            <rect x="${s.x}" y="${Math.round(60*scale)}"
+                  width="${Math.round(56*scale)}"
+                  height="${Math.round(38*scale)}"
+                  rx="${Math.round(6*scale)}"
+                  fill="rgba(255,255,255,0.07)"/>
+            <text x="${s.x + Math.round(28*scale)}"
+                  y="${Math.round(82*scale)}"
+                  font-size="${Math.round(11*scale)}"
+                  font-weight="bold" text-anchor="middle"
+                  fill="${s.col}"
+                  font-family="sans-serif">${s.val}</text>
+            <text x="${s.x + Math.round(28*scale)}"
+                  y="${Math.round(91*scale)}"
+                  font-size="${Math.round(6*scale)}"
+                  text-anchor="middle"
+                  fill="rgba(255,255,255,0.4)"
+                  font-family="sans-serif">${s.lbl}</text>
+          `).join('')}
+
+          <!-- section label -->
+          <text x="${Math.round(10*scale)}"
+                y="${Math.round(114*scale)}"
+                font-size="${Math.round(7*scale)}"
+                font-weight="800"
+                letter-spacing="1"
+                fill="rgba(255,255,255,0.35)"
+                font-family="sans-serif">STUDENT RANKINGS</text>
+
+          <!-- student rows -->
+          ${[
+            { name:'Alice Johnson', grade:'A',  pct:0.94, col: ac2  },
+            { name:'Bob Smith',     grade:'B+', pct:0.81, col: ac1  },
+            { name:'Carol Davis',   grade:'A-', pct:0.88, col: hl   },
+            { name:'David Lee',     grade:'B',  pct:0.75, col:'#CF6679'},
+            { name:'Eva Martin',    grade:'C+', pct:0.65, col:'#888888'},
+          ].map((st, i) => {
+            const ry = Math.round(120*scale) + i * Math.round(42*scale);
+            const rh = Math.round(34*scale);
+            const rw = SW - Math.round(20*scale);
+            const barW = Math.round((rw - Math.round(64*scale)) * st.pct);
+            return `
+              <rect x="${Math.round(10*scale)}" y="${ry}"
+                    width="${rw}" height="${rh}"
+                    rx="${Math.round(7*scale)}"
+                    fill="rgba(255,255,255,0.05)"/>
+              <!-- avatar circle -->
+              <circle cx="${Math.round(10*scale)+Math.round(17*scale)}"
+                      cy="${ry + Math.round(17*scale)}"
+                      r="${Math.round(11*scale)}"
+                      fill="${st.col}"/>
+              <text x="${Math.round(10*scale)+Math.round(17*scale)}"
+                    y="${ry + Math.round(22*scale)}"
+                    font-size="${Math.round(9*scale)}"
+                    font-weight="bold" text-anchor="middle"
+                    fill="#fff" font-family="sans-serif">
+                    ${st.name.charAt(0)}</text>
+              <!-- name -->
+              <text x="${Math.round(10*scale)+Math.round(33*scale)}"
+                    y="${ry + Math.round(13*scale)}"
+                    font-size="${Math.round(8*scale)}"
+                    font-weight="600" fill="#fff"
+                    font-family="sans-serif">${st.name}</text>
+              <!-- progress bar bg -->
+              <rect x="${Math.round(10*scale)+Math.round(33*scale)}"
+                    y="${ry + Math.round(20*scale)}"
+                    width="${rw - Math.round(64*scale)}"
+                    height="${Math.round(3*scale)}"
+                    rx="${Math.round(2*scale)}"
+                    fill="rgba(255,255,255,0.1)"/>
+              <!-- progress bar fill -->
+              <rect x="${Math.round(10*scale)+Math.round(33*scale)}"
+                    y="${ry + Math.round(20*scale)}"
+                    width="${barW}"
+                    height="${Math.round(3*scale)}"
+                    rx="${Math.round(2*scale)}"
+                    fill="${st.col}"/>
+              <!-- grade badge -->
+              <rect x="${rw - Math.round(18*scale)}"
+                    y="${ry + Math.round(9*scale)}"
+                    width="${Math.round(22*scale)}"
+                    height="${Math.round(16*scale)}"
+                    rx="${Math.round(4*scale)}"
+                    fill="${st.col}22"/>
+              <text x="${rw - Math.round(7*scale)}"
+                    y="${ry + Math.round(21*scale)}"
+                    font-size="${Math.round(8*scale)}"
+                    font-weight="800" text-anchor="middle"
+                    fill="${st.col}" font-family="sans-serif">${st.grade}</text>
+            `;
+          }).join('')}
+
+          <!-- subject cards row -->
+          <text x="${Math.round(10*scale)}"
+                y="${Math.round(338*scale)}"
+                font-size="${Math.round(7*scale)}"
+                font-weight="800"
+                letter-spacing="1"
+                fill="rgba(255,255,255,0.35)"
+                font-family="sans-serif">SUBJECTS</text>
+
+          ${[
+            { icon:'🔬', sub:'Sci',  val:'92', col: ac2  },
+            { icon:'📐', sub:'Math', val:'78', col: ac1  },
+            { icon:'📖', sub:'Eng',  val:'88', col: hl   },
+            { icon:'🌍', sub:'Hist', val:'81', col:'#CF6679'},
+          ].map((sj, i) => {
+            const cardW = Math.round(40*scale);
+            const cardX = Math.round(10*scale) + i*(cardW + Math.round(6*scale));
+            return `
+              <rect x="${cardX}" y="${Math.round(344*scale)}"
+                    width="${cardW}" height="${Math.round(42*scale)}"
+                    rx="${Math.round(7*scale)}"
+                    fill="rgba(255,255,255,0.06)"
+                    stroke="${sj.col}" stroke-opacity="0.25" stroke-width="1"/>
+              <text x="${cardX + Math.round(20*scale)}"
+                    y="${Math.round(360*scale)}"
+                    font-size="${Math.round(11*scale)}"
+                    text-anchor="middle">${sj.icon}</text>
+              <text x="${cardX + Math.round(20*scale)}"
+                    y="${Math.round(373*scale)}"
+                    font-size="${Math.round(8*scale)}"
+                    font-weight="700" text-anchor="middle"
+                    fill="${sj.col}" font-family="sans-serif">${sj.val}</text>
+              <text x="${cardX + Math.round(20*scale)}"
+                    y="${Math.round(382*scale)}"
+                    font-size="${Math.round(6*scale)}"
+                    text-anchor="middle"
+                    fill="rgba(255,255,255,0.4)"
+                    font-family="sans-serif">${sj.sub}</text>
+            `;
+          }).join('')}
+        </svg>
+      `;
+
+      // Convert SVG to data URI
+      const encoded = 'data:image/svg+xml;charset=utf-8,' +
+        encodeURIComponent(svgScreen.trim());
+      return encoded;
+    };
+
+    /* ── choose screen source ───────────────────────────── */
+    const screenSrc = ss || buildFallbackScreen();
+
+    /* ═══════════════════════════════════════════════════════
+       TAGLINE
+       ═══════════════════════════════════════════════════════ */
+    const tagline = `
+      <div style="
+        font-size:${Math.round(9*scale)}px;
+        font-weight:700;
+        letter-spacing:${Math.round(2.5*scale)}px;
+        color:${c.a2};
+        text-transform:uppercase;
+        margin-bottom:${Math.round(8*scale)}px;
+      ">ANDROID &nbsp;•&nbsp; KOTLIN &nbsp;•&nbsp; JETPACK COMPOSE</div>
+    `;
+
+    /* ═══════════════════════════════════════════════════════
+       HEADLINE — SVG gradient text
+       ═══════════════════════════════════════════════════════ */
+    const headSvgW = LEFT_W;
+    const headSvgH = Math.round(120 * scale);
+    const hLine1Y  = Math.round(hs * 1.0);
+    const hLine2Y  = Math.round(hLine1Y + hs * 1.2);
+    const headlineSvg = `
+      <svg width="${headSvgW}" height="${headSvgH}"
+           viewBox="0 0 ${headSvgW} ${headSvgH}"
+           xmlns="http://www.w3.org/2000/svg"
+           style="overflow:visible;display:block;flex-shrink:0;">
+        <defs>
+          <linearGradient id="hg1sq" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%"   stop-color="${c.hl}"/>
+            <stop offset="100%" stop-color="${c.a2}"/>
+          </linearGradient>
+        </defs>
+        <text x="0" y="${hLine1Y}"
+              font-family="'Segoe UI',system-ui,sans-serif"
+              font-size="${hs}" font-weight="900"
+              fill="url(#hg1sq)">${h1}</text>
+        <text x="0" y="${hLine2Y}"
+              font-family="'Segoe UI',system-ui,sans-serif"
+              font-size="${hs}" font-weight="900"
+              fill="#FFFFFF">${h2}</text>
+      </svg>
+    `;
+
+    /* ═══════════════════════════════════════════════════════
+       FEATURE LIST
+       ═══════════════════════════════════════════════════════ */
+    const featList = feats.map(f => `
+      <div style="
+        display:flex;align-items:center;
+        gap:${Math.round(7*scale)}px;
+        margin-bottom:${Math.round(4*scale)}px;
+      ">
+        <span style="
+          background:${c.a1}33;
+          color:${c.a2};
+          border:1px solid ${c.a2}55;
+          font-size:${Math.round(9*scale)}px;
+          width:${Math.round(17*scale)}px;
+          height:${Math.round(17*scale)}px;
+          border-radius:50%;
+          display:inline-flex;align-items:center;justify-content:center;
+          flex-shrink:0;font-weight:700;
+        ">✓</span>
+        <span style="
+          font-size:${fs}px;
+          color:rgba(255,255,255,0.85);
+          font-weight:500;
+        ">${f}</span>
+      </div>
+    `).join('');
+
+    /* ═══════════════════════════════════════════════════════
+       TECH PILLS
+       ═══════════════════════════════════════════════════════ */
+    const techPills = techStack.map(b => `
+      <span style="
+        background:${b.color}22;
+        color:${b.color};
+        border:1px solid ${b.color}55;
+        font-size:${Math.round(9*scale)}px;
+        padding:${Math.round(3*scale)}px ${Math.round(9*scale)}px;
+        border-radius:20px;
+        font-weight:700;
+        letter-spacing:0.3px;
+        white-space:nowrap;
+      ">${b.label}</span>
+    `).join('');
+
+    /* ═══════════════════════════════════════════════════════
+       RIGHT PANEL HELPERS
+       ═══════════════════════════════════════════════════════ */
+    const statItem = (icon, val, lbl, ac) => `
+      <div style="
+        flex:1;
+        background:rgba(255,255,255,0.05);
+        border:1px solid ${ac}33;
+        border-radius:${Math.round(9*scale)}px;
+        padding:${Math.round(8*scale)}px ${Math.round(4*scale)}px;
+        text-align:center;
+      ">
+        <div style="font-size:${Math.round(14*scale)}px;line-height:1;">${icon}</div>
+        <div style="font-size:${Math.round(13*scale)}px;font-weight:800;
+          color:${ac};margin-top:${Math.round(3*scale)}px;">${val}</div>
+        <div style="font-size:${Math.round(7*scale)}px;color:rgba(255,255,255,0.4);
+          letter-spacing:0.4px;text-transform:uppercase;
+          margin-top:${Math.round(2*scale)}px;">${lbl}</div>
+      </div>
+    `;
+
+    const studentRow = (name, grade, color, pct) => `
+      <div style="
+        display:flex;align-items:center;
+        gap:${Math.round(7*scale)}px;
+        padding:${Math.round(6*scale)}px ${Math.round(9*scale)}px;
+        background:rgba(255,255,255,0.04);
+        border-radius:${Math.round(7*scale)}px;
+        border:1px solid rgba(255,255,255,0.07);
+        margin-bottom:${Math.round(4*scale)}px;
+      ">
+        <div style="
+          width:${Math.round(22*scale)}px;height:${Math.round(22*scale)}px;
+          border-radius:50%;
+          background:linear-gradient(135deg,${color},${color}99);
+          display:flex;align-items:center;justify-content:center;
+          font-size:${Math.round(9*scale)}px;font-weight:800;color:#fff;
+          flex-shrink:0;
+        ">${name.charAt(0)}</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:${Math.round(9*scale)}px;color:#fff;font-weight:600;
+            white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
+          <div style="
+            margin-top:${Math.round(3*scale)}px;
+            height:${Math.round(3*scale)}px;
+            border-radius:99px;background:rgba(255,255,255,0.1);overflow:hidden;">
+            <div style="width:${pct}%;height:100%;
+              background:linear-gradient(90deg,${color},${color}cc);
+              border-radius:99px;"></div>
+          </div>
+        </div>
+        <div style="
+          font-size:${Math.round(12*scale)}px;font-weight:800;
+          color:${color};flex-shrink:0;
+        ">${grade}</div>
+      </div>
+    `;
+
+    /* ── thin divider line helper ──────────────────────── */
+    const vDivider = (x, top, bottom, fromColor, toColor) => `
+      <div style="
+        position:absolute;
+        left:${x}px;
+        top:${top}px;
+        bottom:${bottom}px;
+        width:1px;
+        background:linear-gradient(
+          to bottom,
+          transparent,
+          ${fromColor}55 25%,
+          ${toColor}55 75%,
+          transparent
+        );
+      "></div>
+    `;
+
+    /* ═══════════════════════════════════════════════════════
+       RENDER
+       ═══════════════════════════════════════════════════════ */
+    return `
+      <!-- ══ BACKGROUND ══════════════════════════════════ -->
+      <div style="position:absolute;inset:0;
+        background:linear-gradient(${c.gradDir},${c.bg1} 0%,${c.bg2} 100%);"></div>
+
+      <!-- ══ GRID OVERLAY ════════════════════════════════ -->
+      <div style="position:absolute;inset:0;opacity:0.035;
+        background-image:
+          linear-gradient(rgba(255,255,255,0.8) 1px,transparent 1px),
+          linear-gradient(90deg,rgba(255,255,255,0.8) 1px,transparent 1px);
+        background-size:${Math.round(38*scale)}px ${Math.round(38*scale)}px;">
+      </div>
+
+      <!-- ══ GLOW BLOBS ═══════════════════════════════════ -->
+      <div class="glow-blob" style="
+        width:${Math.round(460*scale)}px;height:${Math.round(460*scale)}px;
+        top:${Math.round(-180*scale)}px;right:${Math.round(-100*scale)}px;
+        background:radial-gradient(circle,${c.a1}44,transparent 65%);"></div>
+
+      <div class="glow-blob" style="
+        width:${Math.round(360*scale)}px;height:${Math.round(360*scale)}px;
+        bottom:${Math.round(-120*scale)}px;left:${Math.round(-80*scale)}px;
+        background:radial-gradient(circle,${c.a2}33,transparent 65%);"></div>
+
+      <!-- phone center glow -->
+      <div class="glow-blob" style="
+        width:${Math.round(320*scale)}px;height:${Math.round(500*scale)}px;
+        top:50%;left:50%;
+        transform:translate(-50%,-50%);
+        background:radial-gradient(ellipse,${c.a1}28,transparent 68%);
+        pointer-events:none;"></div>
+
+      <!-- ══ TOP ACCENT BAR ═══════════════════════════════ -->
+      <div style="position:absolute;top:0;left:0;right:0;height:${TOPBAR}px;
+        background:linear-gradient(90deg,${c.a1},${c.a2},${c.hl});"></div>
+
+      <!-- ══ TOP BADGE ════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${Math.round(20*scale)}px;
+        left:${PAD}px;
+        background:linear-gradient(135deg,${c.a1},${c.a2});
+        font-size:${Math.round(9*scale)}px;
+        padding:${Math.round(5*scale)}px ${Math.round(14*scale)}px;
+        border-radius:20px;
+        font-weight:700;letter-spacing:1px;color:#fff;
+        box-shadow:0 4px 14px ${c.a1}55;
+      ">${badge}</div>
+
+      <!-- ══════════════════════════════════════════════════
+           LEFT COLUMN — text panel
+           ══════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        left:${LEFT_X}px;
+        top:${CONTENT_TOP}px;
+        width:${LEFT_W}px;
+        bottom:${CONTENT_BOTTOM}px;
+        display:flex;flex-direction:column;
+        justify-content:center;
+      ">
+        ${tagline}
+        ${headlineSvg}
+
+        <div style="
+          font-size:${sss}px;color:rgba(202,196,208,0.9);
+          margin-top:${Math.round(10*scale)}px;font-weight:400;letter-spacing:0.2px;
+        ">${sub}</div>
+
+        <div style="
+          font-size:${Math.round(10*scale)}px;color:${c.a2};
+          margin-top:${Math.round(3*scale)}px;font-weight:600;letter-spacing:0.5px;
+        ">${desc}</div>
+
+        <!-- divider 1 -->
+        <div style="
+          width:${Math.round(180*scale)}px;height:${DIVH}px;
+          background:linear-gradient(90deg,${c.a1},${c.a2},transparent);
+          margin:${Math.round(14*scale)}px 0 ${Math.round(10*scale)}px;
+          border-radius:99px;
+        "></div>
+
+        <!-- FEATURES heading -->
+        <div style="
+          font-size:${Math.round(8*scale)}px;font-weight:800;
+          letter-spacing:${Math.round(2*scale)}px;
+          color:${c.a1};text-transform:uppercase;
+          margin-bottom:${Math.round(7*scale)}px;
+        ">FEATURES</div>
+
+        ${featList}
+
+        <!-- divider 2 -->
+        <div style="
+          width:${Math.round(180*scale)}px;height:${DIVH}px;
+          background:linear-gradient(90deg,${c.a2},${c.a1},transparent);
+          margin:${Math.round(12*scale)}px 0 ${Math.round(8*scale)}px;
+          border-radius:99px;
+        "></div>
+
+        <!-- TECH STACK heading -->
+        <div style="
+          font-size:${Math.round(8*scale)}px;font-weight:800;
+          letter-spacing:${Math.round(2*scale)}px;
+          color:${c.a2};text-transform:uppercase;
+          margin-bottom:${Math.round(7*scale)}px;
+        ">TECH STACK</div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(4*scale)}px;">
+          ${techPills}
+        </div>
+      </div>
+
+      <!-- ══ LEFT VERTICAL DIVIDER ════════════════════════ -->
+      ${vDivider(
+        PHONE_X - Math.round(GAP * 0.5),
+        Math.round(110*scale),
+        FOOTER + Math.round(20*scale),
+        c.a1, c.a2
+      )}
+
+      <!-- ══════════════════════════════════════════════════
+           CENTER COLUMN — phone mockup
+           ══════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        left:${PHONE_X}px;
+        top:${Math.round(70*scale)}px;
+        width:${PHONE_W}px;
+        bottom:${FOOTER + Math.round(10*scale)}px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:${Math.round(12*scale)}px;
+      ">
+        <!-- small label above phone -->
+        <div style="
+          font-size:${Math.round(8*scale)}px;
+          font-weight:700;
+          letter-spacing:${Math.round(2*scale)}px;
+          color:rgba(255,255,255,0.3);
+          text-transform:uppercase;
+        ">APP PREVIEW</div>
+
+        <!-- phone mockup -->
+        <div style="
+          filter:drop-shadow(0 ${Math.round(20*scale)}px ${Math.round(40*scale)}px ${c.a1}55)
+                 drop-shadow(0 ${Math.round(6*scale)}px  ${Math.round(20*scale)}px rgba(0,0,0,0.5));
+        ">
+          ${phoneMockup(
+            screenSrc,
+            phoneFrameW,
+            phoneTilt,
+            glowOp,
+            c.a1
+          )}
+        </div>
+
+        <!-- small label below phone -->
+        <div style="
+          font-size:${Math.round(8*scale)}px;
+          color:${c.a2};
+          font-weight:600;
+          letter-spacing:0.5px;
+          opacity:0.8;
+        ">Kotlin &amp; Jetpack Compose</div>
+      </div>
+
+      <!-- ══ RIGHT VERTICAL DIVIDER ═══════════════════════ -->
+      ${vDivider(
+        RIGHT_X - Math.round(GAP * 0.5),
+        Math.round(110*scale),
+        FOOTER + Math.round(20*scale),
+        c.a2, c.a1
+      )}
+
+      <!-- ══════════════════════════════════════════════════
+           RIGHT COLUMN — floating UI cards
+           ══════════════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        right:${PAD}px;
+        top:${CONTENT_TOP}px;
+        width:${RIGHT_W}px;
+        bottom:${CONTENT_BOTTOM}px;
+        display:flex;flex-direction:column;
+        justify-content:center;
+        gap:${Math.round(9*scale)}px;
+      ">
+
+        <!-- ── APP HEADER CARD ──────────────────────────── -->
+        <div style="
+          background:rgba(255,255,255,0.06);
+          border:1px solid ${c.a1}44;
+          border-radius:${Math.round(14*scale)}px;
+          padding:${Math.round(12*scale)}px ${Math.round(14*scale)}px;
+          backdrop-filter:blur(10px);
+          box-shadow:0 8px 28px rgba(0,0,0,0.3);
+        ">
+          <div style="display:flex;align-items:center;
+            gap:${Math.round(9*scale)}px;margin-bottom:${Math.round(9*scale)}px;">
+            <div style="
+              width:${Math.round(32*scale)}px;height:${Math.round(32*scale)}px;
+              border-radius:${Math.round(9*scale)}px;
+              background:linear-gradient(135deg,${c.a1},${c.a2});
+              display:flex;align-items:center;justify-content:center;
+              font-size:${Math.round(16*scale)}px;flex-shrink:0;
+            ">🎓</div>
+            <div style="flex:1;min-width:0;">
+              <div style="font-size:${Math.round(11*scale)}px;font-weight:700;color:#fff;">
+                Grade Tracker</div>
+              <div style="font-size:${Math.round(8*scale)}px;color:rgba(255,255,255,0.4);">
+                5 Students • 4 Subjects</div>
+            </div>
+            <div style="
+              background:${c.a2}22;border:1px solid ${c.a2}55;
+              color:${c.a2};font-size:${Math.round(8*scale)}px;font-weight:700;
+              padding:${Math.round(2*scale)}px ${Math.round(8*scale)}px;
+              border-radius:20px;letter-spacing:0.5px;flex-shrink:0;
+            ">LIVE</div>
+          </div>
+          <!-- stats -->
+          <div style="display:flex;gap:${Math.round(6*scale)}px;">
+            ${statItem('📊','87.4%','Avg Grade', c.a1)}
+            ${statItem('🏆','Alice',  'Top Student',c.hl)}
+            ${statItem('📚','4',      'Subjects',   c.a2)}
+          </div>
+        </div>
+
+        <!-- ── STUDENT RANKINGS ─────────────────────────── -->
+        <div style="
+          background:rgba(255,255,255,0.05);
+          border:1px solid rgba(255,255,255,0.09);
+          border-radius:${Math.round(14*scale)}px;
+          padding:${Math.round(11*scale)}px ${Math.round(13*scale)}px;
+          backdrop-filter:blur(10px);
+          box-shadow:0 8px 28px rgba(0,0,0,0.22);
+        ">
+          <div style="
+            font-size:${Math.round(8*scale)}px;font-weight:800;letter-spacing:2px;
+            color:rgba(255,255,255,0.35);text-transform:uppercase;
+            margin-bottom:${Math.round(8*scale)}px;
+          ">STUDENT RANKINGS</div>
+          ${studentRow('Alice Johnson', 'A',  c.a2,       94)}
+          ${studentRow('Bob Smith',     'B+', c.a1,       81)}
+          ${studentRow('Carol Davis',   'A-', c.hl,       88)}
+          ${studentRow('David Lee',     'B',  '#CF6679',  75)}
+        </div>
+
+        <!-- ── SUBJECT CARDS ────────────────────────────── -->
+        <div style="display:flex;gap:${Math.round(6*scale)}px;">
+          ${gradeFloatCard('🔬','Science','92.1','A',  c.a2,       'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('📐','Math',   '78.5','B+', c.a1,       'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('📖','English','88.0','A-', c.hl,       'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('🌍','History','81.3','B+', '#CF6679',  'rgba(255,255,255,0.06)')}
+        </div>
+
+        <!-- ── FILTER CHIPS ──────────────────────────────── -->
+        <div style="
+          background:rgba(255,255,255,0.04);
+          border:1px solid rgba(255,255,255,0.08);
+          border-radius:${Math.round(11*scale)}px;
+          padding:${Math.round(9*scale)}px ${Math.round(13*scale)}px;
+          display:flex;align-items:center;
+          gap:${Math.round(6*scale)}px;
+          flex-wrap:wrap;
+          backdrop-filter:blur(6px);
+        ">
+          <span style="font-size:${Math.round(8*scale)}px;color:rgba(255,255,255,0.35);
+            font-weight:700;letter-spacing:1px;text-transform:uppercase;
+            flex-shrink:0;">Filter:</span>
+          ${['All','Grade A','Grade B','Grade C'].map((lbl,i) => `
+            <span style="
+              font-size:${Math.round(9*scale)}px;font-weight:700;
+              padding:${Math.round(3*scale)}px ${Math.round(9*scale)}px;
+              border-radius:20px;
+              ${i === 0
+                ? `background:linear-gradient(135deg,${c.a1},${c.a2});color:#fff;`
+                : `background:rgba(255,255,255,0.06);
+                   color:rgba(255,255,255,0.45);
+                   border:1px solid rgba(255,255,255,0.1);`
+              }
+            ">${lbl}</span>
+          `).join('')}
+        </div>
+
+      </div>
+
+      <!-- ══ FOOTER ════════════════════════════════════════ -->
+      <div style="
+        position:absolute;bottom:0;left:0;right:0;
+        height:${FOOTER}px;
+        background:${c.a1}18;
+        border-top:1px solid ${c.a1}44;
+        display:flex;align-items:center;justify-content:space-between;
+        padding:0 ${PAD}px;
+        gap:${Math.round(10*scale)}px;
+      ">
+        <!-- GitHub icon + text -->
+        <div style="display:flex;align-items:center;gap:${Math.round(9*scale)}px;
+          min-width:0;flex-shrink:1;">
+          <svg width="${Math.round(18*scale)}" height="${Math.round(18*scale)}"
+               viewBox="0 0 24 24"
+               fill="rgba(255,255,255,0.65)" style="flex-shrink:0;">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205
+              11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235
+              -3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695
+              -.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23
+              1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605
+              -2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225
+              -.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27
+              1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23
+              3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905
+              1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81
+              1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0
+              .315.225.69.825.57A12.02 12.02 0 0 0 24 12
+              c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <div style="min-width:0;">
+            <div style="font-size:${Math.round(10*scale)}px;color:${c.a2};
+              font-weight:700;letter-spacing:0.5px;white-space:nowrap;">
+              GitHub Repo Available
+            </div>
+            <div style="font-size:${Math.round(9*scale)}px;
+              color:rgba(255,255,255,0.35);margin-top:${Math.round(1*scale)}px;
+              white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+              ${github}
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA button -->
+        <div style="
+          display:flex;align-items:center;gap:${Math.round(6*scale)}px;
+          background:linear-gradient(135deg,${c.a1},${c.a2});
+          padding:${Math.round(7*scale)}px ${Math.round(16*scale)}px;
+          border-radius:${Math.round(22*scale)}px;
+          font-size:${Math.round(10*scale)}px;font-weight:700;color:#fff;
+          letter-spacing:0.3px;
+          box-shadow:0 4px 16px ${c.a1}55;
+          white-space:nowrap;flex-shrink:0;
+        ">
+          Explore Full Source Code
+          <span style="font-size:${Math.round(12*scale)}px;">→</span>
+        </div>
+
+        <!-- author -->
+        <div style="
+          font-size:${Math.round(10*scale)}px;color:rgba(255,255,255,0.3);
+          font-weight:500;letter-spacing:0.3px;white-space:nowrap;flex-shrink:0;
+        ">${author}</div>
+      </div>
+    `;
+  }
+}
 
 
 

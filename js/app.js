@@ -22,7 +22,10 @@ window.AppState = {
   currentTemplateId: 'classic-split',
   savedDesigns: [],
   zoom: 55,
-  previewOffsetY: 0
+  previewOffsetY: 0,
+  bannerW: 1200,
+  bannerH: 627,
+  aspectLocked: false
 };
 
 /* ===== BOOT ===== */

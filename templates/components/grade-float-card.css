@@ -1,0 +1,53 @@
+/* ============================================
+   GRADE-FLOAT-CARD.CSS — Floating grade UI card
+   ============================================ */
+
+.comp-grade-float-card {
+    position: relative;
+    border-radius: 14px;
+    padding: 13px 15px 12px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 110px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 1px 0 rgba(255,255,255,0.06) inset;
+    transition: transform 0.2s ease;
+}
+
+.comp-grade-float-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 3px;
+}
+
+.comp-grade-float-card-icon {
+    font-size: 20px;
+    line-height: 1;
+}
+
+.comp-grade-float-card-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+.comp-grade-float-card-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+}
+
+.comp-grade-float-card-value {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.3px;
+}

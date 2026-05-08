@@ -1,0 +1,56 @@
+/* ============================================
+   FLOATING-FEAT-TAGS.CSS — Floating feature tag pills
+   ============================================ */
+
+.comp-float-tags {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.comp-float-tag-pill {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 18, 35, 0.78);
+    border: 1px solid rgba(61, 220, 132, 0.35);
+    border-radius: 20px;
+    padding: 5px 12px 5px 8px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    white-space: nowrap;
+    animation: comp-float-tag-bob 3.4s ease-in-out infinite alternate;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.45),
+        0 0 0 0.5px rgba(255, 255, 255, 0.06) inset;
+}
+
+.comp-float-tag-check {
+    font-size: 11px;
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.comp-float-tag-text {
+    font-size: 11px;
+    font-weight: 600;
+    color: #E8EAF6;
+    letter-spacing: 0.2px;
+    line-height: 1;
+}
+
+@keyframes comp-float-tag-bob {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(-5px);
+    }
+}

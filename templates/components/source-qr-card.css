@@ -1,0 +1,13 @@
+/* ============================================
+   QR-CODE.CSS — Styles for QR Code component
+   ============================================ */
+
+.comp-qr-code {
+  display: inline-block;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.comp-qr-code svg {
+  display: block;
+}

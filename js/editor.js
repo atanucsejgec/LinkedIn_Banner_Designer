@@ -53,6 +53,8 @@ function renderBanner() {
     hs: parseInt(document.getElementById('headlineSize').value) || 42,
     ss: parseInt(document.getElementById('subtitleSize').value) || 16,
     fs: parseInt(document.getElementById('featureSize').value)  || 13,
+    bannerW: AppState.bannerW,
+    bannerH: AppState.bannerH,
   };
 
   let bannerHtml = tmpl.render(data);

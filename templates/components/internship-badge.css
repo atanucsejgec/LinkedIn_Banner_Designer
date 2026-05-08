@@ -1,0 +1,11 @@
+/* ============================================
+   GRADIENT-TEXT.CSS
+   ============================================ */
+.comp-gradient-text {
+    display: inline-block;
+    line-height: 1;
+}
+.comp-gradient-text svg {
+    display: block;
+    overflow: visible;
+}

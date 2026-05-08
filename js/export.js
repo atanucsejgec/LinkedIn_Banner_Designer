@@ -20,7 +20,7 @@ function downloadBanner() {
     link.download   = `linkedin-banner-${Date.now()}.png`;
     link.href       = canvas.toDataURL('image/png', 1.0);
     link.click();
-    showNotification('✅ Downloaded! (1200×627 @2x)');
+    showNotification(`✅ Downloaded! (${AppState.bannerW}×${AppState.bannerH} @2x)`);
   }).catch(err => {
     console.error(err);
     showNotification('⚠️ Download failed. Try again.');
@@ -38,8 +38,8 @@ function generateCanvas() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       html2canvas(banner, {
-        width:           1200,
-        height:          627,
+        width:           AppState.bannerW,
+        height:          AppState.bannerH,
         scale:           2,
         useCORS:         true,
         allowTaint:      true,

@@ -5,7 +5,7 @@
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6CF7FF&center=true&vCenter=true&width=750&lines=🎨+Design+Professional+LinkedIn+Banners;📱+12%2B+Unique+Templates+with+Different+Layouts;📸+Multi+Screenshot+Support+(1%2F2%2F3+Phones);⬇️+Export+as+High-Quality+PNG+(1200×627);⚡+Zero+Dependencies+—+Pure+HTML%2C+CSS+%26+JS;🎯+Quick+App+Swap+Presets+Built+In)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6CF7FF&center=true&vCenter=true&width=750&lines=🎨+Design+Professional+LinkedIn+Banners;📱+24%2B+Unique+Templates+with+Different+Layouts;📸+Multi+Screenshot+Support+(1%2F2%2F3+Phones);⬇️+Export+as+High-Quality+PNG+(1200×627);🎭+6+Design+Overlays+—+Vignette%2C+Waves%2C+Mockups;🧩+7+Reusable+Components+—+Polaroid%2C+Laptop%2C+Glass;⚡+Zero+Dependencies+—+Pure+HTML%2C+CSS+%26+JS;🎯+Quick+App+Swap+Presets+Built+In)](https://git.io/typing-svg)
 
 <br/>
 
@@ -20,7 +20,7 @@
 
 <br/>
 
-> 🎨 **LinkedIn Banner Designer** is a powerful, browser-based design tool that lets you create stunning, professional LinkedIn post banners — with **21+ unique templates**, **multi-screenshot phone mockups**, **live editing**, and **one-click PNG export** at perfect 1200×627 resolution. No design skills required.
+> 🎨 **LinkedIn Banner Designer** is a powerful, browser-based design tool that lets you create stunning, professional LinkedIn post banners — with **24+ unique templates**, **7 reusable components**, **6 design overlays**, **multi-screenshot phone mockups**, **live editing**, and **one-click PNG export** at perfect 1200×627 resolution. No design skills required.
 
 <br/>
 
@@ -42,6 +42,8 @@
 - [✨ Features](#-features)
 - [📐 Templates](#-templates)
   - [➕ Adding More Templates](#-adding-more-templates)
+  - [🧩 Adding Components](#-adding-components)
+  - [🎭 Adding Overlays](#-adding-overlays)
 - [🛠️ Tech Stack](#️-tech-stack)
 - [🏗️ Architecture](#️-architecture)
   - [📐 Application Flow](#-application-flow)
@@ -64,7 +66,7 @@
 
 ## 📌 About
 
-**LinkedIn Banner Designer** is a fully client-side web application for designing professional LinkedIn post banners without any design software. It ships with **21+ handcrafted templates**, each with a unique layout, color scheme, and screenshot arrangement — from classic split layouts to neon glow, terminal code style, triple phone showcases, and more.
+**LinkedIn Banner Designer** is a fully client-side web application for designing professional LinkedIn post banners without any design software. It ships with **24+ handcrafted templates**, **7 reusable components**, and **6 composable design overlays**, each template with a unique layout, color scheme, and screenshot arrangement — from classic split layouts to neon glow, GitHub project showcase, magazine cover, orbit rings, and more.
 
 Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, modular files, it's lightweight, fast, and works entirely in your browser. Just open `index.html` and start designing.
 
@@ -85,7 +87,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
   </tr>
   <tr>
     <td align="center">🎨</td>
-    <td><b>21+ Unique Templates</b></td>
+    <td><b>24+ Unique Templates</b></td>
     <td>Every template is truly different — unique layout, color scheme, screenshot position, and style. Not just a color swap.</td>
   </tr>
   <tr>
@@ -112,6 +114,16 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
     <td align="center">🧩</td>
     <td><b>Extensible Templates</b></td>
     <td>Templates live in a single file (<code>templates/templates.js</code>). Add more by just pushing new objects into the array.</td>
+  </tr>
+  <tr>
+    <td align="center">🎭</td>
+    <td><b>Design Overlays</b></td>
+    <td>6 composable overlays (vignette, dot grid, corner accents, wave divider, photo/logo, computer mockup) that layer on top of any template — each with full controls.</td>
+  </tr>
+  <tr>
+    <td align="center">🔧</td>
+    <td><b>Reusable Components</b></td>
+    <td>7 modular components (polaroid card, laptop frame, glass card, browser window, code snippet card, stat counter row, GitHub activity bar) shared across templates.</td>
   </tr>
 </table>
 
@@ -148,7 +160,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
 
 <table>
   <tr>
-    <td>📐 <b>21+ Unique Templates</b></td>
+    <td>📐 <b>24+ Unique Templates</b></td>
     <td>Every template has a completely different layout structure, screenshot count, color philosophy, and design language</td>
   </tr>
   <tr>
@@ -212,6 +224,14 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
     <td>Full preview of the rendered banner before downloading</td>
   </tr>
   <tr>
+    <td>🎭 <b>Design Overlay System</b></td>
+    <td>6 composable overlays — vignette, dot grid, corner accents, wave divider, photo/logo, and computer mockup — with individual controls for each</td>
+  </tr>
+  <tr>
+    <td>🧩 <b>Reusable Component System</b></td>
+    <td>7 modular components (polaroid card, laptop frame, glass card, browser window, code snippet, stat counter, GitHub activity bar) with a central registry and auto-loading</td>
+  </tr>
+  <tr>
     <td>⌨️ <b>Keyboard Shortcuts</b></td>
     <td><code>Ctrl+S</code> Save &nbsp; <code>Ctrl+D</code> Download &nbsp; <code>Ctrl++</code> Zoom In &nbsp; <code>Ctrl+-</code> Zoom Out &nbsp; <code>Ctrl+0</code> Fit</td>
   </tr>
@@ -221,7 +241,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
 
 ## 📐 Templates
 
-All 12 templates have unique layouts, styles, and screenshot arrangements:
+All 24 templates have unique layouts, styles, and screenshot arrangements:
 
 <table>
   <thead>
@@ -305,6 +325,78 @@ All 12 templates have unique layouts, styles, and screenshot arrangements:
       <td>1 Phone</td>
       <td>Bold mega headline, thick top bar, high-energy launch style</td>
     </tr>
+    <tr>
+      <td>13</td>
+      <td>📐 <b>Neon Wireframe</b></td>
+      <td>1 Phone</td>
+      <td>Blueprint / wireframe aesthetic with neon grid lines</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>💻 <b>Retro Terminal</b></td>
+      <td>1 Phone</td>
+      <td>CRT terminal window with scanlines, green glow, monospace code</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>🪟 <b>Glassmorphism Trio</b></td>
+      <td>3 Phones</td>
+      <td>Three frosted-glass cards with phones and backdrop blur</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>🔷 <b>Isometric Showcase</b></td>
+      <td>2 Phones</td>
+      <td>Tilted phones in isometric perspective with grid overlay</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>📊 <b>Stats Dashboard</b></td>
+      <td>No Phone</td>
+      <td>Pure stats & metrics showcase with 2×2 stat grid and features</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>📸 <b>Polaroid Stack</b></td>
+      <td>2 Phones</td>
+      <td>Photos scattered like polaroid snapshots, angled with shadows</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>🌅 <b>Sunrise Horizon</b></td>
+      <td>1 Phone</td>
+      <td>Warm radial sunrise gradient behind centered phone</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>📰 <b>Magazine Cover</b></td>
+      <td>1 Phone</td>
+      <td>Editorial / magazine-style layout with serif typography</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>🪐 <b>Orbit</b></td>
+      <td>1 Phone</td>
+      <td>Phone center with orbiting feature rings and stars</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>📐 <b>Split Diagonal</b></td>
+      <td>1 Phone</td>
+      <td>Diagonal split with contrasting accent half and dot pattern</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>🃏 <b>Floating Cards</b></td>
+      <td>No Phone</td>
+      <td>Content displayed as floating glassmorphism cards with subtle rotation</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>🐙 <b>GitHub Project Showcase</b></td>
+      <td>1 Phone</td>
+      <td>GitHub-flavored layout with code snippet card, activity bar, stat counters, and monospace typography</td>
+    </tr>
   </tbody>
 </table>
 
@@ -338,6 +430,47 @@ TEMPLATES.push({
 ```
 
 > 💡 Use the shared helper `phoneMockup(src, width, tilt, glow, color)` to render phone mockups consistently across all templates.
+> You can also use registered components like `polaroidCard()`, `laptopFrame()`, `glassCard()`, `browserWindow()`, `codeSnippetCard()`, `statCounterRow()`, and `githubActivityBar()` in your templates.
+
+### 🧩 Adding Components
+
+Create a `.js` and `.css` file in `templates/components/`, then register:
+
+```javascript
+registerComponent({
+  id: 'my-widget',
+  name: 'My Widget',
+  description: 'A reusable widget for templates',
+  cssClass: 'comp-my-widget',
+  render: function myWidget(param1, param2) {
+    return `<div class="comp-my-widget">...</div>`;
+  }
+});
+```
+
+> 💡 The render function is automatically exposed globally — templates can call `myWidget(...)` directly.
+
+### 🎭 Adding Overlays
+
+Create a `.js` file in `templates/overlays/`, then register:
+
+```javascript
+registerOverlay({
+  id: 'my-effect',
+  name: 'My Effect',
+  icon: '✨',
+  category: 'style',        // 'style' | 'photo' | 'mockup' | 'decoration'
+  controls: [
+    { id: 'intensity', type: 'range', label: 'Intensity', min: 0, max: 100, value: 50, suffix: '%' },
+    { id: 'color', type: 'color', label: 'Color', value: '#FFD700' }
+  ],
+  render(colors, state) {
+    return `<div style="..."><!-- overlay HTML --></div>`;
+  }
+});
+```
+
+> 💡 Overlays auto-appear in the 🎭 Overlays tab. Supported control types: `range`, `color`, `select`, `file`.
 
 ---
 
@@ -376,6 +509,7 @@ graph TB
         CSS_MAIN[css/main.css]
         CSS_PANEL[css/panel.css]
         CSS_BANNER[css/banner.css]
+        CSS_OVERLAYS[css/overlays.css]
     end
 
     subgraph Logic["⚡ JavaScript Modules"]
@@ -388,8 +522,18 @@ graph TB
     end
 
     subgraph Templates["📐 Template Engine"]
-        TMPL[templates/templates.js - 12 Template Definitions]
+        TMPL["templates/templates.js - 24 Template Definitions"]
         PHONE[phoneMockup helper function]
+    end
+
+    subgraph Components["🧩 Component System"]
+        LOADER[component-loader.js - Registry]
+        COMP_CARDS["7 Components - Polaroid, Laptop, Glass, Browser, CodeSnippet, StatCounter, ActivityBar"]
+    end
+
+    subgraph Overlays["🎭 Overlay System"]
+        OV_MGR[overlay-manager.js - Registry and UI]
+        OV_PLUGINS["6 Overlays - Vignette, DotGrid, Corners, Wave, Photo, ComputerMockup"]
     end
 
     subgraph Output["📤 Output"]
@@ -399,6 +543,8 @@ graph TB
 
     HTML --> Logic
     HTML --> Templates
+    HTML --> Components
+    HTML --> Overlays
     APP --> UI_JS
     APP --> EDITOR
     APP --> MEDIA
@@ -407,6 +553,10 @@ graph TB
     EDITOR --> TMPL
     TMPL --> CANVAS
     TMPL --> PHONE
+    TMPL --> COMP_CARDS
+    LOADER --> COMP_CARDS
+    OV_MGR --> OV_PLUGINS
+    OV_MGR --> CANVAS
     EXPORT --> PNG
 ```
 
@@ -561,11 +711,16 @@ LinkedIn_Banner_Designer/
 │   │                                 # • Feature list, badge list
 │   │                                 # • Template grid & saved design cards
 │   │
-│   └── 🎨 banner.css                # Shared banner canvas styles
-│                                     # • Phone mockup frame & screen
-│                                     # • Glow blobs, sparkle animations
-│                                     # • Tech badges, stat boxes, grid cards
-│                                     # • Code block, terminal, diagonal clips
+│   ├── 🎨 banner.css                # Shared banner canvas styles
+│   │                                 # • Phone mockup frame & screen
+│   │                                 # • Glow blobs, sparkle animations
+│   │                                 # • Tech badges, stat boxes, grid cards
+│   │                                 # • Code block, terminal, diagonal clips
+│   │
+│   └── 🎨 overlays.css              # Overlay panel & layer styles
+│                                     # • Overlay card UI (toggle, controls)
+│                                     # • Overlay categories & file upload
+│                                     # • Preview offset slider bar
 │
 ├── 📂 js/
 │   ├── ⚡ app.js                    # Global state (AppState), boot, keyboard
@@ -611,12 +766,32 @@ LinkedIn_Banner_Designer/
 │                                     # • loadPreset(key) — fills all form fields
 │
 └── 📂 templates/
-    └── 📐 templates.js              # ← ADD MORE TEMPLATES HERE
-                                      # • TEMPLATES[] array — 12 template objects
-                                      # • phoneMockup() shared helper function
-                                      # • shiftHue() color utility
-                                      # • Each template: id, name, tag,
-                                      #   screenshots count, thumb, render()
+    │
+    ├── 📐 templates.js              # ← ADD MORE TEMPLATES HERE
+    │                                 # • TEMPLATES[] array — 24 template objects
+    │                                 # • phoneMockup() shared helper function
+    │                                 # • shiftHue() color utility
+    │                                 # • Each template: id, name, tag,
+    │                                 #   screenshots count, thumb, render()
+    │
+    ├── 📂 components/               # 🧩 Reusable template components
+    │   ├── component-loader.js      # Central registry (registerComponent)
+    │   ├── polaroid-card.js/.css    # Photo card with white border & shadow
+    │   ├── laptop-frame.js/.css     # Laptop device frame mockup
+    │   ├── glass-card.js/.css       # Frosted glassmorphism card
+    │   ├── browser-window.js/.css   # Browser window with traffic lights
+    │   ├── code-snippet-card.js/.css # Syntax-highlighted code block
+    │   ├── stat-counter-row.js/.css # Stat counters (stars, forks, etc.)
+    │   └── github-activity-bar.js/.css # GitHub commit activity bar chart
+    │
+    └── 📂 overlays/                 # 🎭 Composable design overlays
+        ├── overlay-manager.js       # Central registry & UI builder
+        ├── vignette.js              # Dark vignette edge effect
+        ├── dot-grid.js              # Dot grid pattern overlay
+        ├── corner-accents.js        # Corner brackets / dots / crosses
+        ├── wave-divider.js          # Wave / curve / zigzag / slant divider
+        ├── photo-frame.js           # Photo / logo overlay with positioning
+        └── computer-mockup.js       # Laptop / monitor / browser frame
 ```
 
 ---
@@ -626,27 +801,29 @@ LinkedIn_Banner_Designer/
 ```mermaid
 graph LR
     subgraph DONE["✅ Completed"]
-        A[21+ Unique Templates]
+        A[24+ Unique Templates]
         B[Multi-Screenshot Support]
         C[Live Content Editing]
         D[Color & Typography Controls]
         E[Phone Mockup with Tilt/Glow]
-        F[PNG Export at 1200×627]
+        F[PNG Export at 1200x627]
         G[Quick App Swap Presets]
         H[Save & Load Designs]
         I[Zoom & Fit Controls]
         J[Keyboard Shortcuts]
         K[Modular File Architecture]
         L[Template Extensibility System]
+        M[Component System with 7 Components]
+        N[Overlay System with 6 Overlays]
+        O[Overlays Tab with Live Controls]
     end
 
     subgraph PLAN["📋 Planned"]
-        M[More Template Packs]
-        N[Custom Font Picker]
-        O[Drag Elements on Canvas]
-        P[QR Code Generator]
-        Q[LinkedIn Auto-Post API]
-        R[PWA Offline Support]
+        P[Custom Font Picker]
+        Q[Drag Elements on Canvas]
+        R[QR Code Generator]
+        S[LinkedIn Auto-Post API]
+        T[PWA Offline Support]
     end
 
     DONE --> PLAN
@@ -654,7 +831,7 @@ graph LR
 
 | Status | Feature |
 |---|---|
-| ✅ Done | 21+ unique templates with different layouts |
+| ✅ Done | 24+ unique templates with different layouts |
 | ✅ Done | Multi-screenshot mockups (1 / 2 / 3 phones) |
 | ✅ Done | Live banner preview with instant re-render |
 | ✅ Done | Full color customization (gradient + accents) |
@@ -671,9 +848,12 @@ graph LR
 | ✅ Done | Preview modal before download |
 | ✅ Done | Zoom controls (15%–100%) + Fit to screen |
 | ✅ Done | Keyboard shortcuts (Ctrl+S/D/+/-/0) |
-| ✅ Done | Modular file structure (7 JS + 3 CSS files) |
+| ✅ Done | Modular file structure (6 JS + 4 CSS + components + overlays) |
 | ✅ Done | Extensible template system (add via push) |
-| 📋 Planned | Additional template packs (5+ new styles) |
+| ✅ Done | Reusable component system (7 components with central registry) |
+| ✅ Done | Design overlay system (6 composable overlays with per-overlay controls) |
+| ✅ Done | Overlays tab in UI (toggle overlays, adjust settings live) |
+| ✅ Done | Preview offset slider for vertical positioning |
 | 📋 Planned | Custom Google Fonts picker |
 | 📋 Planned | Drag-to-reposition elements on canvas |
 | 📋 Planned | QR code generator for GitHub/Play Store links |
@@ -686,7 +866,7 @@ graph LR
 
 ## 🤝 Contributing
 
-Contributions are welcome — especially new templates! 🚀
+Contributions are welcome — especially new templates, components, and overlays! 🚀
 
 ```mermaid
 gitGraph
@@ -735,6 +915,8 @@ git push origin feature/NewTemplate
 
 - Keep it **vanilla** — no frameworks, no build tools, no npm packages
 - All templates go in **`templates/templates.js`** only
+- New **components** → create `.js` + `.css` in `templates/components/`, call `registerComponent()`, add `<link>` and `<script>` in `index.html`
+- New **overlays** → create `.js` in `templates/overlays/`, call `registerOverlay()`, add `<script>` in `index.html`
 - Test your template with **0, 1, 2, and 3 uploaded screenshots**
 - Test across **Chrome, Firefox, and Edge** at minimum
 - Use **conventional commits** (`feat:`, `fix:`, `docs:`, `refactor:`)

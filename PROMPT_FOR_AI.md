@@ -6,7 +6,7 @@
 
 ## SYSTEM CONTEXT
 
-I have a **LinkedIn Banner Designer** web app. It uses vanilla HTML/CSS/JS (no framework). The banner canvas is exactly **1200×627 pixels**. Templates are defined in a `TEMPLATES` array and each template's `render(d)` function returns an HTML string that gets injected into the banner.
+I have a **LinkedIn Banner Designer** web app. It uses vanilla HTML/CSS/JS (no framework). The banner canvas defaults to **1200×627 pixels** but users can choose different sizes, so if Size is not Mentioned in the prompt then ask the user (Square 1080×1080, Portrait 1080×1350, Story 1080×1920, Twitter 1500×500, LI Cover 1584×396, or fully custom W×H). Templates are defined in a `TEMPLATES` array and each template's `render(d)` function returns an HTML string that gets injected into the banner.
 
 The project has a **component system**: reusable UI building blocks (cards, device frames, etc.) that live in `templates/components/`. Each component has a `.js` file (registers a global helper function) and a `.css` file (styles).
 
@@ -65,6 +65,8 @@ d = {
   hs: 42,              // headline font size (px)
   ss: 16,              // subtitle font size (px)
   fs: 13               // feature text font size (px)
+  bannerW: 1200,       // current banner width (px) — may differ from 1200
+  bannerH: 627         // current banner height (px) — may differ from 627
 };
 ```
 
@@ -262,7 +264,7 @@ Paste this into the `TEMPLATES` array in `templates.js`:
 
 ## RULES
 
-1. **Banner is 1200×627px** — all positions are absolute within this space
+1. **Banner defaults to 1200×627px** but users can change size if Size is not Mentioned in the prompt then ask the user — use `d.bannerW` and `d.bannerH` if your template needs to adapt to different canvas sizes. For most templates, absolute positioning within 1200×627 is fine — the canvas will scale content.
 2. **Footer is always 62px tall** at the bottom — account for it (bottom:68px for content)
 3. **Always use `${c.bg1}`, `${c.a1}`, etc.** — NEVER hardcode colors for bg/accent/highlight
 4. **CSS class prefix**: all component classes MUST start with `comp-`
@@ -272,6 +274,12 @@ Paste this into the `TEMPLATES` array in `templates.js`:
 8. **Use inline styles for positioning** — CSS classes only for reusable visual effects
 9. **Test with all 6 themes**: purple, blue, ocean, green, orange, pink
 10. **Use `d.state.features.slice(0, N)`** — limit features to what fits
+11. ⚠️ GRADIENT TEXT RULE:
+Never use -webkit-background-clip:text or -webkit-text-fill-color:transparent.
+For gradient-colored text use ONLY the SVG method:
+  <svg><defs><linearGradient id="g1">...</linearGradient></defs>
+  <text fill="url(#g1)" ...>TEXT</text></svg>
+This is the ONLY method that works in both live preview AND html2canvas download.
 
 ## WHAT I WANT YOU TO CREATE
 

@@ -1,0 +1,16 @@
+/* ============================================
+   GRADIENT-TEXT.CSS
+   SVG handles all its own rendering.
+   This file just ensures the wrapper
+   doesn't add unwanted layout spacing.
+   ============================================ */
+
+.comp-gradient-text {
+    display: inline-block;
+    line-height: 1;
+}
+
+.comp-gradient-text svg {
+    display: block;
+    overflow: visible;
+}
