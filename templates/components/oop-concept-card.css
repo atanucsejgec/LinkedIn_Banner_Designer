@@ -1,0 +1,17 @@
+/* ============================================
+   OOP-CONCEPT-CARD.CSS — OOP concept card styles
+   ============================================ */
+
+.comp-oop-card {
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.comp-oop-card:hover {
+    transform: translateY(-2px);
+}
+
+.comp-oop-grid {
+    position: relative;
+}

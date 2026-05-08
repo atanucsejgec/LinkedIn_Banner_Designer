@@ -76,3 +76,76 @@ function removeSlot(index) {
   renderBanner();
   showNotification(`🗑️ Screenshot ${index+1} removed`);
 }
+
+/* ===== CUSTOM IMAGES ===== */
+function handleCustomImageUpload(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    if (!AppState.customImages) AppState.customImages = [];
+    AppState.customImages.push({
+      src: e.target.result,
+      w: 200,
+      x: AppState.bannerW/2 - 100,
+      y: AppState.bannerH/2 - 100
+    });
+    event.target.value = ''; 
+    renderCustomImageThumbs();
+    renderBanner();
+    showNotification('🖼️ Custom image layer added!');
+  };
+  reader.readAsDataURL(file);
+}
+
+function removeCustomImage(index) {
+  AppState.customImages.splice(index, 1);
+  renderCustomImageThumbs();
+  renderBanner();
+  showNotification('🗑️ Image layer removed');
+}
+
+function renderCustomImageThumbs() {
+  const c = document.getElementById('customImageThumbs');
+  if (!c) return;
+  if (!AppState.customImages || !AppState.customImages.length) {
+    c.innerHTML = '';
+    return;
+  }
+  c.innerHTML = AppState.customImages.map((img, i) => `
+    <div style="position:relative; width:48px; height:48px; border-radius:4px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:#000;">
+      <img src="${img.src}" style="width:100%; height:100%; object-fit:contain;">
+      <button onclick="removeCustomImage(${i})" style="position:absolute; top:2px; right:2px; background:rgba(220,53,69,0.9); color:#fff; border:none; border-radius:50%; width:18px; height:18px; font-size:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1;">×</button>
+    </div>
+  `).join('');
+}
+
+/* ===== CUSTOM TEXT ===== */
+function toggleTextGrad() {
+  const isGrad = document.getElementById('customTextGradient').checked;
+  document.getElementById('customTextColor2').style.display = isGrad ? 'block' : 'none';
+  document.getElementById('customTextDir').style.display = isGrad ? 'block' : 'none';
+}
+
+function addCustomText() {
+  const text = document.getElementById('customTextInput').value;
+  if (!text.trim()) return;
+  const color = document.getElementById('customTextColor').value;
+  const color2 = document.getElementById('customTextColor2').value;
+  const dir = document.getElementById('customTextDir').value;
+  const isGrad = document.getElementById('customTextGradient').checked;
+  if (!AppState.customTexts) AppState.customTexts = [];
+  AppState.customTexts.push({
+    text: text,
+    color: color,
+    color2: color2,
+    dir: dir,
+    isGrad: isGrad,
+    x: AppState.bannerW/2 - 50,
+    y: AppState.bannerH/2 - 20,
+    s: 42
+  });
+  document.getElementById('customTextInput').value = '';
+  renderBanner();
+  showNotification('📝 Text layer added!');
+}

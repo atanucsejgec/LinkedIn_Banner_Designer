@@ -8,7 +8,14 @@
 
 I have a **LinkedIn Banner Designer** web app. It uses vanilla HTML/CSS/JS (no framework). The banner canvas defaults to **1200×627 pixels** but users can choose different sizes, so if Size is not Mentioned in the prompt then ask the user (Square 1080×1080, Portrait 1080×1350, Story 1080×1920, Twitter 1500×500, LI Cover 1584×396, or fully custom W×H). Templates are defined in a `TEMPLATES` array and each template's `render(d)` function returns an HTML string that gets injected into the banner.
 
-The project has a **component system**: reusable UI building blocks (cards, device frames, etc.) that live in `templates/components/`. Each component has a `.js` file (registers a global helper function) and a `.css` file (styles).
+The project has a **component system**: reusable UI building blocks (cards, device frames, code blocks, gradient text, etc.) that live in `templates/components/`. Each component has a `.js` file (registers a global helper function) and a `.css` file (styles).
+
+The app also has:
+- **Canvas Interaction**: Drag-to-reposition, per-element resize handles, tilt/rotation controls, alignment tools, grid snapping
+- **Layers Panel**: Click-to-select, show/hide toggle, z-index numerical ordering, delete individual layers
+- **Media Ingestion**: Users can inject their own custom images and gradient text dynamically over any template
+- **Overlay System**: 6 stackable overlays (corner accents, dot grid, photo frame, computer mockup, wave divider, vignette)
+- **Export System**: Download PNG (2×), copy to clipboard, export individual layers as transparent PNGs for Canva (supports tilt/scale export flawlessly)
 
 ## YOUR TASK
 
@@ -21,11 +28,34 @@ I want you to create:
 ### Folder Structure
 ```
 templates/
-├── templates.js                    ← TEMPLATES array lives here
+├── templates.js                    ← TEMPLATES array lives here (28 templates)
 ├── components/
 │   ├── component-loader.js         ← registry (already exists, DO NOT recreate)
-│   ├── my-component.js             ← YOUR JS component file
-│   └── my-component.css            ← YOUR CSS component file
+│   ├── polaroid-card.js / .css     ← polaroid photo card
+│   ├── laptop-frame.js / .css      ← laptop device mockup
+│   ├── glass-card.js / .css        ← glassmorphism card
+│   ├── browser-window.js / .css    ← browser window frame
+│   ├── stat-counter-row.js / .css  ← row of stat counters
+│   ├── code-snippet-card.js / .css ← terminal-style code block
+│   ├── github-activity-bar.js/.css ← GitHub contribution graph bar
+│   ├── recruiter-code-chips.js/.css← code-style tag chips
+│   ├── source-qr-card.js / .css    ← QR code placeholder SVG
+│   ├── internship-badge.js / .css  ← bold CTA badge with shine
+│   ├── floating-feat-tag.js / .css ← stacked floating feature tags
+│   ├── kotlin-code-card.js / .css  ← syntax-highlighted Kotlin code card
+│   ├── gradient-text.js / .css     ← SVG gradient text (single + multi-line)
+│   ├── grade-float-card.js / .css  ← floating grade UI card with icon + badge
+│   ├── oop-concept-card.js / .css  ← object-oriented programming concept card
+│   ├── neon-shape-icons.js / .css  ← glowing geometric shape icons
+│   └── my-new-component.js / .css  ← YOUR new component(s)
+├── overlays/
+│   ├── overlay-manager.js          ← overlay registry & toggle logic
+│   ├── corner-accents.js           ← decorative corner brackets
+│   ├── dot-grid.js                 ← repeating dot pattern
+│   ├── photo-frame.js              ← polaroid-style overlay frame
+│   ├── computer-mockup.js          ← laptop overlay mockup
+│   ├── wave-divider.js             ← SVG wave section divider
+│   └── vignette.js                 ← edge darkening vignette
 ```
 
 ### Data Available Inside `render(d)`
@@ -64,7 +94,7 @@ d = {
   glowOpacity: 30,     // glow intensity (0-100)
   hs: 42,              // headline font size (px)
   ss: 16,              // subtitle font size (px)
-  fs: 13               // feature text font size (px)
+  fs: 13,              // feature text font size (px)
   bannerW: 1200,       // current banner width (px) — may differ from 1200
   bannerH: 627         // current banner height (px) — may differ from 627
 };
@@ -79,25 +109,75 @@ phoneMockup(screenshotSrc, width, tiltDeg, glowOpacity, glowColor)
 // Hue shift — shifts a hex color for gradient effects
 shiftHue(hexColor)
 
-// Component helpers (already loaded):
+// ─── Component helpers (all globally available): ───
+
+// Polaroid photo card with tape effect
 polaroidCard(src, width, tiltDeg, shadowColor, caption)
+
+// Laptop device frame with screenshot
 laptopFrame(src, width, tiltDeg, glowColor)
+
+// Glassmorphism card with frosted glass effect
 glassCard(title, body, accentColor, icon)
+
+// Browser window frame with URL bar
 browserWindow(src, width, url, glowColor)
+
+// Row of stat counters with icons
 statCounterRow(stats, accentColor, hlColor)       // stats=[{icon,value,label}]
+
+// Terminal-style code block with syntax colors
 codeSnippetCard(lines, accentColor, width)         // lines=[{type,indent,text}]
+
+// GitHub contribution activity bar
 githubActivityBar(values, accentColor, hlColor, n) // values=array of 0-1 floats
+
+// Code-style tag chip strip
+codeChipStrip(tags, accentColor)                   // tags=["[Kotlin]","[Compose]"]
+
+// QR code placeholder SVG
+qrCode(size, color, bgColor)
+
+// Bold CTA badge with gradient + shine animation
+internshipBadge(text, bgColor, textColor, accentColor)
+
+// Floating feature tags that stack beside elements
+floatingFeatTags(tags, accentColor, hlColor, side) // side='left'|'right'
+
+// Syntax-highlighted Kotlin code card with line numbers
+kotlinCodeCard(lines, accentColor, width)
+  // lines = [{ indent:0, type:'keyword', text:'fun' },
+  //          { indent:0, tokens:[{type:'keyword',text:'val '},{type:'var',text:'x'}] }]
+  // Token types: keyword, fn, var, string, comment, plain, number, type, punct
+
+// ⚠️ SVG gradient text — THE ONLY way to do gradient text that works in export
+gradientText(text, color1, color2, fontSize, fontWeight, direction, letterSpacing)
+  // direction: 'horizontal' | 'diagonal' | 'vertical'
+
+// Multi-line SVG gradient text for big headlines
+gradientTextLines(lines, color1, color2, fontSize, fontWeight, letterSpacing, lineGap)
+  // lines = ['Line 1', 'Line 2']
+
+// Floating grade/stat UI card with icon and optional badge
+gradeFloatCard(icon, label, value, badge, accentColor, bgColor)
+
+// Object-oriented programming concept card
+oopConceptCard(title, body, accentColor, icon)
+
+// Glowing geometric shape icons
+neonShapeIcon(shape, color, size)
 ```
 
 ### Existing CSS Classes (already available in banner.css)
 
 ```
-.glow-blob           — blurred gradient circle
+.glow-blob           — blurred gradient circle (position:absolute)
 .sparkle             — twinkling sparkle animation
-.divider-line        — horizontal divider bar
+.divider-line        — horizontal divider bar (height:3px)
+.divider-dots        — row of dots (children: <span> with bg)
 .tech-badge          — rounded tech badge pill
 .top-badge-pill      — top badge with gradient bg
-.banner-footer-bar   — positioned footer bar
+.banner-footer-bar   — positioned footer bar (bottom:0)
 .feat-item           — feature item row (icon + text)
 .feat-check          — feature checkmark icon
 .grid-card           — glass card for grids
@@ -105,12 +185,48 @@ githubActivityBar(values, accentColor, hlColor, n) // values=array of 0-1 floats
 .stat-box            — stat metric box
 .stat-number/label
 .num-card / .num-circle — numbered step cards
+.num-card-text
 .code-block          — terminal-style code block
 .code-keyword/string/function/comment/var
+.terminal-bar        — terminal top bar
 .terminal-dot        — traffic light dot
+.tag-strip           — horizontal tag strip (no-wrap, overflow hidden)
 .tag-pill            — scrolling tag pill
+.diagonal-clip-left / .diagonal-clip-right — diagonal clip paths
 .b-abs .b-rel .b-flex .b-col .b-center .b-white .b-bold — utility classes
 ```
+
+### Existing Templates (28 total)
+
+| #  | ID                           | Name                         | Screenshots | Size    |
+|----|------------------------------|------------------------------|-------------|---------|
+| 01 | classic-split                | Classic Split                | 1           | 1200×627|
+| 02 | hero-center                  | Hero Center                  | 1           | 1200×627|
+| 03 | dual-screen                  | Dual Screenshot              | 2           | 1200×627|
+| 04 | triple-screen                | Triple Showcase              | 3           | 1200×627|
+| 05 | terminal                     | Terminal Code                | 1           | 1200×627|
+| 06 | stats-cards                  | Stats Cards                  | 1           | 1200×627|
+| 07 | feature-grid                 | Feature Grid                 | 1           | 1200×627|
+| 08 | diagonal-split               | Diagonal Split               | 1           | 1200×627|
+| 09 | minimal-light                | Minimal Light                | 1           | 1200×627|
+| 10 | neon-glow                    | Neon Glow                    | 1           | 1200×627|
+| 11 | text-only                    | Text Only                    | 0           | 1200×627|
+| 12 | announcement                 | Announcement                 | 0           | 1200×627|
+| 13 | neon-wireframe               | Neon Wireframe               | 1           | 1200×627|
+| 14 | retro-terminal               | Retro Terminal               | 1           | 1200×627|
+| 15 | glass-trio                   | Glass Trio                   | 1           | 1200×627|
+| 16 | isometric-showcase           | Isometric Showcase           | 1           | 1200×627|
+| 17 | stats-dashboard              | Stats Dashboard              | 1           | 1200×627|
+| 18 | polaroid-stack               | Polaroid Stack               | 2           | 1200×627|
+| 19 | sunrise-horizon              | Sunrise Horizon              | 1           | 1200×627|
+| 20 | magazine-cover               | Magazine Cover               | 1           | 1200×627|
+| 21 | orbit-rings                  | Orbit Rings                  | 1           | 1200×627|
+| 22 | split-diagonal               | Split Diagonal               | 1           | 1200×627|
+| 23 | floating-cards               | Floating Cards               | 1           | 1200×627|
+| 24 | github-project-showcase      | GitHub Project Showcase       | 0           | 1200×627|
+| 25 | recruiter-spotlight-dark     | Recruiter Spotlight Dark     | 1           | 1200×627|
+| 26 | android-dev-square           | Android Developer · Square   | 1           | 1080×1080|
+| 27 | student-grade-tracker-square | Student Grade Tracker        | 0           | 1080×1080|
 
 ---
 
@@ -212,16 +328,11 @@ Paste this into the `TEMPLATES` array in `templates.js`:
         ${d.state.badge}
       </div>
 
-      <!-- CONTENT -->
+      <!-- HEADLINE — using SVG gradient text -->
       <div style="position:absolute;left:36px;top:60px;right:420px;bottom:68px;
         display:flex;flex-direction:column;justify-content:center;gap:10px;">
 
-        <div style="font-size:${d.hs}px;font-weight:900;line-height:1.12;color:#fff;">
-          <span style="background:linear-gradient(135deg,${c.hl},${c.hl}bb);
-            -webkit-background-clip:text;-webkit-text-fill-color:transparent;">
-            ${d.state.h1}</span><br>
-          <span>${d.state.h2}</span>
-        </div>
+        ${gradientTextLines([d.state.h1, d.state.h2], c.hl, c.a2, d.hs, 900)}
 
         <div style="font-size:${d.ss}px;color:#CAC4D0;">${d.state.subtitle}</div>
 
@@ -264,28 +375,57 @@ Paste this into the `TEMPLATES` array in `templates.js`:
 
 ## RULES
 
-1. **Banner defaults to 1200×627px** but users can change size if Size is not Mentioned in the prompt then ask the user — use `d.bannerW` and `d.bannerH` if your template needs to adapt to different canvas sizes. For most templates, absolute positioning within 1200×627 is fine — the canvas will scale content.
+1. **Banner defaults to 1200×627px** but users can change size — use `d.bannerW` and `d.bannerH` if your template needs to adapt to different canvas sizes (especially for square/portrait templates). For standard LinkedIn templates, absolute positioning within 1200×627 is fine.
 2. **Footer is always 62px tall** at the bottom — account for it (bottom:68px for content)
 3. **Always use `${c.bg1}`, `${c.a1}`, etc.** — NEVER hardcode colors for bg/accent/highlight
 4. **CSS class prefix**: all component classes MUST start with `comp-`
 5. **Component JS function name** = the global function name templates call
 6. **Template strings use backticks** and `${}` interpolation
 7. **Screenshots are data URLs or null** — always handle null with a placeholder
-8. **Use inline styles for positioning** — CSS classes only for reusable visual effects
+8. **Use inline styles for positioning** — favor `position:absolute` for distinct widgets so they can be easily dragged, resized, and rotated by the user!
 9. **Test with all 6 themes**: purple, blue, ocean, green, orange, pink
 10. **Use `d.state.features.slice(0, N)`** — limit features to what fits
-11. ⚠️ GRADIENT TEXT RULE:
-Never use -webkit-background-clip:text or -webkit-text-fill-color:transparent.
-For gradient-colored text use ONLY the SVG method:
-  <svg><defs><linearGradient id="g1">...</linearGradient></defs>
-  <text fill="url(#g1)" ...>TEXT</text></svg>
-This is the ONLY method that works in both live preview AND html2canvas download.
+11. ⚠️ **GRADIENT TEXT RULE** (CRITICAL):
+    Never use `-webkit-background-clip:text` or `-webkit-text-fill-color:transparent`.
+    For gradient-colored text use ONLY the SVG method via `gradientText()` or `gradientTextLines()`:
+    ```js
+    ${gradientText(d.state.h1, c.hl, c.a2, d.hs, 900, 'diagonal')}
+    // or for multi-line:
+    ${gradientTextLines([d.state.h1, d.state.h2], c.hl, c.a2, d.hs, 900)}
+    ```
+    This is the ONLY method that works in both live preview AND html2canvas download.
+    If you need raw SVG instead:
+    ```html
+    <svg><defs><linearGradient id="g1">...</linearGradient></defs>
+    <text fill="url(#g1)" ...>TEXT</text></svg>
+    ```
+12. **For square/portrait templates** (1080×1080, 1080×1350), use `d.bannerW` and `d.bannerH` for positioning and scale your layout proportionally.
+13. **Component token types** for `kotlinCodeCard`: keyword, fn, var, string, comment, plain, number, type, punct
+14. **Pre-tilting Elements**: You can safely use the modern CSS `rotate: -5deg;` or `scale: 1.2;` on your template elements. The export engine automatically handles translating these for the downloaded image.
+15. **Layer Separation**: Avoid wrapping the entire design in one massive `display:flex` container if possible. Break widgets into distinct absolute layers so the user can manage them effortlessly in the new Layers panel.
+
+## DESIGN TIPS FOR BEAUTIFUL TEMPLATES
+
+- **Layer glow blobs** at different positions with varying opacity for depth
+- **Use sparkle elements** for visual polish (`.sparkle` class with `animation-delay`)
+- **Add a top accent bar** (5px gradient bar at top of banner)
+- **Use glassmorphism** via `rgba(255,255,255,0.06)` backgrounds with `backdrop-filter:blur`
+- **Combine components**: e.g. `kotlinCodeCard` + `floatingFeatTags` + `phoneMockup`
+- **Use `gradientText()`** for headlines — it exports perfectly
+- **Add subtle scanline/grid overlays** for texture (repeating-linear-gradient with low opacity)
+- **Stagger animations** with `animation-delay` on sparkles and floating tags
+- **Use `clip-path: polygon()`** for dramatic diagonal/angular splits
+- **Layer multiple glow colors** (a1 + a2 + hl) for rich color depth
+- **Pre-tilt dynamic components**: Give elements a slight `rotate: -3deg;` to make the layout feel organic and dynamic.
 
 ## WHAT I WANT YOU TO CREATE
 
 **[DESCRIBE YOUR TEMPLATE/COMPONENT IDEA HERE]**
 
-Example: "Create a template called 'Developer Portfolio' with a laptop mockup on the right showing a screenshot, headline on top-left, and 4 glass cards in a 2×2 grid for features. Use glassmorphism style."
+Example prompts:
+- "Create a template called 'Developer Portfolio' with a laptop mockup on the right showing a screenshot, headline on top-left, and 4 glass cards in a 2×2 grid for features. Use glassmorphism style."
+- "Create a square (1080×1080) template called 'Open Source Hero' with a GitHub activity bar, code snippet, and floating feature tags around a centered phone mockup."
+- "Create a 'Minimal Resume' template with no screenshots, using gradientTextLines for a big name, stat counters for experience, and code chip strips for skills."
 
 ---
 
@@ -319,7 +459,7 @@ templates/components/my-component.css
 
 ### Step 2: Add component CSS in `<head>` of `index.html`
 
-Open `index.html` and find this block in `<head>` (around lines 12–19):
+Open `index.html` and find this block in `<head>` (around lines 13–27):
 
 ```html
     <!-- Component Styles (add new component CSS here) -->
@@ -330,20 +470,24 @@ Open `index.html` and find this block in `<head>` (around lines 12–19):
     <link rel="stylesheet" href="templates/components/code-snippet-card.css">
     <link rel="stylesheet" href="templates/components/stat-counter-row.css">
     <link rel="stylesheet" href="templates/components/github-activity-bar.css">
+    <link rel="stylesheet" href="templates/components/recruiter-code-chips.css">
+    <link rel="stylesheet" href="templates/components/source-qr-card.css">
+    <link rel="stylesheet" href="templates/components/internship-badge.css">
+    <link rel="stylesheet" href="templates/components/floating-feat-tag.css">
+    <link rel="stylesheet" href="templates/components/kotlin-code-card.css">
+    <link rel="stylesheet" href="templates/components/gradient-text.css">
+    <link rel="stylesheet" href="templates/components/grade-float-card.css">
+    <link rel="stylesheet" href="templates/components/oop-concept-card.css">
+    <link rel="stylesheet" href="templates/components/neon-shape-icons.css">
     ◄◄◄ ADD YOUR NEW CSS HERE ◄◄◄
 </head>
 ```
 
 **Add your new `<link>` AFTER the last existing component CSS, BEFORE `</head>`.**
 
-Example:
-```html
-    <link rel="stylesheet" href="templates/components/my-component.css">
-```
-
 ### Step 3: Add component JS in `<body>` of `index.html`
 
-Open `index.html` and find this block near the bottom (around lines 389–401):
+Open `index.html` and find this block near the bottom (around lines 540–560):
 
 ```html
     <!-- SCRIPTS — ORDER MATTERS -->
@@ -357,17 +501,21 @@ Open `index.html` and find this block near the bottom (around lines 389–401):
     <script src="templates/components/stat-counter-row.js"></script>
     <script src="templates/components/code-snippet-card.js"></script>
     <script src="templates/components/github-activity-bar.js"></script>
+    <script src="templates/components/recruiter-code-chips.js"></script>
+    <script src="templates/components/source-qr-card.js"></script>
+    <script src="templates/components/internship-badge.js"></script>
+    <script src="templates/components/floating-feat-tag.js"></script>
+    <script src="templates/components/kotlin-code-card.js"></script>
+    <script src="templates/components/gradient-text.js"></script>
+    <script src="templates/components/grade-float-card.js"></script>
+    <script src="templates/components/oop-concept-card.js"></script>
+    <script src="templates/components/neon-shape-icons.js"></script>
     ◄◄◄ ADD YOUR NEW JS HERE ◄◄◄
     <!-- 3. Templates (uses component functions in render) -->
     <script src="templates/templates.js"></script>
 ```
 
 **Add your new `<script>` AFTER the last existing component JS, BEFORE the `<!-- 3. Templates -->` comment.**
-
-Example:
-```html
-    <script src="templates/components/my-component.js"></script>
-```
 
 ### Step 4: Add template to `templates.js`
 
@@ -399,5 +547,6 @@ function phoneMockup(...) { ... }
 2. Open browser DevTools console (F12) — check for any red errors
 3. Go to Templates tab → select your new template
 4. Try changing colors, uploading screenshots
-5. If you see errors like `registerComponent is not defined` or `myFunction is not defined`,
+5. Click Download PNG — verify gradient text exports correctly
+6. If you see errors like `registerComponent is not defined` or `myFunction is not defined`,
    your script loading order is wrong — go back to Step 3

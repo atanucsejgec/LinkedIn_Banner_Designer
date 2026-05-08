@@ -64,8 +64,35 @@ function renderBanner() {
     bannerHtml += renderOverlays(data.colors);
   }
 
+  // ADD CUSTOM IMAGES HERE
+  if (AppState.customImages && AppState.customImages.length > 0) {
+    AppState.customImages.forEach((img, idx) => {
+       bannerHtml += `<img src="${img.src}" class="ci-custom-image" data-ci-idx="custom-img-${idx}" style="position:absolute; left:${img.x}px; top:${img.y}px; width:${img.w}px; height:auto; z-index:100; user-select:none; -webkit-user-drag:none;">`;
+    });
+  }
+
+  // ADD CUSTOM TEXTS HERE
+  if (AppState.customTexts && AppState.customTexts.length > 0) {
+    AppState.customTexts.forEach((ct, idx) => {
+       const style = `position:absolute; left:${ct.x}px; top:${ct.y}px; font-size:${ct.s}px; z-index:101; font-weight:bold; white-space:nowrap;`;
+       let colorStyle = `color: ${ct.color};`;
+       if (ct.isGrad) {
+           const c2 = ct.color2 || '#FFFFFF';
+           const dir = ct.dir || 'to right';
+           colorStyle = `background: linear-gradient(${dir}, ${ct.color}, ${c2}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;`;
+       }
+       bannerHtml += `<div class="ci-custom-text" data-ci-idx="custom-text-${idx}" style="${style} ${colorStyle}">${escHtml(ct.text)}</div>`;
+    });
+  }
+
   document.getElementById('bannerCanvas').innerHTML = bannerHtml;
+  if (typeof applyDeletions === 'function') applyDeletions();
   setStatus('Banner rendered ✓');
+
+  // Initialize canvas interaction (select, move, resize, guides)
+  if (typeof initCanvasInteraction === 'function') {
+    setTimeout(() => initCanvasInteraction(), 0);
+  }
 }
 
 /* ===== UPDATE BANNER (called by content inputs) ===== */

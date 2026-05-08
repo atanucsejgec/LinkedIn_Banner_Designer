@@ -139,7 +139,9 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 44px;
+    min-height: 44px;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .canvas-info {
@@ -297,4 +299,69 @@ html {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== CANVA EXPORT BUTTON ===== */
+.btn-canva {
+    background: linear-gradient(135deg, #7B2FF7, #00C4CC);
+    color: white;
+    font-weight: 700;
+}
+.btn-canva:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(0,196,204,0.4);
+}
+
+/* ===== CANVA EXPORT MODAL CARDS ===== */
+.canva-export-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+}
+.canva-export-card:hover {
+    border-color: var(--accent-teal);
+    background: rgba(3,218,197,0.05);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.canva-export-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+}
+
+.canva-export-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 3px;
+}
+
+.canva-export-desc {
+    font-size: 11px;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+.canva-export-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #7B2FF7, #00C4CC);
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }

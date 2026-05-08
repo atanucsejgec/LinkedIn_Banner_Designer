@@ -1,0 +1,79 @@
+/* ============================================
+   NEON-SHAPE-ICONS.CSS — Neon shape icon styles
+   ============================================ */
+
+.comp-neon-shape {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.comp-neon-shape-wrap {
+    transition: box-shadow 0.3s ease;
+    animation: comp-neon-pulse 3s ease-in-out infinite;
+}
+
+.comp-neon-shape:nth-child(2) .comp-neon-shape-wrap {
+    animation-delay: -1s;
+}
+
+.comp-neon-shape:nth-child(3) .comp-neon-shape-wrap {
+    animation-delay: -2s;
+}
+
+@keyframes comp-neon-pulse {
+
+    0%,
+    100% {
+        opacity: 0.85;
+        transform: translateY(0px);
+    }
+
+    50% {
+        opacity: 1.0;
+        transform: translateY(-5px);
+    }
+}
+
+.comp-neon-shape-svg {
+    display: block;
+    overflow: visible;
+}
+
+.comp-neon-shape-label {
+    display: block;
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    animation: comp-neon-label-flicker 4s ease-in-out infinite;
+}
+
+.comp-neon-shape:nth-child(2) .comp-neon-shape-label {
+    animation-delay: -1.3s;
+}
+
+.comp-neon-shape:nth-child(3) .comp-neon-shape-label {
+    animation-delay: -2.6s;
+}
+
+@keyframes comp-neon-label-flicker {
+
+    0%,
+    90%,
+    100% {
+        opacity: 1;
+    }
+
+    92% {
+        opacity: 0.6;
+    }
+
+    94% {
+        opacity: 1;
+    }
+
+    96% {
+        opacity: 0.7;
+    }
+}
+
+.comp-neon-shape-row {
+    position: relative;
+}

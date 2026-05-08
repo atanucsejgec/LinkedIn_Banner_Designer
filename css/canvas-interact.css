@@ -1,0 +1,341 @@
+/* ============================================
+   CANVAS-INTERACT.CSS — Selection, handles,
+   grid overlay, alignment guides, toolbar
+   ============================================ */
+
+/* ===== SELECTION OUTLINE ===== */
+.ci-selected {
+    outline: 2px solid var(--accent-teal) !important;
+    outline-offset: 1px;
+    cursor: move !important;
+    z-index: 900 !important;
+}
+
+.ci-is-interacting {
+    opacity: 0.65 !important;
+    transition: opacity 0.15s ease;
+}
+
+/* ===== RESIZE HANDLES ===== */
+.ci-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #fff;
+    border: 2px solid var(--accent-teal, #03DAC5);
+    border-radius: 2px;
+    z-index: 1001;
+    pointer-events: auto;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+    transition: background 0.15s, transform 0.15s;
+}
+
+.ci-handle:hover {
+    background: var(--accent-teal, #03DAC5);
+    transform: scale(1.3);
+}
+
+/* Handle cursors */
+.ci-handle-nw { cursor: nw-resize; }
+.ci-handle-n  { cursor: n-resize;  }
+.ci-handle-ne { cursor: ne-resize; }
+.ci-handle-e  { cursor: e-resize;  }
+.ci-handle-se { cursor: se-resize; }
+.ci-handle-s  { cursor: s-resize;  }
+.ci-handle-sw { cursor: sw-resize; }
+.ci-handle-w  { cursor: w-resize;  }
+
+/* ===== HANDLES CONTAINER ===== */
+.ci-handles-container {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+    inset: 0;
+}
+
+/* ===== GRID OVERLAY ===== */
+.ci-grid-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 995;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+
+.ci-grid-overlay.active {
+    opacity: 1;
+}
+
+.ci-grid-overlay-10 {
+    background-image:
+        repeating-linear-gradient(0deg,   rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(90deg,  rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 10px);
+}
+
+.ci-grid-overlay-20 {
+    background-image:
+        repeating-linear-gradient(0deg,   rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px, transparent 1px, transparent 20px),
+        repeating-linear-gradient(90deg,  rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 1px, transparent 1px, transparent 20px);
+}
+
+.ci-grid-overlay-40 {
+    background-image:
+        repeating-linear-gradient(0deg,   rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg,  rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 40px);
+}
+
+.ci-grid-overlay-60 {
+    background-image:
+        repeating-linear-gradient(0deg,   rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, transparent 1px, transparent 60px),
+        repeating-linear-gradient(90deg,  rgba(255,255,255,0.09) 0px, rgba(255,255,255,0.09) 1px, transparent 1px, transparent 60px);
+}
+
+/* ===== ALIGNMENT GUIDES ===== */
+.ci-guide {
+    position: absolute;
+    pointer-events: none;
+    z-index: 996;
+    opacity: 0;
+    transition: opacity 0.12s ease;
+}
+
+.ci-guide.visible {
+    opacity: 1;
+}
+
+.ci-guide-h {
+    height: 1px;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, transparent, #ff4081, #ff4081, transparent);
+}
+
+.ci-guide-v {
+    width: 1px;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent, #ff4081, #ff4081, transparent);
+}
+
+/* Center guides — slightly different color */
+.ci-guide-center {
+    background: linear-gradient(90deg, transparent, #40c4ff, #40c4ff, transparent) !important;
+}
+.ci-guide-center.ci-guide-v {
+    background: linear-gradient(180deg, transparent, #40c4ff, #40c4ff, transparent) !important;
+}
+
+/* ===== DIMENSION TOOLTIP ===== */
+.ci-dimension-tip {
+    position: absolute;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    z-index: 1002;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: 'Segoe UI', system-ui, monospace;
+    letter-spacing: 0.3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.ci-dimension-tip.visible {
+    opacity: 1;
+}
+
+/* ===== POSITION TOOLTIP ===== */
+.ci-position-tip {
+    position: absolute;
+    background: rgba(103,80,164,0.9);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+    z-index: 1002;
+    pointer-events: none;
+    white-space: nowrap;
+    font-family: monospace;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.ci-position-tip.visible {
+    opacity: 1;
+}
+
+/* ===== TOOLBAR: GRID & ALIGNMENT GROUP ===== */
+.ci-toolbar-group {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.ci-toolbar-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-color);
+    margin: 0 4px;
+}
+
+.ci-grid-select {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-gray);
+    font-size: 10px;
+    padding: 3px 4px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: inherit;
+}
+.ci-grid-select:focus { outline: none; border-color: var(--accent-purple); }
+
+.ci-align-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    background: var(--card-bg);
+    color: var(--text-gray);
+    cursor: pointer;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    padding: 0;
+}
+
+.ci-align-btn:hover {
+    border-color: var(--accent-teal);
+    color: var(--accent-teal);
+    background: rgba(3,218,197,0.08);
+}
+
+.ci-align-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.ci-align-btn:disabled:hover {
+    border-color: var(--border-color);
+    color: var(--text-gray);
+    background: var(--card-bg);
+}
+
+/* Grid toggle active state */
+.ci-grid-active {
+    border-color: var(--accent-teal) !important;
+    color: var(--accent-teal) !important;
+    background: rgba(3,218,197,0.15) !important;
+    box-shadow: 0 0 6px rgba(3,218,197,0.25);
+}
+
+/* ===== SNAP INDICATOR (brief flash) ===== */
+@keyframes ci-snap-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(3,218,197,0.6); }
+    50%  { box-shadow: 0 0 12px 3px rgba(3,218,197,0.3); }
+    100% { box-shadow: 0 0 0 0 rgba(3,218,197,0); }
+}
+
+.ci-snap-flash {
+    animation: ci-snap-flash 0.3s ease-out;
+}
+
+/* ===== LAYER PANEL ===== */
+.layer-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--card-bg);
+}
+.layer-row:hover { border-color: var(--accent-teal); background: rgba(3,218,197,0.04); }
+.layer-row.layer-selected { border-color: var(--accent-teal); background: rgba(3,218,197,0.1); box-shadow: 0 0 8px rgba(3,218,197,0.15); }
+.layer-row.layer-hidden { opacity: 0.4; }
+.layer-name { flex: 1; font-size: 11px; color: var(--text-white); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.layer-vis-btn, .layer-lock-btn {
+    background: none; border: none; cursor: pointer; font-size: 13px; padding: 2px 4px;
+    border-radius: 4px; transition: background 0.15s;
+}
+.layer-vis-btn:hover, .layer-lock-btn:hover { background: rgba(255,255,255,0.08); }
+.layer-order-input {
+    width: 32px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-white);
+    border-radius: 4px;
+    font-size: 11px;
+    text-align: center;
+    padding: 2px;
+    outline: none;
+    transition: all 0.15s;
+    -moz-appearance: textfield;
+}
+.layer-order-input::-webkit-inner-spin-button,
+.layer-order-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.layer-order-input:focus {
+    border-color: var(--accent-teal);
+    background: rgba(3,218,197,0.1);
+}
+.help-text { font-size: 11px; color: var(--text-gray); line-height: 1.5; margin-bottom: 10px; }
+.full-width { width: 100%; }
+.mt-10 { margin-top: 10px; }
+
+/* ===== ELEMENT PROPERTIES PANEL ===== */
+.elem-props-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.elem-prop-field {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--input-bg, #0d0d1a);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 5px 8px;
+    transition: border-color 0.15s;
+}
+.elem-prop-field:focus-within {
+    border-color: var(--accent-teal);
+}
+.elem-prop-field label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-teal);
+    min-width: 14px;
+    text-align: center;
+}
+.elem-prop-field input {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--text-white);
+    font-size: 12px;
+    font-family: 'Segoe UI', system-ui, monospace;
+    width: 50px;
+    outline: none;
+    padding: 0;
+}
+.elem-prop-field input::-webkit-inner-spin-button { opacity: 0.3; }
+.elem-prop-field span {
+    font-size: 9px;
+    color: var(--text-gray);
+    opacity: 0.5;
+}

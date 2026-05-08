@@ -19,13 +19,22 @@ window.AppState = {
     { label:"GitHub",    color:"#333333" }
   ],
   screenshots: [null, null, null],   // up to 3 slots
+  customImages: [],
+  customTexts: [],
   currentTemplateId: 'classic-split',
   savedDesigns: [],
   zoom: 55,
   previewOffsetY: 0,
   bannerW: 1200,
   bannerH: 627,
-  aspectLocked: false
+  aspectLocked: false,
+  // Canvas interaction state
+  selectedElementIdx: null,
+  elementOverrides: {},
+  gridEnabled: false,
+  gridSize: 20,
+  snapEnabled: true,
+  showGuides: true
 };
 
 /* ===== BOOT ===== */
@@ -33,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
   buildTemplateGrid();
   buildPresetButtons();
   buildScreenshotSlots();
+  if (typeof renderCustomImageThumbs === 'function') renderCustomImageThumbs();
   buildOverlayPanel();
   renderFeatureList();
   renderBadgeList();

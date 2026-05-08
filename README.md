@@ -5,7 +5,7 @@
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6CF7FF&center=true&vCenter=true&width=750&lines=🎨+Design+Professional+LinkedIn+Banners;📱+24%2B+Unique+Templates+with+Different+Layouts;📸+Multi+Screenshot+Support+(1%2F2%2F3+Phones);⬇️+Export+as+High-Quality+PNG+(1200×627);🎭+6+Design+Overlays+—+Vignette%2C+Waves%2C+Mockups;🧩+7+Reusable+Components+—+Polaroid%2C+Laptop%2C+Glass;⚡+Zero+Dependencies+—+Pure+HTML%2C+CSS+%26+JS;🎯+Quick+App+Swap+Presets+Built+In)](https://git.io/typing-svg)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&pause=1000&color=6CF7FF&center=true&vCenter=true&width=750&lines=🎨+Design+Professional+LinkedIn+Banners;📱+28%2B+Unique+Templates+with+Different+Layouts;📸+Multi+Screenshot+Support+(1%2F2%2F3+Phones);⬇️+Export+as+High-Quality+PNG+(1200×627);🎭+6+Design+Overlays+—+Vignette%2C+Waves%2C+Mockups;🧩+16+Reusable+Components+—+Polaroid%2C+Laptop%2C+Glass;⚡+Zero+Dependencies+—+Pure+HTML%2C+CSS+%26+JS;🎯+Quick+App+Swap+Presets+Built+In)](https://git.io/typing-svg)
 
 <br/>
 
@@ -20,7 +20,7 @@
 
 <br/>
 
-> 🎨 **LinkedIn Banner Designer** is a powerful, browser-based design tool that lets you create stunning, professional LinkedIn post banners — with **24+ unique templates**, **7 reusable components**, **6 design overlays**, **multi-screenshot phone mockups**, **live editing**, and **one-click PNG export** at perfect 1200×627 resolution. No design skills required.
+> 🎨 **LinkedIn Banner Designer** is a powerful, browser-based design tool that lets you create stunning, professional LinkedIn post banners — with **28+ unique templates**, **16 reusable components**, **6 design overlays**, **multi-screenshot phone mockups**, **live editing**, and **one-click PNG export** at perfect 1200×627 resolution. No design skills required.
 
 <br/>
 
@@ -66,7 +66,7 @@
 
 ## 📌 About
 
-**LinkedIn Banner Designer** is a fully client-side web application for designing professional LinkedIn post banners without any design software. It ships with **24+ handcrafted templates**, **7 reusable components**, and **6 composable design overlays**, each template with a unique layout, color scheme, and screenshot arrangement — from classic split layouts to neon glow, GitHub project showcase, magazine cover, orbit rings, and more.
+**LinkedIn Banner Designer** is a fully client-side web application for designing professional LinkedIn post banners without any design software. It ships with **28+ handcrafted templates**, **16 reusable components**, and **6 composable design overlays**, each template with a unique layout, color scheme, and screenshot arrangement — from classic split layouts to neon glow, GitHub project showcase, magazine cover, orbit rings, and more.
 
 Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, modular files, it's lightweight, fast, and works entirely in your browser. Just open `index.html` and start designing.
 
@@ -87,7 +87,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
   </tr>
   <tr>
     <td align="center">🎨</td>
-    <td><b>24+ Unique Templates</b></td>
+    <td><b>28+ Unique Templates</b></td>
     <td>Every template is truly different — unique layout, color scheme, screenshot position, and style. Not just a color swap.</td>
   </tr>
   <tr>
@@ -123,7 +123,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
   <tr>
     <td align="center">🔧</td>
     <td><b>Reusable Components</b></td>
-    <td>7 modular components (polaroid card, laptop frame, glass card, browser window, code snippet card, stat counter row, GitHub activity bar) shared across templates.</td>
+    <td>16 modular components (polaroid card, laptop frame, glass card, browser window, code snippet card, stat counter row, GitHub activity bar, floating grade, and more) shared across templates.</td>
   </tr>
 </table>
 
@@ -160,7 +160,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
 
 <table>
   <tr>
-    <td>📐 <b>24+ Unique Templates</b></td>
+    <td>📐 <b>28+ Unique Templates</b></td>
     <td>Every template has a completely different layout structure, screenshot count, color philosophy, and design language</td>
   </tr>
   <tr>
@@ -229,7 +229,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
   </tr>
   <tr>
     <td>🧩 <b>Reusable Component System</b></td>
-    <td>7 modular components (polaroid card, laptop frame, glass card, browser window, code snippet, stat counter, GitHub activity bar) with a central registry and auto-loading</td>
+    <td>16 modular components (polaroid card, laptop frame, glass card, browser window, code snippet, stat counter, GitHub activity bar, etc) with a central registry and auto-loading</td>
   </tr>
   <tr>
     <td>⌨️ <b>Keyboard Shortcuts</b></td>
@@ -241,7 +241,7 @@ Built with **vanilla HTML, CSS, and JavaScript** and architected into clean, mod
 
 ## 📐 Templates
 
-All 24 templates have unique layouts, styles, and screenshot arrangements:
+All 28 templates have unique layouts, styles, and screenshot arrangements:
 
 <table>
   <thead>
@@ -397,6 +397,30 @@ All 24 templates have unique layouts, styles, and screenshot arrangements:
       <td>1 Phone</td>
       <td>GitHub-flavored layout with code snippet card, activity bar, stat counters, and monospace typography</td>
     </tr>
+    <tr>
+      <td>25</td>
+      <td>🔦 <b>Recruiter Spotlight</b></td>
+      <td>1 Phone</td>
+      <td>Dark, sleek template focused on spotlighting talent or job openings</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>🟢 <b>Android Developer</b></td>
+      <td>1 Phone</td>
+      <td>Square layout (1080×1080) optimized for Instagram/LinkedIn carousels</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>🎓 <b>Student Grade Tracker</b></td>
+      <td>No Phone</td>
+      <td>Square layout utilizing floating grade cards for student highlights</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>📐 <b>Shape Calc All In One</b></td>
+      <td>1 Phone</td>
+      <td>Clean layout demonstrating OOP concepts with specialized shape icons</td>
+    </tr>
   </tbody>
 </table>
 
@@ -528,7 +552,7 @@ graph TB
 
     subgraph Components["🧩 Component System"]
         LOADER[component-loader.js - Registry]
-        COMP_CARDS["7 Components - Polaroid, Laptop, Glass, Browser, CodeSnippet, StatCounter, ActivityBar"]
+        COMP_CARDS["16 Components - Polaroid, Laptop, Glass, Browser, CodeSnippet, StatCounter, ActivityBar, ..."]
     end
 
     subgraph Overlays["🎭 Overlay System"]
@@ -768,7 +792,7 @@ LinkedIn_Banner_Designer/
 └── 📂 templates/
     │
     ├── 📐 templates.js              # ← ADD MORE TEMPLATES HERE
-    │                                 # • TEMPLATES[] array — 24 template objects
+    │                                 # • TEMPLATES[] array — 28 template objects
     │                                 # • phoneMockup() shared helper function
     │                                 # • shiftHue() color utility
     │                                 # • Each template: id, name, tag,

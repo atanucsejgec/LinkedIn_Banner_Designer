@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/panel.css">
     <link rel="stylesheet" href="css/banner.css">
     <link rel="stylesheet" href="css/overlays.css">
+    <link rel="stylesheet" href="css/canvas-interact.css">
     <!-- Component Styles (add new component CSS here) -->
     <link rel="stylesheet" href="templates/components/polaroid-card.css">
     <link rel="stylesheet" href="templates/components/laptop-frame.css">
@@ -23,7 +24,11 @@
     <link rel="stylesheet" href="templates/components/floating-feat-tag.css">
     <link rel="stylesheet" href="templates/components/kotlin-code-card.css">
     <link rel="stylesheet" href="templates/components/gradient-text.css">
-    <link  rel="stylesheet" href="templates/components/grade-float-card.css">
+    <link rel="stylesheet" href="templates/components/grade-float-card.css">
+    <link rel="stylesheet" href="templates/components/neon-shape-icons.css">
+    <link rel="stylesheet" href="templates/components/oop-concept-card.css">
+
+
 </head>
 
 <body>
@@ -38,6 +43,7 @@
             <button class="btn btn-secondary" onclick="showPreview()">👁 Preview</button>
             <button class="btn btn-primary" onclick="copyDesign()">📋 Duplicate</button>
             <button class="btn btn-success" onclick="downloadBanner()">⬇ Download PNG</button>
+            <button class="btn btn-canva" onclick="showCanvaExportModal()">🎨 Canva Export</button>
         </div>
     </nav>
 
@@ -52,6 +58,7 @@
                 <div class="tab" onclick="switchTab('media')">📸 Media</div>
                 <div class="tab" onclick="switchTab('templates')">📐 Templates</div>
                 <div class="tab" onclick="switchTab('overlays')">🎭 Overlays</div>
+                <div class="tab" onclick="switchTab('layers')">📑 Layers</div>
             </div>
 
             <!-- CONTENT TAB -->
@@ -140,27 +147,37 @@
                 <div class="section">
                     <div class="section-title">📐 Banner Size</div>
                     <p class="help-text">
-                        Choose a preset size or enter custom dimensions. Changing size does NOT affect existing templates.
+                        Choose a preset size or enter custom dimensions. Changing size does NOT affect existing
+                        templates.
                     </p>
                     <div class="size-preset-grid" id="sizePresetGrid">
-                        <button class="size-preset-btn selected" data-w="1200" data-h="627" onclick="applyBannerSize(1200,627,this)">🔗 LinkedIn<br><span>1200×627</span></button>
-                        <button class="size-preset-btn" data-w="1080" data-h="1080" onclick="applyBannerSize(1080,1080,this)">◻️ Square<br><span>1080×1080</span></button>
-                        <button class="size-preset-btn" data-w="1080" data-h="1350" onclick="applyBannerSize(1080,1350,this)">📱 Portrait<br><span>1080×1350</span></button>
-                        <button class="size-preset-btn" data-w="1080" data-h="1920" onclick="applyBannerSize(1080,1920,this)">📖 Story<br><span>1080×1920</span></button>
-                        <button class="size-preset-btn" data-w="1500" data-h="500" onclick="applyBannerSize(1500,500,this)">🐦 Twitter<br><span>1500×500</span></button>
-                        <button class="size-preset-btn" data-w="1584" data-h="396" onclick="applyBannerSize(1584,396,this)">💼 LI Cover<br><span>1584×396</span></button>
+                        <button class="size-preset-btn selected" data-w="1200" data-h="627"
+                            onclick="applyBannerSize(1200,627,this)">🔗 LinkedIn<br><span>1200×627</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1080"
+                            onclick="applyBannerSize(1080,1080,this)">◻️ Square<br><span>1080×1080</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1350"
+                            onclick="applyBannerSize(1080,1350,this)">📱 Portrait<br><span>1080×1350</span></button>
+                        <button class="size-preset-btn" data-w="1080" data-h="1920"
+                            onclick="applyBannerSize(1080,1920,this)">📖 Story<br><span>1080×1920</span></button>
+                        <button class="size-preset-btn" data-w="1500" data-h="500"
+                            onclick="applyBannerSize(1500,500,this)">🐦 Twitter<br><span>1500×500</span></button>
+                        <button class="size-preset-btn" data-w="1584" data-h="396"
+                            onclick="applyBannerSize(1584,396,this)">💼 LI Cover<br><span>1584×396</span></button>
                     </div>
                     <div class="custom-size-row">
                         <div class="custom-size-field">
                             <label class="form-label">Width (px)</label>
-                            <input type="number" class="form-input" id="bannerWidth" value="1200" min="200" max="4000" oninput="applyCustomBannerSize()">
+                            <input type="number" class="form-input" id="bannerWidth" value="1200" min="200" max="4000"
+                                oninput="applyCustomBannerSize()">
                         </div>
                         <span class="custom-size-x">×</span>
                         <div class="custom-size-field">
                             <label class="form-label">Height (px)</label>
-                            <input type="number" class="form-input" id="bannerHeight" value="627" min="200" max="4000" oninput="applyCustomBannerSize()">
+                            <input type="number" class="form-input" id="bannerHeight" value="627" min="200" max="4000"
+                                oninput="applyCustomBannerSize()">
                         </div>
-                        <button class="btn btn-secondary sm-btn" style="margin-top:16px;" onclick="lockAspectRatio()" id="aspectLockBtn" title="Lock/Unlock aspect ratio">🔓</button>
+                        <button class="btn btn-secondary sm-btn" style="margin-top:16px;" onclick="lockAspectRatio()"
+                            id="aspectLockBtn" title="Lock/Unlock aspect ratio">🔓</button>
                     </div>
                     <div class="size-info-bar" id="sizeInfoBar">
                         <span>📐 1200 × 627 px</span>
@@ -297,6 +314,33 @@
                     <div id="screenshotSlots"></div>
                 </div>
                 <div class="section">
+                    <div class="section-title">🖼️ Custom Images</div>
+                    <p class="help-text">Upload any image to add as a free-floating editable layer.</p>
+                    <input type="file" id="customImageInput" accept="image/*" style="display:none;" onchange="handleCustomImageUpload(event)">
+                    <button class="btn btn-primary full-width" onclick="document.getElementById('customImageInput').click()">+ Add Image Layer</button>
+                    <div id="customImageThumbs" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">📝 Custom Text</div>
+                    <p class="help-text">Add any text to the canvas.</p>
+                    <div class="form-group">
+                        <input type="text" id="customTextInput" class="form-input" placeholder="Type text here...">
+                        <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+                            <label style="font-size:12px;color:#CAC4D0;display:flex;align-items:center;gap:4px;">
+                                <input type="checkbox" id="customTextGradient" onchange="toggleTextGrad()"> Gradient
+                            </label>
+                            <input type="color" id="customTextColor" value="#FFFFFF" style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer;" title="Color 1">
+                            <input type="color" id="customTextColor2" value="#03DAC5" style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer; display:none;" title="Color 2">
+                            <select id="customTextDir" style="display:none; font-size:11px; padding:2px; background:var(--card-bg); color:#fff; border:1px solid var(--border-color); border-radius:4px;">
+                                <option value="to bottom">Top to Bottom</option>
+                                <option value="to right" selected>Left to Right</option>
+                                <option value="to left">Right to Left</option>
+                            </select>
+                            <button class="btn btn-primary sm-btn" onclick="addCustomText()" style="flex:1;">+ Add Text</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="section">
                     <div class="section-title">📐 Phone Settings</div>
                     <div class="form-group">
                         <label class="form-label">Tilt Angle</label>
@@ -359,6 +403,37 @@
                 </div>
             </div>
 
+            <!-- LAYERS TAB -->
+            <div class="tab-content" id="tab-layers">
+                <div class="section">
+                    <div class="section-title">📑 Element Layers</div>
+                    <p class="help-text">
+                        Click a layer to select it. Toggle 👁 to show/hide.
+                        Double-click text on canvas to edit inline.
+                    </p>
+                    <div id="layersList"></div>
+                </div>
+                <div class="section">
+                    <div class="section-title">📏 Element Properties</div>
+                    <div id="elementProps">
+                        <p class="help-text" style="text-align:center;opacity:0.5;">Select an element to see its
+                            properties</p>
+                    </div>
+                </div>
+                <div class="section">
+                    <div class="section-title">⚡ Quick Actions</div>
+                    <button class="btn btn-secondary full-width mt-10" onclick="resetElementPositions()">
+                        ↺ Reset All Positions
+                    </button>
+                    <button class="btn btn-primary full-width mt-10" onclick="copyBannerToClipboard()">
+                        📋 Copy to Clipboard
+                    </button>
+                    <button class="btn btn-success full-width mt-10" onclick="downloadBanner()">
+                        ⬇ Download PNG
+                    </button>
+                </div>
+            </div>
+
         </div><!-- END LEFT PANEL -->
 
         <!-- RIGHT PANEL -->
@@ -374,6 +449,32 @@
                     <span class="zoom-value" id="zoomValue">55%</span>
                     <button class="zoom-btn" onclick="zoom(10)">+</button>
                     <button class="btn btn-secondary sm-btn" onclick="fitToScreen()">Fit</button>
+                </div>
+
+                <!-- Grid & Alignment Tools -->
+                <div class="ci-toolbar-group">
+                    <div class="ci-toolbar-divider"></div>
+                    <button class="zoom-btn" onclick="toggleGrid()" id="gridToggleBtn" title="Toggle Grid">⊞</button>
+                    <select class="ci-grid-select" id="gridSizeSelect" onchange="setGridSize(+this.value)"
+                        title="Grid Size">
+                        <option value="10">10px</option>
+                        <option value="20" selected>20px</option>
+                        <option value="40">40px</option>
+                        <option value="60">60px</option>
+                    </select>
+                    <div class="ci-toolbar-divider"></div>
+                    <button class="ci-align-btn" onclick="alignElement('left')" title="Align Left" disabled>⇤</button>
+                    <button class="ci-align-btn" onclick="alignElement('center-h')" title="Center Horizontal"
+                        disabled>⬌</button>
+                    <button class="ci-align-btn" onclick="alignElement('right')" title="Align Right" disabled>⇥</button>
+                    <button class="ci-align-btn" onclick="alignElement('top')" title="Align Top" disabled>⤒</button>
+                    <button class="ci-align-btn" onclick="alignElement('center-v')" title="Center Vertical"
+                        disabled>⬍</button>
+                    <button class="ci-align-btn" onclick="alignElement('bottom')" title="Align Bottom"
+                        disabled>⤓</button>
+                    <div class="ci-toolbar-divider"></div>
+                    <button class="btn btn-secondary sm-btn" onclick="resetElementPositions()"
+                        title="Reset all element positions">↺ Reset Pos</button>
                 </div>
             </div>
 
@@ -419,6 +520,73 @@
         </div>
     </div>
 
+    <!-- CANVA EXPORT MODAL -->
+    <div class="modal-overlay" id="canvaExportModal">
+        <div class="modal" style="max-width:520px;">
+            <div class="modal-title">🎨 Export for Canva</div>
+            <p style="font-size:13px;color:#CAC4D0;margin-bottom:16px;line-height:1.6;">
+                Export your design to edit in Canva or other design tools.
+            </p>
+
+            <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px;">
+                <!-- Option 1: Export Layers -->
+                <div class="canva-export-card" onclick="exportLayers();closeModal('canvaExportModal')">
+                    <div class="canva-export-icon">📑</div>
+                    <div>
+                        <div class="canva-export-title">Export as Layers</div>
+                        <div class="canva-export-desc">Downloads each element as a separate transparent PNG. Import them
+                            individually into Canva — move, resize, and edit each layer freely.</div>
+                    </div>
+                    <div class="canva-export-badge">Best for Canva</div>
+                </div>
+
+                <!-- Option 2: Copy to Clipboard -->
+                <div class="canva-export-card" onclick="copyBannerToClipboard();closeModal('canvaExportModal')">
+                    <div class="canva-export-icon">📋</div>
+                    <div>
+                        <div class="canva-export-title">Copy to Clipboard</div>
+                        <div class="canva-export-desc">Copies the banner as an image. Open Canva and press Ctrl+V to
+                            paste it directly into your design.</div>
+                    </div>
+                </div>
+
+                <!-- Option 3: Open Canva -->
+                <div class="canva-export-card" onclick="openCanva();closeModal('canvaExportModal')">
+                    <div class="canva-export-icon">🚀</div>
+                    <div>
+                        <div class="canva-export-title">Open Canva</div>
+                        <div class="canva-export-desc">Opens Canva in a new tab. Create a custom-size design and upload
+                            your exported layers.</div>
+                    </div>
+                </div>
+
+                <!-- Option 4: PNG -->
+                <div class="canva-export-card" onclick="downloadBanner();closeModal('canvaExportModal')">
+                    <div class="canva-export-icon">🖼️</div>
+                    <div>
+                        <div class="canva-export-title">Download Full PNG</div>
+                        <div class="canva-export-desc">High-res 2x PNG of the complete banner. Use as a single
+                            background image in Canva.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                style="background:rgba(103,80,164,0.1);border:1px solid rgba(103,80,164,0.3);border-radius:8px;padding:10px 14px;margin-bottom:14px;">
+                <div style="font-size:11px;color:#CAC4D0;line-height:1.6;">
+                    💡 <strong style="color:#03DAC5;">Workflow:</strong> Use "Export as Layers" → Open Canva → Create a
+                    <strong style="color:#fff;">Custom Size</strong> design matching your banner dimensions → Upload
+                    each layer PNG →
+                    Arrange, resize, and edit text on each layer independently.
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal('canvaExportModal')">✕ Close</button>
+            </div>
+        </div>
+    </div>
+
     <!-- NOTIFICATION -->
     <div class="notification" id="notification"></div>
 
@@ -440,6 +608,8 @@
     <script src="templates/components/kotlin-code-card.js"></script>
     <script src="templates/components/gradient-text.js"></script>
     <script src="templates/components/grade-float-card.js"></script>
+    <script src="templates/components/neon-shape-icons.js"></script>
+    <script src="templates/components/oop-concept-card.js"></script>
 
 
     <!-- 3. Templates (uses component functions in render) -->
@@ -457,6 +627,7 @@
     <script src="js/media.js"></script>
     <script src="js/editor.js"></script>
     <script src="js/export.js"></script>
+    <script src="js/canvas-interact.js"></script>
     <script src="js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </body>

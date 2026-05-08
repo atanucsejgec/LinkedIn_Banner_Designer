@@ -6,7 +6,7 @@
 
 /* ===== TABS ===== */
 function switchTab(name) {
-  const names = ['content','design','media','templates','overlays'];
+  const names = ['content','design','media','templates','overlays','layers'];
   const tabs = document.querySelectorAll('.tab');
   tabs.forEach((t,i) => {
     const isActive = names[i]===name;

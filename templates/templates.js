@@ -3253,67 +3253,67 @@ const TEMPLATES = [
   },
 
   /* ==== TEMPLATE — Android Developer · Square ==== */
-{
-  id: 'android-dev-square',
-  name: 'Android Developer · Square',
-  tag: '1 Screenshot',
-  screenshots: 1,
-  thumb: {
-    bg: 'linear-gradient(135deg, #0A0F1E, #1A237E)',
-    emoji: '🤖',
-    label: 'Android Dev'
-  },
+  {
+    id: 'android-dev-square',
+    name: 'Android Developer · Square',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg, #0A0F1E, #1A237E)',
+      emoji: '🤖',
+      label: 'Android Dev'
+    },
 
-  render(d) {
-    const c  = d.colors;
-    const ss = d.screenshots[0];
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
 
-    /* ── Canvas size ───────────────────────────────────────────── */
-    const W  = d.bannerW || 1080;
-    const H  = d.bannerH || 1080;
-    const sf = Math.min(W / 1080, H / 1080);
+      /* ── Canvas size ───────────────────────────────────────────── */
+      const W = d.bannerW || 1080;
+      const H = d.bannerH || 1080;
+      const sf = Math.min(W / 1080, H / 1080);
 
-    /* ── Layout zones ──────────────────────────────────────────── */
-    const PAD     = Math.round(44  * sf);
-    const LEFT_W  = Math.round(300 * sf);
-    const MID_W   = Math.round(360 * sf);
-    const RIGHT_W = W - LEFT_W - MID_W - PAD * 2;
-    const TOPBAR  = Math.round(6   * sf);
-    const FOOTER  = Math.round(72  * sf);
-    const INNER_T = Math.round(16  * sf);
+      /* ── Layout zones ──────────────────────────────────────────── */
+      const PAD = Math.round(44 * sf);
+      const LEFT_W = Math.round(300 * sf);
+      const MID_W = Math.round(360 * sf);
+      const RIGHT_W = W - LEFT_W - MID_W - PAD * 2;
+      const TOPBAR = Math.round(6 * sf);
+      const FOOTER = Math.round(72 * sf);
+      const INNER_T = Math.round(16 * sf);
 
-    /* Mid column start x */
-    const MID_START = PAD + LEFT_W;
+      /* Mid column start x */
+      const MID_START = PAD + LEFT_W;
 
-    /* Tag columns */
-    const TAG_W = Math.round(188 * sf);
-    const LT_X  = MID_START - TAG_W - Math.round(6 * sf);
-    const RT_X  = MID_START + MID_W + Math.round(6 * sf);
+      /* Tag columns */
+      const TAG_W = Math.round(188 * sf);
+      const LT_X = MID_START - TAG_W - Math.round(6 * sf);
+      const RT_X = MID_START + MID_W + Math.round(6 * sf);
 
-    /* ── Font sizes ────────────────────────────────────────────── */
-    const FS_SUPER  = Math.round(11 * sf);
-    const FS_ROLE   = Math.round(36 * sf);
-    const FS_KOTLIN = Math.round(22 * sf);
-    const FS_SUB    = Math.round(13 * sf);
-    const FS_APP    = Math.round(15 * sf);
-    const FS_BADGE  = Math.round(11 * sf);
-    const FS_FOOT   = Math.round(11 * sf);
-    const FS_INTERN = Math.round(12 * sf);
-    const FS_TAG    = Math.round(10 * sf);
+      /* ── Font sizes ────────────────────────────────────────────── */
+      const FS_SUPER = Math.round(11 * sf);
+      const FS_ROLE = Math.round(36 * sf);
+      const FS_KOTLIN = Math.round(22 * sf);
+      const FS_SUB = Math.round(13 * sf);
+      const FS_APP = Math.round(15 * sf);
+      const FS_BADGE = Math.round(11 * sf);
+      const FS_FOOT = Math.round(11 * sf);
+      const FS_INTERN = Math.round(12 * sf);
+      const FS_TAG = Math.round(10 * sf);
 
-    /* ── Phone ─────────────────────────────────────────────────── */
-    const phoneWidth = Math.round((d.phoneW || 200) * sf * 1.1);
+      /* ── Phone ─────────────────────────────────────────────────── */
+      const phoneWidth = Math.round((d.phoneW || 200) * sf * 1.1);
 
-    /* ── Data ──────────────────────────────────────────────────── */
-    const appName    = d.state.subtitle || '📊 Student Grade Tracker App';
-    const githubUrl  = d.state.github   || 'github.com/atanucsejgec/Student_Grade_Tracker';
-    const author     = d.state.author   || '@atanucsejgec';
-    const bottomLine = d.state.description
-                       || 'Passionate about Clean Code • Scalable Architecture • Modern Android';
+      /* ── Data ──────────────────────────────────────────────────── */
+      const appName = d.state.subtitle || '📊 Student Grade Tracker App';
+      const githubUrl = d.state.github || 'github.com/atanucsejgec/Student_Grade_Tracker';
+      const author = d.state.author || '@atanucsejgec';
+      const bottomLine = d.state.description
+        || 'Passionate about Clean Code • Scalable Architecture • Modern Android';
 
-    const featList = d.state.features.length
-      ? d.state.features.slice(0, 6)
-      : [
+      const featList = d.state.features.length
+        ? d.state.features.slice(0, 6)
+        : [
           'State Management',
           'Kotlin Data Classes',
           'Functional Programming',
@@ -3322,33 +3322,33 @@ const TEMPLATES = [
           'Clean Architecture',
         ];
 
-    const techBadges = d.state.badges.length
-      ? d.state.badges.slice(0, 6)
-      : [
-          { label: 'Kotlin',          color: '#7F52FF' },
+      const techBadges = d.state.badges.length
+        ? d.state.badges.slice(0, 6)
+        : [
+          { label: 'Kotlin', color: '#7F52FF' },
           { label: 'Jetpack Compose', color: '#3DDC84' },
-          { label: 'Material 3',      color: '#6750A4' },
-          { label: 'State Mgmt',      color: '#03A9F4' },
+          { label: 'Material 3', color: '#6750A4' },
+          { label: 'State Mgmt', color: '#03A9F4' },
           { label: 'Collection APIs', color: '#FF6D00' },
-          { label: 'MVVM',            color: '#E91E63' },
+          { label: 'MVVM', color: '#E91E63' },
         ];
 
-    /* ── Accent colours ────────────────────────────────────────── */
-    const androidGreen = '#3DDC84';
-    const accentMain   = c.a1 || '#6750A4';
-    const accentSec    = c.a2 || androidGreen;
-    const hlCol        = c.hl || '#FFD700';
+      /* ── Accent colours ────────────────────────────────────────── */
+      const androidGreen = '#3DDC84';
+      const accentMain = c.a1 || '#6750A4';
+      const accentSec = c.a2 || androidGreen;
+      const hlCol = c.hl || '#FFD700';
 
-    /* ── Helpers ───────────────────────────────────────────────── */
+      /* ── Helpers ───────────────────────────────────────────────── */
 
-    /* Floating feature tag pill — solid colours, no gradient on text */
-    const tagPill = (text, accent, delay) => `
+      /* Floating feature tag pill — solid colours, no gradient on text */
+      const tagPill = (text, accent, delay) => `
       <div style="
-        display:inline-flex;align-items:center;gap:${Math.round(5*sf)}px;
+        display:inline-flex;align-items:center;gap:${Math.round(5 * sf)}px;
         background:rgba(10,15,30,0.82);
         border:1px solid ${accent}66;
-        border-radius:${Math.round(20*sf)}px;
-        padding:${Math.round(4*sf)}px ${Math.round(10*sf)}px ${Math.round(4*sf)}px ${Math.round(8*sf)}px;
+        border-radius:${Math.round(20 * sf)}px;
+        padding:${Math.round(4 * sf)}px ${Math.round(10 * sf)}px ${Math.round(4 * sf)}px ${Math.round(8 * sf)}px;
         box-shadow:0 2px 12px rgba(0,0,0,0.45),0 0 0 0.5px rgba(255,255,255,0.04) inset;
         white-space:nowrap;
         animation:androidTagBob 3.4s ease-in-out ${delay}s infinite alternate;">
@@ -3358,17 +3358,17 @@ const TEMPLATES = [
           color:#E8EAF6;letter-spacing:0.2px;line-height:1;">${text}</span>
       </div>`;
 
-    /* Left / right tag sets */
-    const leftTags  = featList.slice(0, 3);
-    const rightTags = featList.slice(3, 6);
+      /* Left / right tag sets */
+      const leftTags = featList.slice(0, 3);
+      const rightTags = featList.slice(3, 6);
 
-    /* Android ghost SVG (background watermark) */
-    const ghostSize = Math.round(320 * sf);
-    const androidGhost = `
+      /* Android ghost SVG (background watermark) */
+      const ghostSize = Math.round(320 * sf);
+      const androidGhost = `
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 128"
         width="${ghostSize}" height="${ghostSize}"
         style="position:absolute;
-          left:50%;bottom:${FOOTER + Math.round(10*sf)}px;
+          left:50%;bottom:${FOOTER + Math.round(10 * sf)}px;
           transform:translateX(-50%);
           opacity:0.04;pointer-events:none;z-index:0;">
         <g fill="${accentSec}">
@@ -3388,9 +3388,9 @@ const TEMPLATES = [
         </g>
       </svg>`;
 
-    /* Grid background SVG */
-    const gridSpacing = Math.round(48 * sf);
-    const gridBg = `
+      /* Grid background SVG */
+      const gridSpacing = Math.round(48 * sf);
+      const gridBg = `
       <div style="position:absolute;inset:0;overflow:hidden;
         pointer-events:none;opacity:0.06;z-index:0;">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -3405,9 +3405,9 @@ const TEMPLATES = [
         </svg>
       </div>`;
 
-    /* GitHub SVG icon */
-    const ghIconSize = Math.round(16 * sf);
-    const githubIcon = `
+      /* GitHub SVG icon */
+      const ghIconSize = Math.round(16 * sf);
+      const githubIcon = `
       <svg width="${ghIconSize}" height="${ghIconSize}" viewBox="0 0 24 24"
         fill="${accentSec}" style="flex-shrink:0;">
         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205
@@ -3424,41 +3424,49 @@ const TEMPLATES = [
           A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
       </svg>`;
 
-    /* ── Kotlin code lines ─────────────────────────────────────── */
-    const codeLines = [
-      { indent:0, tokens:[{ type:'comment', text:'// Filter & sort students' }] },
-      { indent:0, tokens:[
-        { type:'keyword', text:'val '              },
-        { type:'var',     text:'displayedStudents' },
-        { type:'plain',   text:' ='               },
-      ]},
-      { indent:1, tokens:[{ type:'var', text:'students' }] },
-      { indent:2, tokens:[
-        { type:'punct',   text:'.'        },
-        { type:'fn',      text:'filter'   },
-        { type:'plain',   text:' { '      },
-        { type:'keyword', text:'it'       },
-        { type:'punct',   text:'.'        },
-        { type:'var',     text:'isPassing'},
-        { type:'plain',   text:' }'       },
-      ]},
-      { indent:2, tokens:[
-        { type:'punct', text:'.'                  },
-        { type:'fn',    text:'sortedByDescending' },
-        { type:'plain', text:' {'                 },
-      ]},
-      { indent:3, tokens:[
-        { type:'keyword', text:'it'    },
-        { type:'punct',   text:'.'     },
-        { type:'var',     text:'grade' },
-      ]},
-      { indent:2, tokens:[{ type:'plain', text:'}' }] },
-    ];
+      /* ── Kotlin code lines ─────────────────────────────────────── */
+      const codeLines = [
+        { indent: 0, tokens: [{ type: 'comment', text: '// Filter & sort students' }] },
+        {
+          indent: 0, tokens: [
+            { type: 'keyword', text: 'val ' },
+            { type: 'var', text: 'displayedStudents' },
+            { type: 'plain', text: ' =' },
+          ]
+        },
+        { indent: 1, tokens: [{ type: 'var', text: 'students' }] },
+        {
+          indent: 2, tokens: [
+            { type: 'punct', text: '.' },
+            { type: 'fn', text: 'filter' },
+            { type: 'plain', text: ' { ' },
+            { type: 'keyword', text: 'it' },
+            { type: 'punct', text: '.' },
+            { type: 'var', text: 'isPassing' },
+            { type: 'plain', text: ' }' },
+          ]
+        },
+        {
+          indent: 2, tokens: [
+            { type: 'punct', text: '.' },
+            { type: 'fn', text: 'sortedByDescending' },
+            { type: 'plain', text: ' {' },
+          ]
+        },
+        {
+          indent: 3, tokens: [
+            { type: 'keyword', text: 'it' },
+            { type: 'punct', text: '.' },
+            { type: 'var', text: 'grade' },
+          ]
+        },
+        { indent: 2, tokens: [{ type: 'plain', text: '}' }] },
+      ];
 
-    /* ══════════════════════════════════════════════════════════════
-       RENDER
-       ══════════════════════════════════════════════════════════════ */
-    return `
+      /* ══════════════════════════════════════════════════════════════
+         RENDER
+         ══════════════════════════════════════════════════════════════ */
+      return `
 
       <!-- ── Bob animation keyframes ──────────────────────────── -->
       <style>
@@ -3487,17 +3495,17 @@ const TEMPLATES = [
 
       <!-- Glow blobs -->
       <div style="position:absolute;
-        width:${Math.round(500*sf)}px;height:${Math.round(500*sf)}px;
-        top:${Math.round(-160*sf)}px;left:${Math.round(-100*sf)}px;
+        width:${Math.round(500 * sf)}px;height:${Math.round(500 * sf)}px;
+        top:${Math.round(-160 * sf)}px;left:${Math.round(-100 * sf)}px;
         background:radial-gradient(circle,${accentMain}28,transparent 65%);
         border-radius:50%;pointer-events:none;z-index:0;"></div>
       <div style="position:absolute;
-        width:${Math.round(400*sf)}px;height:${Math.round(400*sf)}px;
-        bottom:${Math.round(20*sf)}px;right:${Math.round(-80*sf)}px;
+        width:${Math.round(400 * sf)}px;height:${Math.round(400 * sf)}px;
+        bottom:${Math.round(20 * sf)}px;right:${Math.round(-80 * sf)}px;
         background:radial-gradient(circle,${accentSec}20,transparent 65%);
         border-radius:50%;pointer-events:none;z-index:0;"></div>
       <div style="position:absolute;
-        width:${Math.round(300*sf)}px;height:${Math.round(300*sf)}px;
+        width:${Math.round(300 * sf)}px;height:${Math.round(300 * sf)}px;
         top:50%;left:50%;transform:translate(-50%,-50%);
         background:radial-gradient(circle,${accentSec}14,transparent 65%);
         border-radius:50%;pointer-events:none;z-index:0;"></div>
@@ -3509,18 +3517,18 @@ const TEMPLATES = [
 
       <!-- Sparkles -->
       <div style="position:absolute;
-        top:${Math.round(88*sf)}px;left:${Math.round(255*sf)}px;
-        color:${accentSec};font-size:${Math.round(13*sf)}px;
+        top:${Math.round(88 * sf)}px;left:${Math.round(255 * sf)}px;
+        color:${accentSec};font-size:${Math.round(13 * sf)}px;
         opacity:0.65;z-index:5;
         animation:androidPulse 2.5s ease-in-out infinite;">✦</div>
       <div style="position:absolute;
-        top:${Math.round(195*sf)}px;right:${Math.round(108*sf)}px;
-        color:${hlCol};font-size:${Math.round(9*sf)}px;
+        top:${Math.round(195 * sf)}px;right:${Math.round(108 * sf)}px;
+        color:${hlCol};font-size:${Math.round(9 * sf)}px;
         opacity:0.55;z-index:5;
         animation:androidPulse 3.1s ease-in-out 0.7s infinite;">✦</div>
       <div style="position:absolute;
-        bottom:${Math.round(138*sf)}px;left:${Math.round(195*sf)}px;
-        color:${accentMain};font-size:${Math.round(11*sf)}px;
+        bottom:${Math.round(138 * sf)}px;left:${Math.round(195 * sf)}px;
+        color:${accentMain};font-size:${Math.round(11 * sf)}px;
         opacity:0.45;z-index:5;
         animation:androidPulse 2.8s ease-in-out 1.3s infinite;">✦</div>
 
@@ -3532,26 +3540,26 @@ const TEMPLATES = [
         top:${TOPBAR + INNER_T}px;
         left:${PAD}px;
         width:${LEFT_W}px;
-        bottom:${FOOTER + Math.round(8*sf)}px;
+        bottom:${FOOTER + Math.round(8 * sf)}px;
         display:flex;flex-direction:column;
         justify-content:center;
-        gap:${Math.round(12*sf)}px;
+        gap:${Math.round(12 * sf)}px;
         z-index:10;">
 
         <!-- Super label -->
         <div style="
           display:flex;align-items:center;
-          gap:${Math.round(7*sf)}px;">
+          gap:${Math.round(7 * sf)}px;">
           <div style="
-            width:${Math.round(3*sf)}px;
-            height:${Math.round(20*sf)}px;
+            width:${Math.round(3 * sf)}px;
+            height:${Math.round(20 * sf)}px;
             background:${accentSec};
             border-radius:2px;
             flex-shrink:0;"></div>
           <span style="
             font-size:${FS_SUPER}px;
             font-weight:700;
-            letter-spacing:${Math.round(2.5*sf)}px;
+            letter-spacing:${Math.round(2.5 * sf)}px;
             text-transform:uppercase;
             color:${accentSec};">
             OPEN TO OPPORTUNITIES
@@ -3560,14 +3568,14 @@ const TEMPLATES = [
 
         <!-- ANDROID gradient SVG text -->
         ${gradientTextLines(
-          ['ANDROID', 'DEVELOPER'],
-          '#FFFFFF',
-          accentSec,
-          FS_ROLE,
-          900,
-          -1,
-          Math.round(6 * sf)
-        )}
+        ['ANDROID', 'DEVELOPER'],
+        '#FFFFFF',
+        accentSec,
+        FS_ROLE,
+        900,
+        -1,
+        Math.round(6 * sf)
+      )}
 
         <!-- (KOTLIN) label — plain solid colour, no gradient clip -->
         <div style="
@@ -3575,15 +3583,15 @@ const TEMPLATES = [
           font-weight:800;
           color:${accentSec};
           text-transform:uppercase;
-          letter-spacing:${Math.round(2*sf)}px;
-          margin-top:${Math.round(-6*sf)}px;">
+          letter-spacing:${Math.round(2 * sf)}px;
+          margin-top:${Math.round(-6 * sf)}px;">
           (KOTLIN)
         </div>
 
         <!-- Divider -->
         <div style="
-          width:${Math.round(170*sf)}px;
-          height:${Math.round(2*sf)}px;
+          width:${Math.round(170 * sf)}px;
+          height:${Math.round(2 * sf)}px;
           background:linear-gradient(90deg,${accentSec},${accentMain},transparent);
           border-radius:2px;"></div>
 
@@ -3601,13 +3609,13 @@ const TEMPLATES = [
         <div style="
           background:linear-gradient(135deg,${accentMain}1E,${accentSec}16);
           border:1px solid ${accentSec}44;
-          border-radius:${Math.round(10*sf)}px;
-          padding:${Math.round(10*sf)}px ${Math.round(13*sf)}px;">
+          border-radius:${Math.round(10 * sf)}px;
+          padding:${Math.round(10 * sf)}px ${Math.round(13 * sf)}px;">
           <div style="
             font-size:${FS_APP}px;
             font-weight:800;
             color:#FFFFFF;
-            margin-bottom:${Math.round(4*sf)}px;">
+            margin-bottom:${Math.round(4 * sf)}px;">
             ${appName}
           </div>
           <div style="
@@ -3621,15 +3629,15 @@ const TEMPLATES = [
         <!-- Internship CTA -->
         <div style="
           display:inline-flex;align-items:center;
-          gap:${Math.round(7*sf)}px;
+          gap:${Math.round(7 * sf)}px;
           background:linear-gradient(135deg,${accentSec}1E,${hlCol}14);
           border:1.5px solid ${accentSec}77;
-          border-radius:${Math.round(24*sf)}px;
-          padding:${Math.round(7*sf)}px ${Math.round(14*sf)}px;
+          border-radius:${Math.round(24 * sf)}px;
+          padding:${Math.round(7 * sf)}px ${Math.round(14 * sf)}px;
           width:fit-content;
           box-shadow:0 0 18px ${accentSec}2A;
           animation:androidTagBob 2.8s ease-in-out 0.3s infinite alternate;">
-          <span style="font-size:${Math.round(FS_INTERN*1.1)}px;">🚀</span>
+          <span style="font-size:${Math.round(FS_INTERN * 1.1)}px;">🚀</span>
           <span style="
             font-size:${FS_INTERN}px;
             font-weight:800;
@@ -3647,13 +3655,13 @@ const TEMPLATES = [
         position:absolute;
         left:${LT_X}px;
         width:${TAG_W}px;
-        top:${TOPBAR + Math.round(70*sf)}px;
-        bottom:${FOOTER + Math.round(20*sf)}px;
+        top:${TOPBAR + Math.round(70 * sf)}px;
+        bottom:${FOOTER + Math.round(20 * sf)}px;
         display:flex;flex-direction:column;
         justify-content:space-evenly;
         align-items:flex-end;
         z-index:12;
-        gap:${Math.round(6*sf)}px;">
+        gap:${Math.round(6 * sf)}px;">
         ${leftTags.map((t, i) => tagPill(t, accentSec, i * 0.22)).join('')}
       </div>
 
@@ -3672,8 +3680,8 @@ const TEMPLATES = [
         <!-- Phone glow -->
         <div style="
           position:absolute;
-          width:${Math.round(280*sf)}px;
-          height:${Math.round(280*sf)}px;
+          width:${Math.round(280 * sf)}px;
+          height:${Math.round(280 * sf)}px;
           background:radial-gradient(circle,${accentSec}24,transparent 65%);
           border-radius:50%;pointer-events:none;"></div>
 
@@ -3687,13 +3695,13 @@ const TEMPLATES = [
         position:absolute;
         left:${RT_X}px;
         width:${TAG_W}px;
-        top:${TOPBAR + Math.round(70*sf)}px;
-        bottom:${FOOTER + Math.round(20*sf)}px;
+        top:${TOPBAR + Math.round(70 * sf)}px;
+        bottom:${FOOTER + Math.round(20 * sf)}px;
         display:flex;flex-direction:column;
         justify-content:space-evenly;
         align-items:flex-start;
         z-index:12;
-        gap:${Math.round(6*sf)}px;">
+        gap:${Math.round(6 * sf)}px;">
         ${rightTags.map((t, i) => tagPill(t, accentSec, (i + 3) * 0.22)).join('')}
       </div>
 
@@ -3705,23 +3713,23 @@ const TEMPLATES = [
         top:${TOPBAR + INNER_T}px;
         right:${PAD}px;
         width:${RIGHT_W}px;
-        bottom:${FOOTER + Math.round(8*sf)}px;
+        bottom:${FOOTER + Math.round(8 * sf)}px;
         display:flex;flex-direction:column;
         justify-content:center;
-        gap:${Math.round(13*sf)}px;
+        gap:${Math.round(13 * sf)}px;
         z-index:10;">
 
         <!-- Tech Stack heading — solid colour, no gradient clip -->
         <div style="
           display:flex;align-items:center;
-          gap:${Math.round(8*sf)}px;">
+          gap:${Math.round(8 * sf)}px;">
           <div style="
-            width:${Math.round(18*sf)}px;height:${Math.round(2*sf)}px;
+            width:${Math.round(18 * sf)}px;height:${Math.round(2 * sf)}px;
             background:${accentSec};border-radius:2px;flex-shrink:0;"></div>
           <span style="
             font-size:${Math.round(FS_SUPER * 1.15)}px;
             font-weight:800;
-            letter-spacing:${Math.round(2*sf)}px;
+            letter-spacing:${Math.round(2 * sf)}px;
             text-transform:uppercase;
             color:${accentSec};">
             Tech Stack
@@ -3729,7 +3737,7 @@ const TEMPLATES = [
         </div>
 
         <!-- Badge grid -->
-        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(6*sf)}px;">
+        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(6 * sf)}px;">
           ${techBadges.map(b => `
             <span style="
               display:inline-block;
@@ -3738,8 +3746,8 @@ const TEMPLATES = [
               color:#FFFFFF;
               font-size:${FS_BADGE}px;
               font-weight:700;
-              padding:${Math.round(4*sf)}px ${Math.round(10*sf)}px;
-              border-radius:${Math.round(14*sf)}px;
+              padding:${Math.round(4 * sf)}px ${Math.round(10 * sf)}px;
+              border-radius:${Math.round(14 * sf)}px;
               white-space:nowrap;
               box-shadow:0 0 8px ${b.color}28;
               letter-spacing:0.2px;">
@@ -3759,12 +3767,12 @@ const TEMPLATES = [
         <div style="
           background:rgba(255,255,255,0.03);
           border:1px solid ${accentSec}33;
-          border-radius:${Math.round(10*sf)}px;
-          padding:${Math.round(10*sf)}px ${Math.round(13*sf)}px;
+          border-radius:${Math.round(10 * sf)}px;
+          padding:${Math.round(10 * sf)}px ${Math.round(13 * sf)}px;
           display:flex;flex-direction:column;
-          gap:${Math.round(5*sf)}px;">
+          gap:${Math.round(5 * sf)}px;">
 
-          <div style="display:flex;align-items:center;gap:${Math.round(8*sf)}px;">
+          <div style="display:flex;align-items:center;gap:${Math.round(8 * sf)}px;">
             ${githubIcon}
             <span style="
               font-size:${Math.round(FS_SUB * 0.95)}px;
@@ -3810,7 +3818,7 @@ const TEMPLATES = [
         </span>
 
         <!-- Author + badge -->
-        <div style="display:flex;align-items:center;gap:${Math.round(10*sf)}px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:${Math.round(10 * sf)}px;flex-shrink:0;">
           <span style="
             font-size:${FS_FOOT}px;
             font-weight:700;
@@ -3820,8 +3828,8 @@ const TEMPLATES = [
           <span style="
             background:${androidGreen}1E;
             border:1px solid ${androidGreen}77;
-            border-radius:${Math.round(12*sf)}px;
-            padding:${Math.round(3*sf)}px ${Math.round(9*sf)}px;
+            border-radius:${Math.round(12 * sf)}px;
+            padding:${Math.round(3 * sf)}px ${Math.round(9 * sf)}px;
             font-size:${Math.round(FS_BADGE * 0.95)}px;
             font-weight:700;
             color:${androidGreen};
@@ -3833,30 +3841,30 @@ const TEMPLATES = [
       </div>
 
     `;
-  }
-},
-
-
-/* ==== TEMPLATE — Student Grade Tracker (Square) ==== */
-{
-  id: 'student-grade-tracker-square',
-  name: 'Student Grade Tracker',
-  tag: 'No Screenshot',
-  screenshots: 0,
-  thumb: {
-    bg: 'linear-gradient(135deg, #1C1B1F, #2D1B69)',
-    emoji: '🎓',
-    label: 'Grade Tracker'
+    }
   },
 
-  render(d) {
-    const c     = d.colors;
-    const W     = d.bannerW || 1080;
-    const H     = d.bannerH || 1080;
 
-    const feats = (d.state.features && d.state.features.length)
-      ? d.state.features.slice(0, 6)
-      : [
+  /* ==== TEMPLATE — Student Grade Tracker (Square) ==== */
+  {
+    id: 'student-grade-tracker-square',
+    name: 'Student Grade Tracker',
+    tag: 'No Screenshot',
+    screenshots: 0,
+    thumb: {
+      bg: 'linear-gradient(135deg, #1C1B1F, #2D1B69)',
+      emoji: '🎓',
+      label: 'Grade Tracker'
+    },
+
+    render(d) {
+      const c = d.colors;
+      const W = d.bannerW || 1080;
+      const H = d.bannerH || 1080;
+
+      const feats = (d.state.features && d.state.features.length)
+        ? d.state.features.slice(0, 6)
+        : [
           'Grade Tracking',
           'Subject-wise Analytics',
           'Filtering System',
@@ -3865,83 +3873,83 @@ const TEMPLATES = [
           'Reactive State Management'
         ];
 
-    const techStack = (d.state.badges && d.state.badges.length)
-      ? d.state.badges
-      : [
-          { label: 'Kotlin',          color: '#7F52FF' },
+      const techStack = (d.state.badges && d.state.badges.length)
+        ? d.state.badges
+        : [
+          { label: 'Kotlin', color: '#7F52FF' },
           { label: 'Jetpack Compose', color: '#03DAC5' },
-          { label: 'Material 3',      color: '#6750A4' },
-          { label: 'LazyColumn',      color: '#BB86FC' },
-          { label: 'Data Classes',    color: '#03DAC5' },
-          { label: 'Enums',           color: '#CF6679' }
+          { label: 'Material 3', color: '#6750A4' },
+          { label: 'LazyColumn', color: '#BB86FC' },
+          { label: 'Data Classes', color: '#03DAC5' },
+          { label: 'Enums', color: '#CF6679' }
         ];
 
-    const badge  = d.state.badge       || '🚀 JUST SHIPPED';
-    const h1     = d.state.h1          || 'Student Grade';
-    const h2     = d.state.h2          || 'Tracker';
-    const sub    = d.state.subtitle    || 'Smart Grade Management App';
-    const desc   = d.state.description || 'Built with Kotlin & Jetpack Compose';
-    const github = d.state.github      || 'github.com/atanucsejgec/Student_Grade_Tracker';
-    const author = d.state.author      || '@atanucsejgec';
+      const badge = d.state.badge || '🚀 JUST SHIPPED';
+      const h1 = d.state.h1 || 'Student Grade';
+      const h2 = d.state.h2 || 'Tracker';
+      const sub = d.state.subtitle || 'Smart Grade Management App';
+      const desc = d.state.description || 'Built with Kotlin & Jetpack Compose';
+      const github = d.state.github || 'github.com/atanucsejgec/Student_Grade_Tracker';
+      const author = d.state.author || '@atanucsejgec';
 
-    /* ── screenshot (may be null) ───────────────────────── */
-    const ss = d.screenshots[0] || null;
+      /* ── screenshot (may be null) ───────────────────────── */
+      const ss = d.screenshots[0] || null;
 
-    /* ── scale factor ───────────────────────────────────── */
-    const scale = W / 1080;
+      /* ── scale factor ───────────────────────────────────── */
+      const scale = W / 1080;
 
-    /* ── font sizes ─────────────────────────────────────── */
-    const hs  = Math.round((d.hs || 48) * scale);
-    const sss = Math.round((d.ss || 15) * scale);
-    const fs  = Math.round((d.fs || 12) * scale);
+      /* ── font sizes ─────────────────────────────────────── */
+      const hs = Math.round((d.hs || 48) * scale);
+      const sss = Math.round((d.ss || 15) * scale);
+      const fs = Math.round((d.fs || 12) * scale);
 
-    /* ── layout constants ───────────────────────────────── */
-    const PAD    = Math.round(36 * scale);
-    const FOOTER = Math.round(72 * scale);
-    const TOPBAR = Math.round(5  * scale);
-    const DIVH   = Math.round(3  * scale);
+      /* ── layout constants ───────────────────────────────── */
+      const PAD = Math.round(36 * scale);
+      const FOOTER = Math.round(72 * scale);
+      const TOPBAR = Math.round(5 * scale);
+      const DIVH = Math.round(3 * scale);
 
-    /* ── column widths ──────────────────────────────────── */
-    // Three columns: LEFT | PHONE | RIGHT
-    const LEFT_W  = Math.round(310 * scale);   // text + features
-    const PHONE_W = Math.round(240 * scale);   // phone mockup column
-    const RIGHT_W = Math.round(330 * scale);   // UI cards
-    const GAP     = Math.round(
-      (W - PAD * 2 - LEFT_W - PHONE_W - RIGHT_W) / 2
-    );
+      /* ── column widths ──────────────────────────────────── */
+      // Three columns: LEFT | PHONE | RIGHT
+      const LEFT_W = Math.round(310 * scale);   // text + features
+      const PHONE_W = Math.round(240 * scale);   // phone mockup column
+      const RIGHT_W = Math.round(330 * scale);   // UI cards
+      const GAP = Math.round(
+        (W - PAD * 2 - LEFT_W - PHONE_W - RIGHT_W) / 2
+      );
 
-    const LEFT_X  = PAD;
-    const PHONE_X = LEFT_X + LEFT_W + GAP;
-    const RIGHT_X = PHONE_X + PHONE_W + GAP;
+      const LEFT_X = PAD;
+      const PHONE_X = LEFT_X + LEFT_W + GAP;
+      const RIGHT_X = PHONE_X + PHONE_W + GAP;
 
-    /* ── phone dimensions ───────────────────────────────── */
-    const phoneFrameW  = PHONE_W;                          // frame outer width
-    const phoneTilt    = d.phoneTilt || 0;                 // keep upright in center
-    const glowOp       = d.glowOpacity || 35;
+      /* ── phone dimensions ───────────────────────────────── */
+      const phoneFrameW = PHONE_W;                          // frame outer width
+      const phoneTilt = d.phoneTilt || 0;                 // keep upright in center
+      const glowOp = d.glowOpacity || 35;
 
-    /* ── content top / bottom ───────────────────────────── */
-    const CONTENT_TOP    = Math.round(82  * scale);
-    const CONTENT_BOTTOM = FOOTER + Math.round(14 * scale);
+      /* ── content top / bottom ───────────────────────────── */
+      const CONTENT_TOP = Math.round(82 * scale);
+      const CONTENT_BOTTOM = FOOTER + Math.round(14 * scale);
 
-    /* ═══════════════════════════════════════════════════════
-       INLINE PHONE SCREEN — rendered inside the phone mockup
-       when no screenshot is uploaded.
-       We build a tiny HTML snapshot as a data-URI SVG so
-       phoneMockup() always has something to show.
-       ═══════════════════════════════════════════════════════ */
-    const buildFallbackScreen = () => {
-      // Pixel dims of the phone's inner screen at our scale
-      const SW = Math.round(200 * scale);
-      const SH = Math.round(400 * scale);
-      const bg1 = c.bg1;
-      const bg2 = c.bg2;
-      const ac1 = c.a1;
-      const ac2 = c.a2;
-      const hl  = c.hl;
+      /* ═══════════════════════════════════════════════════════
+         INLINE PHONE SCREEN — rendered inside the phone mockup
+         when no screenshot is uploaded.
+         We build a tiny HTML snapshot as a data-URI SVG so
+         phoneMockup() always has something to show.
+         ═══════════════════════════════════════════════════════ */
+      const buildFallbackScreen = () => {
+        // Pixel dims of the phone's inner screen at our scale
+        const SW = Math.round(200 * scale);
+        const SH = Math.round(400 * scale);
+        const bg1 = c.bg1;
+        const bg2 = c.bg2;
+        const ac1 = c.a1;
+        const ac2 = c.a2;
+        const hl = c.hl;
 
-      // We embed a tiny SVG-based screen design
-      // (avoids any external image dependency)
-      const svgScreen = `
+        // We embed a tiny SVG-based screen design
+        // (avoids any external image dependency)
+        const svgScreen = `
         <svg xmlns="http://www.w3.org/2000/svg"
              width="${SW}" height="${SH}" viewBox="0 0 ${SW} ${SH}">
           <defs>
@@ -3966,72 +3974,72 @@ const TEMPLATES = [
           <rect width="${SW}" height="${SH}" fill="url(#sbg)"/>
 
           <!-- grid lines -->
-          ${Array.from({length:10},(_,i)=>`
-            <line x1="0" y1="${i*SH/10}" x2="${SW}" y2="${i*SH/10}"
+          ${Array.from({ length: 10 }, (_, i) => `
+            <line x1="0" y1="${i * SH / 10}" x2="${SW}" y2="${i * SH / 10}"
                   stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
-            <line x1="${i*SW/10}" y1="0" x2="${i*SW/10}" y2="${SH}"
+            <line x1="${i * SW / 10}" y1="0" x2="${i * SW / 10}" y2="${SH}"
                   stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
           `).join('')}
 
           <!-- top accent bar -->
-          <rect x="0" y="0" width="${SW}" height="${Math.round(3*scale)}"
+          <rect x="0" y="0" width="${SW}" height="${Math.round(3 * scale)}"
                 fill="url(#sbar)"/>
 
           <!-- app header -->
-          <rect x="${Math.round(10*scale)}" y="${Math.round(14*scale)}"
-                width="${SW - Math.round(20*scale)}"
-                height="${Math.round(36*scale)}"
-                rx="${Math.round(8*scale)}"
+          <rect x="${Math.round(10 * scale)}" y="${Math.round(14 * scale)}"
+                width="${SW - Math.round(20 * scale)}"
+                height="${Math.round(36 * scale)}"
+                rx="${Math.round(8 * scale)}"
                 fill="rgba(255,255,255,0.07)"/>
           <!-- app icon circle -->
-          <circle cx="${Math.round(26*scale)}"
-                  cy="${Math.round(14*scale)+Math.round(18*scale)}"
-                  r="${Math.round(11*scale)}"
+          <circle cx="${Math.round(26 * scale)}"
+                  cy="${Math.round(14 * scale) + Math.round(18 * scale)}"
+                  r="${Math.round(11 * scale)}"
                   fill="${ac1}"/>
-          <text x="${Math.round(26*scale)}"
-                y="${Math.round(14*scale)+Math.round(23*scale)}"
-                font-size="${Math.round(12*scale)}"
+          <text x="${Math.round(26 * scale)}"
+                y="${Math.round(14 * scale) + Math.round(23 * scale)}"
+                font-size="${Math.round(12 * scale)}"
                 text-anchor="middle" fill="#fff">🎓</text>
-          <text x="${Math.round(44*scale)}"
-                y="${Math.round(14*scale)+Math.round(15*scale)}"
-                font-size="${Math.round(9*scale)}"
+          <text x="${Math.round(44 * scale)}"
+                y="${Math.round(14 * scale) + Math.round(15 * scale)}"
+                font-size="${Math.round(9 * scale)}"
                 font-weight="bold" fill="#fff"
                 font-family="sans-serif">Grade Tracker</text>
-          <text x="${Math.round(44*scale)}"
-                y="${Math.round(14*scale)+Math.round(27*scale)}"
-                font-size="${Math.round(7*scale)}"
+          <text x="${Math.round(44 * scale)}"
+                y="${Math.round(14 * scale) + Math.round(27 * scale)}"
+                font-size="${Math.round(7 * scale)}"
                 fill="rgba(255,255,255,0.45)"
                 font-family="sans-serif">5 Students</text>
 
           <!-- stats row -->
           ${[
-            { lbl:'Avg',  val:'87%', x: Math.round(10*scale),  col: ac1 },
-            { lbl:'Top',  val:'A+',  x: Math.round(80*scale),  col: hl  },
-            { lbl:'Subj', val:'4',   x: Math.round(150*scale), col: ac2 },
-          ].map(s=>`
-            <rect x="${s.x}" y="${Math.round(60*scale)}"
-                  width="${Math.round(56*scale)}"
-                  height="${Math.round(38*scale)}"
-                  rx="${Math.round(6*scale)}"
+            { lbl: 'Avg', val: '87%', x: Math.round(10 * scale), col: ac1 },
+            { lbl: 'Top', val: 'A+', x: Math.round(80 * scale), col: hl },
+            { lbl: 'Subj', val: '4', x: Math.round(150 * scale), col: ac2 },
+          ].map(s => `
+            <rect x="${s.x}" y="${Math.round(60 * scale)}"
+                  width="${Math.round(56 * scale)}"
+                  height="${Math.round(38 * scale)}"
+                  rx="${Math.round(6 * scale)}"
                   fill="rgba(255,255,255,0.07)"/>
-            <text x="${s.x + Math.round(28*scale)}"
-                  y="${Math.round(82*scale)}"
-                  font-size="${Math.round(11*scale)}"
+            <text x="${s.x + Math.round(28 * scale)}"
+                  y="${Math.round(82 * scale)}"
+                  font-size="${Math.round(11 * scale)}"
                   font-weight="bold" text-anchor="middle"
                   fill="${s.col}"
                   font-family="sans-serif">${s.val}</text>
-            <text x="${s.x + Math.round(28*scale)}"
-                  y="${Math.round(91*scale)}"
-                  font-size="${Math.round(6*scale)}"
+            <text x="${s.x + Math.round(28 * scale)}"
+                  y="${Math.round(91 * scale)}"
+                  font-size="${Math.round(6 * scale)}"
                   text-anchor="middle"
                   fill="rgba(255,255,255,0.4)"
                   font-family="sans-serif">${s.lbl}</text>
           `).join('')}
 
           <!-- section label -->
-          <text x="${Math.round(10*scale)}"
-                y="${Math.round(114*scale)}"
-                font-size="${Math.round(7*scale)}"
+          <text x="${Math.round(10 * scale)}"
+                y="${Math.round(114 * scale)}"
+                font-size="${Math.round(7 * scale)}"
                 font-weight="800"
                 letter-spacing="1"
                 fill="rgba(255,255,255,0.35)"
@@ -4039,102 +4047,102 @@ const TEMPLATES = [
 
           <!-- student rows -->
           ${[
-            { name:'Alice Johnson', grade:'A',  pct:0.94, col: ac2  },
-            { name:'Bob Smith',     grade:'B+', pct:0.81, col: ac1  },
-            { name:'Carol Davis',   grade:'A-', pct:0.88, col: hl   },
-            { name:'David Lee',     grade:'B',  pct:0.75, col:'#CF6679'},
-            { name:'Eva Martin',    grade:'C+', pct:0.65, col:'#888888'},
+            { name: 'Alice Johnson', grade: 'A', pct: 0.94, col: ac2 },
+            { name: 'Bob Smith', grade: 'B+', pct: 0.81, col: ac1 },
+            { name: 'Carol Davis', grade: 'A-', pct: 0.88, col: hl },
+            { name: 'David Lee', grade: 'B', pct: 0.75, col: '#CF6679' },
+            { name: 'Eva Martin', grade: 'C+', pct: 0.65, col: '#888888' },
           ].map((st, i) => {
-            const ry = Math.round(120*scale) + i * Math.round(42*scale);
-            const rh = Math.round(34*scale);
-            const rw = SW - Math.round(20*scale);
-            const barW = Math.round((rw - Math.round(64*scale)) * st.pct);
+            const ry = Math.round(120 * scale) + i * Math.round(42 * scale);
+            const rh = Math.round(34 * scale);
+            const rw = SW - Math.round(20 * scale);
+            const barW = Math.round((rw - Math.round(64 * scale)) * st.pct);
             return `
-              <rect x="${Math.round(10*scale)}" y="${ry}"
+              <rect x="${Math.round(10 * scale)}" y="${ry}"
                     width="${rw}" height="${rh}"
-                    rx="${Math.round(7*scale)}"
+                    rx="${Math.round(7 * scale)}"
                     fill="rgba(255,255,255,0.05)"/>
               <!-- avatar circle -->
-              <circle cx="${Math.round(10*scale)+Math.round(17*scale)}"
-                      cy="${ry + Math.round(17*scale)}"
-                      r="${Math.round(11*scale)}"
+              <circle cx="${Math.round(10 * scale) + Math.round(17 * scale)}"
+                      cy="${ry + Math.round(17 * scale)}"
+                      r="${Math.round(11 * scale)}"
                       fill="${st.col}"/>
-              <text x="${Math.round(10*scale)+Math.round(17*scale)}"
-                    y="${ry + Math.round(22*scale)}"
-                    font-size="${Math.round(9*scale)}"
+              <text x="${Math.round(10 * scale) + Math.round(17 * scale)}"
+                    y="${ry + Math.round(22 * scale)}"
+                    font-size="${Math.round(9 * scale)}"
                     font-weight="bold" text-anchor="middle"
                     fill="#fff" font-family="sans-serif">
                     ${st.name.charAt(0)}</text>
               <!-- name -->
-              <text x="${Math.round(10*scale)+Math.round(33*scale)}"
-                    y="${ry + Math.round(13*scale)}"
-                    font-size="${Math.round(8*scale)}"
+              <text x="${Math.round(10 * scale) + Math.round(33 * scale)}"
+                    y="${ry + Math.round(13 * scale)}"
+                    font-size="${Math.round(8 * scale)}"
                     font-weight="600" fill="#fff"
                     font-family="sans-serif">${st.name}</text>
               <!-- progress bar bg -->
-              <rect x="${Math.round(10*scale)+Math.round(33*scale)}"
-                    y="${ry + Math.round(20*scale)}"
-                    width="${rw - Math.round(64*scale)}"
-                    height="${Math.round(3*scale)}"
-                    rx="${Math.round(2*scale)}"
+              <rect x="${Math.round(10 * scale) + Math.round(33 * scale)}"
+                    y="${ry + Math.round(20 * scale)}"
+                    width="${rw - Math.round(64 * scale)}"
+                    height="${Math.round(3 * scale)}"
+                    rx="${Math.round(2 * scale)}"
                     fill="rgba(255,255,255,0.1)"/>
               <!-- progress bar fill -->
-              <rect x="${Math.round(10*scale)+Math.round(33*scale)}"
-                    y="${ry + Math.round(20*scale)}"
+              <rect x="${Math.round(10 * scale) + Math.round(33 * scale)}"
+                    y="${ry + Math.round(20 * scale)}"
                     width="${barW}"
-                    height="${Math.round(3*scale)}"
-                    rx="${Math.round(2*scale)}"
+                    height="${Math.round(3 * scale)}"
+                    rx="${Math.round(2 * scale)}"
                     fill="${st.col}"/>
               <!-- grade badge -->
-              <rect x="${rw - Math.round(18*scale)}"
-                    y="${ry + Math.round(9*scale)}"
-                    width="${Math.round(22*scale)}"
-                    height="${Math.round(16*scale)}"
-                    rx="${Math.round(4*scale)}"
+              <rect x="${rw - Math.round(18 * scale)}"
+                    y="${ry + Math.round(9 * scale)}"
+                    width="${Math.round(22 * scale)}"
+                    height="${Math.round(16 * scale)}"
+                    rx="${Math.round(4 * scale)}"
                     fill="${st.col}22"/>
-              <text x="${rw - Math.round(7*scale)}"
-                    y="${ry + Math.round(21*scale)}"
-                    font-size="${Math.round(8*scale)}"
+              <text x="${rw - Math.round(7 * scale)}"
+                    y="${ry + Math.round(21 * scale)}"
+                    font-size="${Math.round(8 * scale)}"
                     font-weight="800" text-anchor="middle"
                     fill="${st.col}" font-family="sans-serif">${st.grade}</text>
             `;
           }).join('')}
 
           <!-- subject cards row -->
-          <text x="${Math.round(10*scale)}"
-                y="${Math.round(338*scale)}"
-                font-size="${Math.round(7*scale)}"
+          <text x="${Math.round(10 * scale)}"
+                y="${Math.round(338 * scale)}"
+                font-size="${Math.round(7 * scale)}"
                 font-weight="800"
                 letter-spacing="1"
                 fill="rgba(255,255,255,0.35)"
                 font-family="sans-serif">SUBJECTS</text>
 
           ${[
-            { icon:'🔬', sub:'Sci',  val:'92', col: ac2  },
-            { icon:'📐', sub:'Math', val:'78', col: ac1  },
-            { icon:'📖', sub:'Eng',  val:'88', col: hl   },
-            { icon:'🌍', sub:'Hist', val:'81', col:'#CF6679'},
+            { icon: '🔬', sub: 'Sci', val: '92', col: ac2 },
+            { icon: '📐', sub: 'Math', val: '78', col: ac1 },
+            { icon: '📖', sub: 'Eng', val: '88', col: hl },
+            { icon: '🌍', sub: 'Hist', val: '81', col: '#CF6679' },
           ].map((sj, i) => {
-            const cardW = Math.round(40*scale);
-            const cardX = Math.round(10*scale) + i*(cardW + Math.round(6*scale));
+            const cardW = Math.round(40 * scale);
+            const cardX = Math.round(10 * scale) + i * (cardW + Math.round(6 * scale));
             return `
-              <rect x="${cardX}" y="${Math.round(344*scale)}"
-                    width="${cardW}" height="${Math.round(42*scale)}"
-                    rx="${Math.round(7*scale)}"
+              <rect x="${cardX}" y="${Math.round(344 * scale)}"
+                    width="${cardW}" height="${Math.round(42 * scale)}"
+                    rx="${Math.round(7 * scale)}"
                     fill="rgba(255,255,255,0.06)"
                     stroke="${sj.col}" stroke-opacity="0.25" stroke-width="1"/>
-              <text x="${cardX + Math.round(20*scale)}"
-                    y="${Math.round(360*scale)}"
-                    font-size="${Math.round(11*scale)}"
+              <text x="${cardX + Math.round(20 * scale)}"
+                    y="${Math.round(360 * scale)}"
+                    font-size="${Math.round(11 * scale)}"
                     text-anchor="middle">${sj.icon}</text>
-              <text x="${cardX + Math.round(20*scale)}"
-                    y="${Math.round(373*scale)}"
-                    font-size="${Math.round(8*scale)}"
+              <text x="${cardX + Math.round(20 * scale)}"
+                    y="${Math.round(373 * scale)}"
+                    font-size="${Math.round(8 * scale)}"
                     font-weight="700" text-anchor="middle"
                     fill="${sj.col}" font-family="sans-serif">${sj.val}</text>
-              <text x="${cardX + Math.round(20*scale)}"
-                    y="${Math.round(382*scale)}"
-                    font-size="${Math.round(6*scale)}"
+              <text x="${cardX + Math.round(20 * scale)}"
+                    y="${Math.round(382 * scale)}"
+                    font-size="${Math.round(6 * scale)}"
                     text-anchor="middle"
                     fill="rgba(255,255,255,0.4)"
                     font-family="sans-serif">${sj.sub}</text>
@@ -4143,37 +4151,37 @@ const TEMPLATES = [
         </svg>
       `;
 
-      // Convert SVG to data URI
-      const encoded = 'data:image/svg+xml;charset=utf-8,' +
-        encodeURIComponent(svgScreen.trim());
-      return encoded;
-    };
+        // Convert SVG to data URI
+        const encoded = 'data:image/svg+xml;charset=utf-8,' +
+          encodeURIComponent(svgScreen.trim());
+        return encoded;
+      };
 
-    /* ── choose screen source ───────────────────────────── */
-    const screenSrc = ss || buildFallbackScreen();
+      /* ── choose screen source ───────────────────────────── */
+      const screenSrc = ss || buildFallbackScreen();
 
-    /* ═══════════════════════════════════════════════════════
-       TAGLINE
-       ═══════════════════════════════════════════════════════ */
-    const tagline = `
+      /* ═══════════════════════════════════════════════════════
+         TAGLINE
+         ═══════════════════════════════════════════════════════ */
+      const tagline = `
       <div style="
-        font-size:${Math.round(9*scale)}px;
+        font-size:${Math.round(9 * scale)}px;
         font-weight:700;
-        letter-spacing:${Math.round(2.5*scale)}px;
+        letter-spacing:${Math.round(2.5 * scale)}px;
         color:${c.a2};
         text-transform:uppercase;
-        margin-bottom:${Math.round(8*scale)}px;
+        margin-bottom:${Math.round(8 * scale)}px;
       ">ANDROID &nbsp;•&nbsp; KOTLIN &nbsp;•&nbsp; JETPACK COMPOSE</div>
     `;
 
-    /* ═══════════════════════════════════════════════════════
-       HEADLINE — SVG gradient text
-       ═══════════════════════════════════════════════════════ */
-    const headSvgW = LEFT_W;
-    const headSvgH = Math.round(120 * scale);
-    const hLine1Y  = Math.round(hs * 1.0);
-    const hLine2Y  = Math.round(hLine1Y + hs * 1.2);
-    const headlineSvg = `
+      /* ═══════════════════════════════════════════════════════
+         HEADLINE — SVG gradient text
+         ═══════════════════════════════════════════════════════ */
+      const headSvgW = LEFT_W;
+      const headSvgH = Math.round(120 * scale);
+      const hLine1Y = Math.round(hs * 1.0);
+      const hLine2Y = Math.round(hLine1Y + hs * 1.2);
+      const headlineSvg = `
       <svg width="${headSvgW}" height="${headSvgH}"
            viewBox="0 0 ${headSvgW} ${headSvgH}"
            xmlns="http://www.w3.org/2000/svg"
@@ -4195,22 +4203,22 @@ const TEMPLATES = [
       </svg>
     `;
 
-    /* ═══════════════════════════════════════════════════════
-       FEATURE LIST
-       ═══════════════════════════════════════════════════════ */
-    const featList = feats.map(f => `
+      /* ═══════════════════════════════════════════════════════
+         FEATURE LIST
+         ═══════════════════════════════════════════════════════ */
+      const featList = feats.map(f => `
       <div style="
         display:flex;align-items:center;
-        gap:${Math.round(7*scale)}px;
-        margin-bottom:${Math.round(4*scale)}px;
+        gap:${Math.round(7 * scale)}px;
+        margin-bottom:${Math.round(4 * scale)}px;
       ">
         <span style="
           background:${c.a1}33;
           color:${c.a2};
           border:1px solid ${c.a2}55;
-          font-size:${Math.round(9*scale)}px;
-          width:${Math.round(17*scale)}px;
-          height:${Math.round(17*scale)}px;
+          font-size:${Math.round(9 * scale)}px;
+          width:${Math.round(17 * scale)}px;
+          height:${Math.round(17 * scale)}px;
           border-radius:50%;
           display:inline-flex;align-items:center;justify-content:center;
           flex-shrink:0;font-weight:700;
@@ -4223,16 +4231,16 @@ const TEMPLATES = [
       </div>
     `).join('');
 
-    /* ═══════════════════════════════════════════════════════
-       TECH PILLS
-       ═══════════════════════════════════════════════════════ */
-    const techPills = techStack.map(b => `
+      /* ═══════════════════════════════════════════════════════
+         TECH PILLS
+         ═══════════════════════════════════════════════════════ */
+      const techPills = techStack.map(b => `
       <span style="
         background:${b.color}22;
         color:${b.color};
         border:1px solid ${b.color}55;
-        font-size:${Math.round(9*scale)}px;
-        padding:${Math.round(3*scale)}px ${Math.round(9*scale)}px;
+        font-size:${Math.round(9 * scale)}px;
+        padding:${Math.round(3 * scale)}px ${Math.round(9 * scale)}px;
         border-radius:20px;
         font-weight:700;
         letter-spacing:0.3px;
@@ -4240,51 +4248,51 @@ const TEMPLATES = [
       ">${b.label}</span>
     `).join('');
 
-    /* ═══════════════════════════════════════════════════════
-       RIGHT PANEL HELPERS
-       ═══════════════════════════════════════════════════════ */
-    const statItem = (icon, val, lbl, ac) => `
+      /* ═══════════════════════════════════════════════════════
+         RIGHT PANEL HELPERS
+         ═══════════════════════════════════════════════════════ */
+      const statItem = (icon, val, lbl, ac) => `
       <div style="
         flex:1;
         background:rgba(255,255,255,0.05);
         border:1px solid ${ac}33;
-        border-radius:${Math.round(9*scale)}px;
-        padding:${Math.round(8*scale)}px ${Math.round(4*scale)}px;
+        border-radius:${Math.round(9 * scale)}px;
+        padding:${Math.round(8 * scale)}px ${Math.round(4 * scale)}px;
         text-align:center;
       ">
-        <div style="font-size:${Math.round(14*scale)}px;line-height:1;">${icon}</div>
-        <div style="font-size:${Math.round(13*scale)}px;font-weight:800;
-          color:${ac};margin-top:${Math.round(3*scale)}px;">${val}</div>
-        <div style="font-size:${Math.round(7*scale)}px;color:rgba(255,255,255,0.4);
+        <div style="font-size:${Math.round(14 * scale)}px;line-height:1;">${icon}</div>
+        <div style="font-size:${Math.round(13 * scale)}px;font-weight:800;
+          color:${ac};margin-top:${Math.round(3 * scale)}px;">${val}</div>
+        <div style="font-size:${Math.round(7 * scale)}px;color:rgba(255,255,255,0.4);
           letter-spacing:0.4px;text-transform:uppercase;
-          margin-top:${Math.round(2*scale)}px;">${lbl}</div>
+          margin-top:${Math.round(2 * scale)}px;">${lbl}</div>
       </div>
     `;
 
-    const studentRow = (name, grade, color, pct) => `
+      const studentRow = (name, grade, color, pct) => `
       <div style="
         display:flex;align-items:center;
-        gap:${Math.round(7*scale)}px;
-        padding:${Math.round(6*scale)}px ${Math.round(9*scale)}px;
+        gap:${Math.round(7 * scale)}px;
+        padding:${Math.round(6 * scale)}px ${Math.round(9 * scale)}px;
         background:rgba(255,255,255,0.04);
-        border-radius:${Math.round(7*scale)}px;
+        border-radius:${Math.round(7 * scale)}px;
         border:1px solid rgba(255,255,255,0.07);
-        margin-bottom:${Math.round(4*scale)}px;
+        margin-bottom:${Math.round(4 * scale)}px;
       ">
         <div style="
-          width:${Math.round(22*scale)}px;height:${Math.round(22*scale)}px;
+          width:${Math.round(22 * scale)}px;height:${Math.round(22 * scale)}px;
           border-radius:50%;
           background:linear-gradient(135deg,${color},${color}99);
           display:flex;align-items:center;justify-content:center;
-          font-size:${Math.round(9*scale)}px;font-weight:800;color:#fff;
+          font-size:${Math.round(9 * scale)}px;font-weight:800;color:#fff;
           flex-shrink:0;
         ">${name.charAt(0)}</div>
         <div style="flex:1;min-width:0;">
-          <div style="font-size:${Math.round(9*scale)}px;color:#fff;font-weight:600;
+          <div style="font-size:${Math.round(9 * scale)}px;color:#fff;font-weight:600;
             white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${name}</div>
           <div style="
-            margin-top:${Math.round(3*scale)}px;
-            height:${Math.round(3*scale)}px;
+            margin-top:${Math.round(3 * scale)}px;
+            height:${Math.round(3 * scale)}px;
             border-radius:99px;background:rgba(255,255,255,0.1);overflow:hidden;">
             <div style="width:${pct}%;height:100%;
               background:linear-gradient(90deg,${color},${color}cc);
@@ -4292,14 +4300,14 @@ const TEMPLATES = [
           </div>
         </div>
         <div style="
-          font-size:${Math.round(12*scale)}px;font-weight:800;
+          font-size:${Math.round(12 * scale)}px;font-weight:800;
           color:${color};flex-shrink:0;
         ">${grade}</div>
       </div>
     `;
 
-    /* ── thin divider line helper ──────────────────────── */
-    const vDivider = (x, top, bottom, fromColor, toColor) => `
+      /* ── thin divider line helper ──────────────────────── */
+      const vDivider = (x, top, bottom, fromColor, toColor) => `
       <div style="
         position:absolute;
         left:${x}px;
@@ -4316,10 +4324,10 @@ const TEMPLATES = [
       "></div>
     `;
 
-    /* ═══════════════════════════════════════════════════════
-       RENDER
-       ═══════════════════════════════════════════════════════ */
-    return `
+      /* ═══════════════════════════════════════════════════════
+         RENDER
+         ═══════════════════════════════════════════════════════ */
+      return `
       <!-- ══ BACKGROUND ══════════════════════════════════ -->
       <div style="position:absolute;inset:0;
         background:linear-gradient(${c.gradDir},${c.bg1} 0%,${c.bg2} 100%);"></div>
@@ -4329,23 +4337,23 @@ const TEMPLATES = [
         background-image:
           linear-gradient(rgba(255,255,255,0.8) 1px,transparent 1px),
           linear-gradient(90deg,rgba(255,255,255,0.8) 1px,transparent 1px);
-        background-size:${Math.round(38*scale)}px ${Math.round(38*scale)}px;">
+        background-size:${Math.round(38 * scale)}px ${Math.round(38 * scale)}px;">
       </div>
 
       <!-- ══ GLOW BLOBS ═══════════════════════════════════ -->
       <div class="glow-blob" style="
-        width:${Math.round(460*scale)}px;height:${Math.round(460*scale)}px;
-        top:${Math.round(-180*scale)}px;right:${Math.round(-100*scale)}px;
+        width:${Math.round(460 * scale)}px;height:${Math.round(460 * scale)}px;
+        top:${Math.round(-180 * scale)}px;right:${Math.round(-100 * scale)}px;
         background:radial-gradient(circle,${c.a1}44,transparent 65%);"></div>
 
       <div class="glow-blob" style="
-        width:${Math.round(360*scale)}px;height:${Math.round(360*scale)}px;
-        bottom:${Math.round(-120*scale)}px;left:${Math.round(-80*scale)}px;
+        width:${Math.round(360 * scale)}px;height:${Math.round(360 * scale)}px;
+        bottom:${Math.round(-120 * scale)}px;left:${Math.round(-80 * scale)}px;
         background:radial-gradient(circle,${c.a2}33,transparent 65%);"></div>
 
       <!-- phone center glow -->
       <div class="glow-blob" style="
-        width:${Math.round(320*scale)}px;height:${Math.round(500*scale)}px;
+        width:${Math.round(320 * scale)}px;height:${Math.round(500 * scale)}px;
         top:50%;left:50%;
         transform:translate(-50%,-50%);
         background:radial-gradient(ellipse,${c.a1}28,transparent 68%);
@@ -4358,11 +4366,11 @@ const TEMPLATES = [
       <!-- ══ TOP BADGE ════════════════════════════════════ -->
       <div style="
         position:absolute;
-        top:${Math.round(20*scale)}px;
+        top:${Math.round(20 * scale)}px;
         left:${PAD}px;
         background:linear-gradient(135deg,${c.a1},${c.a2});
-        font-size:${Math.round(9*scale)}px;
-        padding:${Math.round(5*scale)}px ${Math.round(14*scale)}px;
+        font-size:${Math.round(9 * scale)}px;
+        padding:${Math.round(5 * scale)}px ${Math.round(14 * scale)}px;
         border-radius:20px;
         font-weight:700;letter-spacing:1px;color:#fff;
         box-shadow:0 4px 14px ${c.a1}55;
@@ -4385,49 +4393,49 @@ const TEMPLATES = [
 
         <div style="
           font-size:${sss}px;color:rgba(202,196,208,0.9);
-          margin-top:${Math.round(10*scale)}px;font-weight:400;letter-spacing:0.2px;
+          margin-top:${Math.round(10 * scale)}px;font-weight:400;letter-spacing:0.2px;
         ">${sub}</div>
 
         <div style="
-          font-size:${Math.round(10*scale)}px;color:${c.a2};
-          margin-top:${Math.round(3*scale)}px;font-weight:600;letter-spacing:0.5px;
+          font-size:${Math.round(10 * scale)}px;color:${c.a2};
+          margin-top:${Math.round(3 * scale)}px;font-weight:600;letter-spacing:0.5px;
         ">${desc}</div>
 
         <!-- divider 1 -->
         <div style="
-          width:${Math.round(180*scale)}px;height:${DIVH}px;
+          width:${Math.round(180 * scale)}px;height:${DIVH}px;
           background:linear-gradient(90deg,${c.a1},${c.a2},transparent);
-          margin:${Math.round(14*scale)}px 0 ${Math.round(10*scale)}px;
+          margin:${Math.round(14 * scale)}px 0 ${Math.round(10 * scale)}px;
           border-radius:99px;
         "></div>
 
         <!-- FEATURES heading -->
         <div style="
-          font-size:${Math.round(8*scale)}px;font-weight:800;
-          letter-spacing:${Math.round(2*scale)}px;
+          font-size:${Math.round(8 * scale)}px;font-weight:800;
+          letter-spacing:${Math.round(2 * scale)}px;
           color:${c.a1};text-transform:uppercase;
-          margin-bottom:${Math.round(7*scale)}px;
+          margin-bottom:${Math.round(7 * scale)}px;
         ">FEATURES</div>
 
         ${featList}
 
         <!-- divider 2 -->
         <div style="
-          width:${Math.round(180*scale)}px;height:${DIVH}px;
+          width:${Math.round(180 * scale)}px;height:${DIVH}px;
           background:linear-gradient(90deg,${c.a2},${c.a1},transparent);
-          margin:${Math.round(12*scale)}px 0 ${Math.round(8*scale)}px;
+          margin:${Math.round(12 * scale)}px 0 ${Math.round(8 * scale)}px;
           border-radius:99px;
         "></div>
 
         <!-- TECH STACK heading -->
         <div style="
-          font-size:${Math.round(8*scale)}px;font-weight:800;
-          letter-spacing:${Math.round(2*scale)}px;
+          font-size:${Math.round(8 * scale)}px;font-weight:800;
+          letter-spacing:${Math.round(2 * scale)}px;
           color:${c.a2};text-transform:uppercase;
-          margin-bottom:${Math.round(7*scale)}px;
+          margin-bottom:${Math.round(7 * scale)}px;
         ">TECH STACK</div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(4*scale)}px;">
+        <div style="display:flex;flex-wrap:wrap;gap:${Math.round(4 * scale)}px;">
           ${techPills}
         </div>
       </div>
@@ -4435,8 +4443,8 @@ const TEMPLATES = [
       <!-- ══ LEFT VERTICAL DIVIDER ════════════════════════ -->
       ${vDivider(
         PHONE_X - Math.round(GAP * 0.5),
-        Math.round(110*scale),
-        FOOTER + Math.round(20*scale),
+        Math.round(110 * scale),
+        FOOTER + Math.round(20 * scale),
         c.a1, c.a2
       )}
 
@@ -4446,41 +4454,41 @@ const TEMPLATES = [
       <div style="
         position:absolute;
         left:${PHONE_X}px;
-        top:${Math.round(70*scale)}px;
+        top:${Math.round(70 * scale)}px;
         width:${PHONE_W}px;
-        bottom:${FOOTER + Math.round(10*scale)}px;
+        bottom:${FOOTER + Math.round(10 * scale)}px;
         display:flex;
         flex-direction:column;
         align-items:center;
         justify-content:center;
-        gap:${Math.round(12*scale)}px;
+        gap:${Math.round(12 * scale)}px;
       ">
         <!-- small label above phone -->
         <div style="
-          font-size:${Math.round(8*scale)}px;
+          font-size:${Math.round(8 * scale)}px;
           font-weight:700;
-          letter-spacing:${Math.round(2*scale)}px;
+          letter-spacing:${Math.round(2 * scale)}px;
           color:rgba(255,255,255,0.3);
           text-transform:uppercase;
         ">APP PREVIEW</div>
 
         <!-- phone mockup -->
         <div style="
-          filter:drop-shadow(0 ${Math.round(20*scale)}px ${Math.round(40*scale)}px ${c.a1}55)
-                 drop-shadow(0 ${Math.round(6*scale)}px  ${Math.round(20*scale)}px rgba(0,0,0,0.5));
+          filter:drop-shadow(0 ${Math.round(20 * scale)}px ${Math.round(40 * scale)}px ${c.a1}55)
+                 drop-shadow(0 ${Math.round(6 * scale)}px  ${Math.round(20 * scale)}px rgba(0,0,0,0.5));
         ">
           ${phoneMockup(
-            screenSrc,
-            phoneFrameW,
-            phoneTilt,
-            glowOp,
-            c.a1
-          )}
+        screenSrc,
+        phoneFrameW,
+        phoneTilt,
+        glowOp,
+        c.a1
+      )}
         </div>
 
         <!-- small label below phone -->
         <div style="
-          font-size:${Math.round(8*scale)}px;
+          font-size:${Math.round(8 * scale)}px;
           color:${c.a2};
           font-weight:600;
           letter-spacing:0.5px;
@@ -4491,8 +4499,8 @@ const TEMPLATES = [
       <!-- ══ RIGHT VERTICAL DIVIDER ═══════════════════════ -->
       ${vDivider(
         RIGHT_X - Math.round(GAP * 0.5),
-        Math.round(110*scale),
-        FOOTER + Math.round(20*scale),
+        Math.round(110 * scale),
+        FOOTER + Math.round(20 * scale),
         c.a2, c.a1
       )}
 
@@ -4507,45 +4515,45 @@ const TEMPLATES = [
         bottom:${CONTENT_BOTTOM}px;
         display:flex;flex-direction:column;
         justify-content:center;
-        gap:${Math.round(9*scale)}px;
+        gap:${Math.round(9 * scale)}px;
       ">
 
         <!-- ── APP HEADER CARD ──────────────────────────── -->
         <div style="
           background:rgba(255,255,255,0.06);
           border:1px solid ${c.a1}44;
-          border-radius:${Math.round(14*scale)}px;
-          padding:${Math.round(12*scale)}px ${Math.round(14*scale)}px;
+          border-radius:${Math.round(14 * scale)}px;
+          padding:${Math.round(12 * scale)}px ${Math.round(14 * scale)}px;
           backdrop-filter:blur(10px);
           box-shadow:0 8px 28px rgba(0,0,0,0.3);
         ">
           <div style="display:flex;align-items:center;
-            gap:${Math.round(9*scale)}px;margin-bottom:${Math.round(9*scale)}px;">
+            gap:${Math.round(9 * scale)}px;margin-bottom:${Math.round(9 * scale)}px;">
             <div style="
-              width:${Math.round(32*scale)}px;height:${Math.round(32*scale)}px;
-              border-radius:${Math.round(9*scale)}px;
+              width:${Math.round(32 * scale)}px;height:${Math.round(32 * scale)}px;
+              border-radius:${Math.round(9 * scale)}px;
               background:linear-gradient(135deg,${c.a1},${c.a2});
               display:flex;align-items:center;justify-content:center;
-              font-size:${Math.round(16*scale)}px;flex-shrink:0;
+              font-size:${Math.round(16 * scale)}px;flex-shrink:0;
             ">🎓</div>
             <div style="flex:1;min-width:0;">
-              <div style="font-size:${Math.round(11*scale)}px;font-weight:700;color:#fff;">
+              <div style="font-size:${Math.round(11 * scale)}px;font-weight:700;color:#fff;">
                 Grade Tracker</div>
-              <div style="font-size:${Math.round(8*scale)}px;color:rgba(255,255,255,0.4);">
+              <div style="font-size:${Math.round(8 * scale)}px;color:rgba(255,255,255,0.4);">
                 5 Students • 4 Subjects</div>
             </div>
             <div style="
               background:${c.a2}22;border:1px solid ${c.a2}55;
-              color:${c.a2};font-size:${Math.round(8*scale)}px;font-weight:700;
-              padding:${Math.round(2*scale)}px ${Math.round(8*scale)}px;
+              color:${c.a2};font-size:${Math.round(8 * scale)}px;font-weight:700;
+              padding:${Math.round(2 * scale)}px ${Math.round(8 * scale)}px;
               border-radius:20px;letter-spacing:0.5px;flex-shrink:0;
             ">LIVE</div>
           </div>
           <!-- stats -->
-          <div style="display:flex;gap:${Math.round(6*scale)}px;">
-            ${statItem('📊','87.4%','Avg Grade', c.a1)}
-            ${statItem('🏆','Alice',  'Top Student',c.hl)}
-            ${statItem('📚','4',      'Subjects',   c.a2)}
+          <div style="display:flex;gap:${Math.round(6 * scale)}px;">
+            ${statItem('📊', '87.4%', 'Avg Grade', c.a1)}
+            ${statItem('🏆', 'Alice', 'Top Student', c.hl)}
+            ${statItem('📚', '4', 'Subjects', c.a2)}
           </div>
         </div>
 
@@ -4553,55 +4561,55 @@ const TEMPLATES = [
         <div style="
           background:rgba(255,255,255,0.05);
           border:1px solid rgba(255,255,255,0.09);
-          border-radius:${Math.round(14*scale)}px;
-          padding:${Math.round(11*scale)}px ${Math.round(13*scale)}px;
+          border-radius:${Math.round(14 * scale)}px;
+          padding:${Math.round(11 * scale)}px ${Math.round(13 * scale)}px;
           backdrop-filter:blur(10px);
           box-shadow:0 8px 28px rgba(0,0,0,0.22);
         ">
           <div style="
-            font-size:${Math.round(8*scale)}px;font-weight:800;letter-spacing:2px;
+            font-size:${Math.round(8 * scale)}px;font-weight:800;letter-spacing:2px;
             color:rgba(255,255,255,0.35);text-transform:uppercase;
-            margin-bottom:${Math.round(8*scale)}px;
+            margin-bottom:${Math.round(8 * scale)}px;
           ">STUDENT RANKINGS</div>
-          ${studentRow('Alice Johnson', 'A',  c.a2,       94)}
-          ${studentRow('Bob Smith',     'B+', c.a1,       81)}
-          ${studentRow('Carol Davis',   'A-', c.hl,       88)}
-          ${studentRow('David Lee',     'B',  '#CF6679',  75)}
+          ${studentRow('Alice Johnson', 'A', c.a2, 94)}
+          ${studentRow('Bob Smith', 'B+', c.a1, 81)}
+          ${studentRow('Carol Davis', 'A-', c.hl, 88)}
+          ${studentRow('David Lee', 'B', '#CF6679', 75)}
         </div>
 
         <!-- ── SUBJECT CARDS ────────────────────────────── -->
-        <div style="display:flex;gap:${Math.round(6*scale)}px;">
-          ${gradeFloatCard('🔬','Science','92.1','A',  c.a2,       'rgba(255,255,255,0.06)')}
-          ${gradeFloatCard('📐','Math',   '78.5','B+', c.a1,       'rgba(255,255,255,0.06)')}
-          ${gradeFloatCard('📖','English','88.0','A-', c.hl,       'rgba(255,255,255,0.06)')}
-          ${gradeFloatCard('🌍','History','81.3','B+', '#CF6679',  'rgba(255,255,255,0.06)')}
+        <div style="display:flex;gap:${Math.round(6 * scale)}px;">
+          ${gradeFloatCard('🔬', 'Science', '92.1', 'A', c.a2, 'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('📐', 'Math', '78.5', 'B+', c.a1, 'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('📖', 'English', '88.0', 'A-', c.hl, 'rgba(255,255,255,0.06)')}
+          ${gradeFloatCard('🌍', 'History', '81.3', 'B+', '#CF6679', 'rgba(255,255,255,0.06)')}
         </div>
 
         <!-- ── FILTER CHIPS ──────────────────────────────── -->
         <div style="
           background:rgba(255,255,255,0.04);
           border:1px solid rgba(255,255,255,0.08);
-          border-radius:${Math.round(11*scale)}px;
-          padding:${Math.round(9*scale)}px ${Math.round(13*scale)}px;
+          border-radius:${Math.round(11 * scale)}px;
+          padding:${Math.round(9 * scale)}px ${Math.round(13 * scale)}px;
           display:flex;align-items:center;
-          gap:${Math.round(6*scale)}px;
+          gap:${Math.round(6 * scale)}px;
           flex-wrap:wrap;
           backdrop-filter:blur(6px);
         ">
-          <span style="font-size:${Math.round(8*scale)}px;color:rgba(255,255,255,0.35);
+          <span style="font-size:${Math.round(8 * scale)}px;color:rgba(255,255,255,0.35);
             font-weight:700;letter-spacing:1px;text-transform:uppercase;
             flex-shrink:0;">Filter:</span>
-          ${['All','Grade A','Grade B','Grade C'].map((lbl,i) => `
+          ${['All', 'Grade A', 'Grade B', 'Grade C'].map((lbl, i) => `
             <span style="
-              font-size:${Math.round(9*scale)}px;font-weight:700;
-              padding:${Math.round(3*scale)}px ${Math.round(9*scale)}px;
+              font-size:${Math.round(9 * scale)}px;font-weight:700;
+              padding:${Math.round(3 * scale)}px ${Math.round(9 * scale)}px;
               border-radius:20px;
               ${i === 0
-                ? `background:linear-gradient(135deg,${c.a1},${c.a2});color:#fff;`
-                : `background:rgba(255,255,255,0.06);
+          ? `background:linear-gradient(135deg,${c.a1},${c.a2});color:#fff;`
+          : `background:rgba(255,255,255,0.06);
                    color:rgba(255,255,255,0.45);
                    border:1px solid rgba(255,255,255,0.1);`
-              }
+        }
             ">${lbl}</span>
           `).join('')}
         </div>
@@ -4616,12 +4624,12 @@ const TEMPLATES = [
         border-top:1px solid ${c.a1}44;
         display:flex;align-items:center;justify-content:space-between;
         padding:0 ${PAD}px;
-        gap:${Math.round(10*scale)}px;
+        gap:${Math.round(10 * scale)}px;
       ">
         <!-- GitHub icon + text -->
-        <div style="display:flex;align-items:center;gap:${Math.round(9*scale)}px;
+        <div style="display:flex;align-items:center;gap:${Math.round(9 * scale)}px;
           min-width:0;flex-shrink:1;">
-          <svg width="${Math.round(18*scale)}" height="${Math.round(18*scale)}"
+          <svg width="${Math.round(18 * scale)}" height="${Math.round(18 * scale)}"
                viewBox="0 0 24 24"
                fill="rgba(255,255,255,0.65)" style="flex-shrink:0;">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205
@@ -4639,12 +4647,12 @@ const TEMPLATES = [
               c0-6.63-5.37-12-12-12z"/>
           </svg>
           <div style="min-width:0;">
-            <div style="font-size:${Math.round(10*scale)}px;color:${c.a2};
+            <div style="font-size:${Math.round(10 * scale)}px;color:${c.a2};
               font-weight:700;letter-spacing:0.5px;white-space:nowrap;">
               GitHub Repo Available
             </div>
-            <div style="font-size:${Math.round(9*scale)}px;
-              color:rgba(255,255,255,0.35);margin-top:${Math.round(1*scale)}px;
+            <div style="font-size:${Math.round(9 * scale)}px;
+              color:rgba(255,255,255,0.35);margin-top:${Math.round(1 * scale)}px;
               white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
               ${github}
             </div>
@@ -4653,28 +4661,569 @@ const TEMPLATES = [
 
         <!-- CTA button -->
         <div style="
-          display:flex;align-items:center;gap:${Math.round(6*scale)}px;
+          display:flex;align-items:center;gap:${Math.round(6 * scale)}px;
           background:linear-gradient(135deg,${c.a1},${c.a2});
-          padding:${Math.round(7*scale)}px ${Math.round(16*scale)}px;
-          border-radius:${Math.round(22*scale)}px;
-          font-size:${Math.round(10*scale)}px;font-weight:700;color:#fff;
+          padding:${Math.round(7 * scale)}px ${Math.round(16 * scale)}px;
+          border-radius:${Math.round(22 * scale)}px;
+          font-size:${Math.round(10 * scale)}px;font-weight:700;color:#fff;
           letter-spacing:0.3px;
           box-shadow:0 4px 16px ${c.a1}55;
           white-space:nowrap;flex-shrink:0;
         ">
           Explore Full Source Code
-          <span style="font-size:${Math.round(12*scale)}px;">→</span>
+          <span style="font-size:${Math.round(12 * scale)}px;">→</span>
         </div>
 
         <!-- author -->
         <div style="
-          font-size:${Math.round(10*scale)}px;color:rgba(255,255,255,0.3);
+          font-size:${Math.round(10 * scale)}px;color:rgba(255,255,255,0.3);
           font-weight:500;letter-spacing:0.3px;white-space:nowrap;flex-shrink:0;
         ">${author}</div>
       </div>
     `;
-  }
-}
+    }
+  },
+
+  /* ==== TEMPLATE — Shape Calculator App · All-In-One Square ==== */
+  {
+    id: 'shape-calc-all-in-one',
+    name: 'Shape Calc · All In One',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg, #0D0D1A, #001A33)',
+      emoji: '📐',
+      label: 'Shape Calc'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const W = d.bannerW || 1080;
+      const H = d.bannerH || 1080;
+
+      // ── Neon palette (overrides theme for this poster) ──────────────
+      const RED = '#FF3355';
+      const BLUE = '#3399FF';
+      const GRN = '#33FF99';
+      const PURP = '#AA55FF';
+      const YELL = '#FFD700';
+      const CYAN = '#00DDFF';
+
+      // ── Layout zones (proportional to canvas size) ──────────────────
+      const PAD = Math.round(W * 0.038);   // 41px @ 1080
+      const TOP_H = Math.round(H * 0.215);   // top hero zone
+      const MID_H = Math.round(H * 0.285);   // middle features zone
+      const OOP_H = Math.round(H * 0.265);   // oop concepts zone
+      const CTA_H = H - TOP_H - MID_H - OOP_H; // bottom CTA zone
+
+      // ── Feature list (middle section) ───────────────────────────────
+      const features = [
+        { icon: '⭕', color: RED, text: 'Area & Perimeter — Circle' },
+        { icon: '▭', color: BLUE, text: 'Area & Perimeter — Rectangle' },
+        { icon: '△', color: GRN, text: 'Area & Perimeter — Triangle' },
+        { icon: '🏆', color: YELL, text: 'Auto Largest Shape Detection' },
+        { icon: '🎨', color: CYAN, text: 'Dynamic Canvas Shape Drawing' },
+        { icon: '📊', color: PURP, text: 'Real-Time Shape Analysis' },
+      ];
+
+      // ── OOP concepts (3rd zone) ──────────────────────────────────────
+      const oopConcepts = [
+        { name: 'Interface', icon: '🧩', color: BLUE },
+        { name: 'Sealed Class', icon: '🔒', color: PURP },
+        { name: 'Data Class', icon: '📦', color: GRN },
+        { name: 'Companion Object', icon: '🏭', color: YELL },
+        { name: 'Singleton', icon: '☝️', color: RED },
+        { name: 'Polymorphism', icon: '🔄', color: CYAN },
+      ];
+
+      // ── Tech stack chips ─────────────────────────────────────────────
+      const techStack = [
+        { label: '💻 Kotlin', color: '#7F52FF' },
+        { label: '🎨 Jetpack Compose', color: CYAN },
+        { label: '🧩 Sealed Classes', color: PURP },
+        { label: '🔄 Polymorphism', color: BLUE },
+        { label: '📦 Companion Obj', color: YELL },
+        { label: '🔒 Singleton', color: RED },
+      ];
+
+      // ── Font sizes (proportional) ────────────────────────────────────
+      const FS_HERO = Math.round(W * 0.075);  // 81px  — main title
+      const FS_SECTION = Math.round(W * 0.028);  // 30px  — section headings
+      const FS_FEAT = Math.round(W * 0.021);  // 23px  — feature text
+      const FS_CHIP = Math.round(W * 0.018);  // 19px  — tech chips
+      const FS_OOP = Math.round(W * 0.019);  // 21px  — oop card label
+      const FS_CTA = Math.round(W * 0.048);  // 52px  — CTA headline
+      const FS_SMALL = Math.round(W * 0.014);  // 15px  — fine print
+
+      // ── Shape icon size ──────────────────────────────────────────────
+      const ICON_SZ = Math.round(W * 0.065);     // 70px
+
+      return `
+      <!-- ════════════════════════════════════════════════════
+           BACKGROUND LAYER
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;inset:0;
+        background:linear-gradient(150deg,
+          #08080F 0%,
+          #0D0A1A 30%,
+          #050D14 65%,
+          #080810 100%);"></div>
+
+      <!-- scanline texture -->
+      <div style="position:absolute;inset:0;pointer-events:none;opacity:0.035;
+        background:repeating-linear-gradient(
+          0deg,transparent,transparent 3px,#FFFFFF 3px,#FFFFFF 4px);"></div>
+
+      <!-- circuit grid -->
+      <div style="position:absolute;inset:0;pointer-events:none;opacity:0.04;
+        background-image:
+          linear-gradient(${BLUE}66 1px, transparent 1px),
+          linear-gradient(90deg, ${BLUE}66 1px, transparent 1px);
+        background-size:54px 54px;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           AMBIENT GLOW BLOBS
+           ════════════════════════════════════════════════════ -->
+      <!-- top-left red glow -->
+      <div class="glow-blob" style="
+        width:${W * 0.55}px;height:${W * 0.55}px;
+        top:-${W * 0.14}px;left:-${W * 0.1}px;
+        background:radial-gradient(circle,${RED}20,transparent 65%);"></div>
+
+      <!-- top-right blue glow -->
+      <div class="glow-blob" style="
+        width:${W * 0.5}px;height:${W * 0.5}px;
+        top:-${W * 0.1}px;right:-${W * 0.08}px;
+        background:radial-gradient(circle,${BLUE}20,transparent 65%);"></div>
+
+      <!-- center green glow -->
+      <div class="glow-blob" style="
+        width:${W * 0.6}px;height:${W * 0.4}px;
+        top:${TOP_H + MID_H * 0.3}px;
+        left:50%;transform:translateX(-50%);
+        background:radial-gradient(circle,${GRN}14,transparent 65%);"></div>
+
+      <!-- bottom purple glow -->
+      <div class="glow-blob" style="
+        width:${W * 0.55}px;height:${W * 0.35}px;
+        bottom:-${W * 0.06}px;left:50%;transform:translateX(-50%);
+        background:radial-gradient(circle,${PURP}18,transparent 65%);"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           TOP ACCENT BAR  (RGB gradient stripe)
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;top:0;left:0;right:0;height:5px;
+        background:linear-gradient(90deg,${RED},${BLUE},${GRN});
+        box-shadow:0 0 14px ${BLUE}88;z-index:10;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE 1 — HERO  (top ${Math.round(TOP_H / H * 100)}% of canvas)
+           Left: Title + badge + subtitle
+           Right: Neon shape row
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:5px;left:0;right:0;
+        height:${TOP_H}px;
+        display:flex;align-items:center;
+        padding:0 ${PAD}px;
+        gap:${PAD}px;">
+
+        <!-- LEFT: headline block -->
+        <div style="flex:1.15;display:flex;flex-direction:column;
+          justify-content:center;gap:${Math.round(H * 0.012)}px;">
+
+          <!-- eyebrow badge -->
+          <div style="
+            display:inline-flex;align-items:center;gap:7px;
+            background:linear-gradient(135deg,${RED}33,${BLUE}33);
+            border:1.5px solid ${BLUE}55;
+            border-radius:30px;padding:6px 16px;
+            width:fit-content;
+            box-shadow:0 0 16px ${BLUE}33;">
+            <span style="font-size:14px;">🚀</span>
+            <span style="font-size:${FS_SMALL}px;font-weight:700;
+              color:#FFFFFFCC;letter-spacing:2px;
+              font-family:'Poppins','Montserrat',sans-serif;
+              text-transform:uppercase;">
+              Android Dev Project
+            </span>
+          </div>
+
+          <!-- main title: SHAPE CALCULATOR APP -->
+          ${gradientTextLines(
+        ['SHAPE', 'CALCULATOR', 'APP'],
+        '#FFFFFF', c.a2,
+        FS_HERO, 900, -1, Math.round(H * 0.003)
+      )}
+
+          <!-- subtitle row -->
+          <div style="display:flex;align-items:center;gap:12px;
+            flex-wrap:wrap;">
+            <span style="font-size:${FS_CHIP}px;font-weight:700;
+              color:${RED};font-family:'Poppins','Montserrat',sans-serif;
+              text-shadow:0 0 12px ${RED}88;">
+              Kotlin
+            </span>
+            <span style="color:#FFFFFF33;font-size:14px;">+</span>
+            <span style="font-size:${FS_CHIP}px;font-weight:700;
+              color:${BLUE};font-family:'Poppins','Montserrat',sans-serif;
+              text-shadow:0 0 12px ${BLUE}88;">
+              Jetpack Compose
+            </span>
+            <span style="color:#FFFFFF33;font-size:14px;">·</span>
+            <span style="font-size:${FS_CHIP - 2}px;font-weight:600;
+              color:${GRN};font-family:'Poppins','Montserrat',sans-serif;
+              text-shadow:0 0 10px ${GRN}66;">
+              Pure OOP
+            </span>
+          </div>
+        </div>
+
+        <!-- RIGHT: neon shape icons -->
+        <div style="flex:0.85;display:flex;flex-direction:column;
+          align-items:center;justify-content:center;gap:0;">
+          ${neonShapeRow(ICON_SZ, [RED, BLUE, GRN], ['Circle', 'Rectangle', 'Triangle'])}
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE DIVIDER — RGB tri-color rule
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5}px;left:${PAD}px;right:${PAD}px;
+        height:1.5px;
+        background:linear-gradient(90deg,
+          ${RED},${BLUE} 50%,${GRN});
+        opacity:0.45;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE 2 — FEATURES  (middle section)
+           Left column: feature list  ·  Right column: phone or shape stack
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5 + 2}px;
+        left:0;right:0;
+        height:${MID_H}px;
+        display:flex;
+        padding:${Math.round(H * 0.018)}px ${PAD}px;
+        gap:${PAD}px;">
+
+        <!-- LEFT: feature items in 2-column micro-grid -->
+        <div style="flex:1.4;display:flex;flex-direction:column;
+          justify-content:space-between;">
+
+          <!-- section label -->
+          <div style="display:flex;align-items:center;gap:10px;
+            margin-bottom:${Math.round(H * 0.012)}px;">
+            <div style="width:4px;height:${FS_SECTION}px;border-radius:3px;
+              background:linear-gradient(180deg,${RED},${BLUE});
+              box-shadow:0 0 8px ${BLUE}88;"></div>
+            ${gradientText('Features', '#FFFFFF', GRN, FS_SECTION, 800, 'horizontal', 0)}
+          </div>
+
+          <!-- 2-column feature grid -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;
+            gap:${Math.round(H * 0.011)}px;flex:1;">
+            ${features.map((f, i) => `
+              <div style="
+                display:flex;align-items:center;gap:9px;
+                background:${f.color}0E;
+                border:1px solid ${f.color}40;
+                border-left:3px solid ${f.color};
+                border-radius:9px;
+                padding:${Math.round(H * 0.011)}px 12px;
+                box-shadow:0 0 14px ${f.color}14;">
+                <span style="font-size:${Math.round(W * 0.024)}px;flex-shrink:0;
+                  filter:drop-shadow(0 0 5px ${f.color}99);">${f.icon}</span>
+                <span style="font-size:${FS_FEAT - 3}px;color:#FFFFFFCC;
+                  font-weight:600;line-height:1.25;
+                  font-family:'Poppins','Montserrat',sans-serif;">${f.text}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- RIGHT: phone mockup or shape showcase -->
+        <div style="flex:0.6;display:flex;align-items:center;
+          justify-content:center;position:relative;">
+
+          ${ss ? `
+            <!-- Phone mockup with screenshot -->
+            <div style="transform:perspective(800px) rotateY(-6deg);
+              filter:drop-shadow(0 0 22px ${BLUE}55);">
+              ${phoneMockup(ss, Math.round(W * 0.26), -3, d.glowOpacity, BLUE)}
+            </div>
+          ` : `
+            <!-- No screenshot: stacked shape icons -->
+            <div style="display:flex;flex-direction:column;
+              align-items:center;gap:14px;justify-content:center;
+              width:100%;height:100%;">
+              ${neonShapeIcon('circle', RED, Math.round(W * 0.08), 'Circle')}
+              ${neonShapeIcon('rect', BLUE, Math.round(W * 0.08), 'Rectangle')}
+              ${neonShapeIcon('triangle', GRN, Math.round(W * 0.08), 'Triangle')}
+            </div>
+          `}
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE DIVIDER
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5 + 2 + MID_H}px;
+        left:${PAD}px;right:${PAD}px;
+        height:1.5px;
+        background:linear-gradient(90deg,${PURP},${CYAN});
+        opacity:0.45;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE 3 — OOP CONCEPTS  (concepts grid + tech chips)
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5 + 2 + MID_H + 2}px;
+        left:0;right:0;
+        height:${OOP_H}px;
+        display:flex;
+        padding:${Math.round(H * 0.016)}px ${PAD}px;
+        gap:${PAD}px;
+        align-items:flex-start;">
+
+        <!-- LEFT: OOP concepts grid (2 × 3) -->
+        <div style="flex:1;display:flex;flex-direction:column;
+          gap:${Math.round(H * 0.012)}px;">
+
+          <!-- section label -->
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:4px;height:${FS_SECTION}px;border-radius:3px;
+              background:linear-gradient(180deg,${PURP},${CYAN});
+              box-shadow:0 0 8px ${PURP}88;"></div>
+            ${gradientText('OOP Concepts', PURP, CYAN, FS_SECTION, 800, 'horizontal', 0)}
+          </div>
+
+          <!-- 3-col concept chips -->
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);
+            gap:${Math.round(H * 0.009)}px;">
+            ${oopConcepts.map(oc => `
+              <div style="
+                display:flex;flex-direction:column;align-items:center;
+                gap:5px;text-align:center;
+                background:${oc.color}10;
+                border:1.5px solid ${oc.color}44;
+                border-radius:12px;
+                padding:${Math.round(H * 0.012)}px 8px;
+                box-shadow:0 0 14px ${oc.color}18;">
+                <span style="font-size:${Math.round(W * 0.028)}px;
+                  filter:drop-shadow(0 0 6px ${oc.color}88);">${oc.icon}</span>
+                <span style="font-size:${FS_OOP - 2}px;font-weight:700;
+                  color:${oc.color};letter-spacing:0.3px;line-height:1.2;
+                  font-family:'Poppins','Montserrat',sans-serif;">${oc.name}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- VERTICAL DIVIDER -->
+        <div style="width:1.5px;align-self:stretch;
+          background:linear-gradient(180deg,transparent,${PURP}66,transparent);
+          flex-shrink:0;"></div>
+
+        <!-- RIGHT: Tech stack + Kotlin code snippet -->
+        <div style="flex:0.75;display:flex;flex-direction:column;
+          gap:${Math.round(H * 0.012)}px;">
+
+          <!-- section label -->
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="width:4px;height:${FS_SECTION}px;border-radius:3px;
+              background:linear-gradient(180deg,${YELL},${RED});
+              box-shadow:0 0 8px ${YELL}88;"></div>
+            ${gradientText('Tech Stack', YELL, RED, FS_SECTION, 800, 'horizontal', 0)}
+          </div>
+
+          <!-- tech chips wrap -->
+          <div style="display:flex;flex-wrap:wrap;gap:7px;">
+            ${techStack.map(t => `
+              <span style="
+                background:${t.color}18;
+                border:1.5px solid ${t.color}55;
+                border-radius:20px;
+                padding:5px 12px;
+                font-size:${FS_SMALL + 1}px;
+                color:${t.color};font-weight:700;
+                font-family:'Poppins','Montserrat',sans-serif;
+                box-shadow:0 0 10px ${t.color}22;
+                white-space:nowrap;">
+                ${t.label}
+              </span>
+            `).join('')}
+          </div>
+
+          <!-- mini kotlin code snippet -->
+          <div style="
+            background:#0A0A14;
+            border:1.5px solid ${PURP}44;
+            border-radius:10px;
+            padding:10px 14px;
+            font-family:'JetBrains Mono','Fira Code','Courier New',monospace;
+            font-size:${FS_SMALL}px;
+            line-height:1.65;
+            box-shadow:0 0 16px ${PURP}22;
+            overflow:hidden;flex:1;">
+            <!-- terminal dots -->
+            <div style="display:flex;gap:5px;margin-bottom:8px;">
+              <div style="width:8px;height:8px;border-radius:50%;background:#FF5F57;"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#FFBD2E;"></div>
+              <div style="width:8px;height:8px;border-radius:50%;background:#28CA41;"></div>
+            </div>
+            <div>
+              <span style="color:${PURP};">sealed class </span>
+              <span style="color:${CYAN};">Shape</span>
+              <span style="color:#FFFFFF88;"> : </span>
+              <span style="color:${GRN};">Calculable</span>
+            </div>
+            <div>
+              <span style="color:${PURP};">  data class </span>
+              <span style="color:${CYAN};">Circle</span>
+              <span style="color:#FFFFFF88;">(</span>
+              <span style="color:${YELL};">r</span>
+              <span style="color:#FFFFFF88;">: </span>
+              <span style="color:${GRN};">Double</span>
+              <span style="color:#FFFFFF88;">)</span>
+            </div>
+            <div>
+              <span style="color:${PURP};">  override fun </span>
+              <span style="color:${BLUE};">area</span>
+              <span style="color:#FFFFFF88;">() = Math.PI * </span>
+              <span style="color:${YELL};">r</span>
+              <span style="color:#FFFFFF88;"> * </span>
+              <span style="color:${YELL};">r</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE DIVIDER
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5 + 2 + MID_H + 2 + OOP_H}px;
+        left:${PAD}px;right:${PAD}px;
+        height:1.5px;
+        background:linear-gradient(90deg,${GRN},${YELL},${RED});
+        opacity:0.5;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           ZONE 4 — CTA  (bottom strip)
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;
+        top:${TOP_H + 5 + 2 + MID_H + 2 + OOP_H + 2}px;
+        left:0;right:0;
+        bottom:5px;
+        display:flex;align-items:center;
+        padding:0 ${PAD}px;
+        gap:${Math.round(W * 0.025)}px;
+        background:linear-gradient(90deg,
+          ${GRN}0C 0%,
+          ${BLUE}0C 50%,
+          ${RED}0C 100%);
+        border-top:1px solid #FFFFFF0A;">
+
+        <!-- comment CTA block -->
+        <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+          <span style="font-size:${Math.round(W * 0.038)}px;
+            filter:drop-shadow(0 0 12px ${GRN}AA);">💬</span>
+          <div style="display:flex;flex-direction:column;gap:1px;">
+            <span style="font-size:${FS_SMALL}px;color:#FFFFFF66;
+              font-family:'Poppins','Montserrat',sans-serif;
+              letter-spacing:1px;text-transform:uppercase;">
+              Comment
+            </span>
+            ${gradientText('"SHAPE"', GRN, CYAN, Math.round(W * 0.034), 900, 'horizontal', 0)}
+          </div>
+          <span style="font-size:${Math.round(W * 0.03)}px;">👇</span>
+        </div>
+
+        <!-- vertical micro-divider -->
+        <div style="width:1.5px;height:${Math.round(CTA_H * 0.55)}px;
+          background:linear-gradient(180deg,transparent,#FFFFFF33,transparent);
+          flex-shrink:0;"></div>
+
+        <!-- save + follow row -->
+        <div style="display:flex;align-items:center;gap:${Math.round(W * 0.022)}px;flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:${Math.round(W * 0.026)}px;
+              filter:drop-shadow(0 0 8px ${YELL}AA);">🔖</span>
+            <span style="font-size:${FS_SMALL + 1}px;color:#FFFFFFAA;
+              font-weight:600;font-family:'Poppins','Montserrat',sans-serif;">
+              Save this post
+            </span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:${Math.round(W * 0.026)}px;
+              filter:drop-shadow(0 0 8px ${BLUE}AA);">👥</span>
+            <span style="font-size:${FS_SMALL + 1}px;color:#FFFFFFAA;
+              font-weight:600;font-family:'Poppins','Montserrat',sans-serif;">
+              Follow for more
+            </span>
+          </div>
+        </div>
+
+        <!-- author tag (right-aligned) -->
+        <div style="flex-shrink:0;text-align:right;
+          display:flex;flex-direction:column;gap:2px;">
+          <span style="font-size:${FS_SMALL + 2}px;font-weight:700;
+            color:${GRN};font-family:'Poppins','Montserrat',sans-serif;
+            text-shadow:0 0 10px ${GRN}66;">
+            ${d.state.author || '@yourhandle'}
+          </span>
+          <span style="font-size:${FS_SMALL - 1}px;color:#FFFFFF44;
+            font-family:'Poppins','Montserrat',sans-serif;">
+            ${d.state.github || 'github.com/you'}
+          </span>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           BOTTOM ACCENT BAR
+           ════════════════════════════════════════════════════ -->
+      <div style="position:absolute;bottom:0;left:0;right:0;height:5px;
+        background:linear-gradient(90deg,${GRN},${BLUE},${RED});
+        box-shadow:0 0 12px ${GRN}66;z-index:10;"></div>
+
+
+      <!-- ════════════════════════════════════════════════════
+           SPARKLE ACCENTS
+           ════════════════════════════════════════════════════ -->
+      <div class="sparkle" style="width:7px;height:7px;
+        top:${H * 0.08}px;right:${W * 0.06}px;
+        background:${RED};animation-delay:0.0s;"></div>
+      <div class="sparkle" style="width:5px;height:5px;
+        top:${H * 0.19}px;left:${W * 0.04}px;
+        background:${GRN};animation-delay:0.6s;"></div>
+      <div class="sparkle" style="width:6px;height:6px;
+        top:${H * 0.51}px;right:${W * 0.03}px;
+        background:${BLUE};animation-delay:1.2s;"></div>
+      <div class="sparkle" style="width:5px;height:5px;
+        top:${H * 0.64}px;left:${W * 0.03}px;
+        background:${PURP};animation-delay:1.8s;"></div>
+      <div class="sparkle" style="width:7px;height:7px;
+        top:${H * 0.78}px;right:${W * 0.05}px;
+        background:${YELL};animation-delay:0.4s;"></div>
+
+      <!-- suppress default footer bar -->
+      <div class="banner-footer-bar" style="height:0;display:none;"></div>
+    `;
+    }
+  },
 
 
 
