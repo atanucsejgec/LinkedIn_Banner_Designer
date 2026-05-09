@@ -27,6 +27,10 @@
     <link rel="stylesheet" href="templates/components/grade-float-card.css">
     <link rel="stylesheet" href="templates/components/neon-shape-icons.css">
     <link rel="stylesheet" href="templates/components/oop-concept-card.css">
+    <link rel="stylesheet" href="templates/components/carousel-slide-badge.css">
+    <link rel="stylesheet" href="templates/components/lesson-icon-ring.css">
+    <link rel="stylesheet" href="templates/components/swipe-hint.css">
+    <link rel="stylesheet" href="templates/components/shape-feature-grid.css">
 
 
 </head>
@@ -316,8 +320,10 @@
                 <div class="section">
                     <div class="section-title">🖼️ Custom Images</div>
                     <p class="help-text">Upload any image to add as a free-floating editable layer.</p>
-                    <input type="file" id="customImageInput" accept="image/*" style="display:none;" onchange="handleCustomImageUpload(event)">
-                    <button class="btn btn-primary full-width" onclick="document.getElementById('customImageInput').click()">+ Add Image Layer</button>
+                    <input type="file" id="customImageInput" accept="image/*" style="display:none;"
+                        onchange="handleCustomImageUpload(event)">
+                    <button class="btn btn-primary full-width"
+                        onclick="document.getElementById('customImageInput').click()">+ Add Image Layer</button>
                     <div id="customImageThumbs" style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;"></div>
                 </div>
                 <div class="section">
@@ -329,14 +335,20 @@
                             <label style="font-size:12px;color:#CAC4D0;display:flex;align-items:center;gap:4px;">
                                 <input type="checkbox" id="customTextGradient" onchange="toggleTextGrad()"> Gradient
                             </label>
-                            <input type="color" id="customTextColor" value="#FFFFFF" style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer;" title="Color 1">
-                            <input type="color" id="customTextColor2" value="#03DAC5" style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer; display:none;" title="Color 2">
-                            <select id="customTextDir" style="display:none; font-size:11px; padding:2px; background:var(--card-bg); color:#fff; border:1px solid var(--border-color); border-radius:4px;">
+                            <input type="color" id="customTextColor" value="#FFFFFF"
+                                style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer;"
+                                title="Color 1">
+                            <input type="color" id="customTextColor2" value="#03DAC5"
+                                style="width:30px;height:30px;border:none;border-radius:4px;cursor:pointer; display:none;"
+                                title="Color 2">
+                            <select id="customTextDir"
+                                style="display:none; font-size:11px; padding:2px; background:var(--card-bg); color:#fff; border:1px solid var(--border-color); border-radius:4px;">
                                 <option value="to bottom">Top to Bottom</option>
                                 <option value="to right" selected>Left to Right</option>
                                 <option value="to left">Right to Left</option>
                             </select>
-                            <button class="btn btn-primary sm-btn" onclick="addCustomText()" style="flex:1;">+ Add Text</button>
+                            <button class="btn btn-primary sm-btn" onclick="addCustomText()" style="flex:1;">+ Add
+                                Text</button>
                         </div>
                     </div>
                 </div>
@@ -610,6 +622,10 @@
     <script src="templates/components/grade-float-card.js"></script>
     <script src="templates/components/neon-shape-icons.js"></script>
     <script src="templates/components/oop-concept-card.js"></script>
+    <script src="templates/components/carousel-slide-badge.js"></script>
+    <script src="templates/components/lesson-icon-ring.js"></script>
+    <script src="templates/components/swipe-hint.js"></script>
+    <script src="templates/components/shape-feature-grid.js"></script>
 
 
     <!-- 3. Templates (uses component functions in render) -->

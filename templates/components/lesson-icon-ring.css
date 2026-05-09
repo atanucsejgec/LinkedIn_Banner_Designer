@@ -1,0 +1,37 @@
+/* ============================================
+   LESSON-ICON-RING.CSS
+   ============================================ */
+
+.comp-lir {
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    flex-shrink: 0;
+}
+
+.comp-lir-inner {
+    position: relative;
+    z-index: 2;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.comp-lir-ring {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    animation: comp-lir-spin 12s linear infinite;
+}
+
+@keyframes comp-lir-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

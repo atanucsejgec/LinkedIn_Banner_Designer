@@ -1,0 +1,41 @@
+/* ============================================
+   SWIPE-HINT.CSS
+   ============================================ */
+
+.comp-swipe {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 14px 5px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--swipe-ac, #03DAC5)55;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+}
+
+.comp-swipe-label {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--swipe-ac, #03DAC5);
+    text-transform: uppercase;
+}
+
+.comp-swipe-arrow {
+    display: flex;
+    align-items: center;
+    animation: comp-swipe-bounce 1.4s ease-in-out infinite;
+}
+
+@keyframes comp-swipe-bounce {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(5px);
+    }
+}

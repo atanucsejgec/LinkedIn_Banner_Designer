@@ -5225,6 +5225,1305 @@ const TEMPLATES = [
     }
   },
 
+  /* ==== TEMPLATE — OOP Kotlin · Deep Dive (4:5 Portrait) ==== */
+  {
+    id: 'kotlin-oop-deep-dive',
+    name: 'OOP Kotlin · Deep Dive (4:5)',
+    tag: '1 Screenshot',
+    screenshots: 1,
+    thumb: {
+      bg: 'linear-gradient(135deg,#1A0533,#2D1B69)',
+      emoji: '🎨',
+      label: 'OOP Deep Dive'
+    },
+    render(d) {
+      const c = d.colors;
+      const ss = d.screenshots[0];
+      const W = d.bannerW || 1080;
+      const H = d.bannerH || 1350;
+
+      /* ── palette ── */
+      const PUR = c.a1 || '#7F52FF';
+      const TEAL = c.a2 || '#03DAC5';
+      const YELLOW = c.hl || '#FACC15';
+      const GREEN = '#4ADE80';
+      const PINK = '#F472B6';
+      const BG1 = c.bg1 || '#120228';
+      const BG2 = c.bg2 || '#1E1140';
+      const mono = `'JetBrains Mono','Fira Code',monospace`;
+
+      /* ── token helpers ── */
+      const kw = t => ({ type: 'keyword', text: t });
+      const fn = t => ({ type: 'fn', text: t });
+      const vr = t => ({ type: 'var', text: t });
+      const ty = t => ({ type: 'type', text: t });
+      const pl = t => ({ type: 'plain', text: t });
+      const cm = t => ({ type: 'comment', text: t });
+      const pll = (indent, text) => ({ indent, type: 'plain', text });
+      const cml = (indent, text) => ({ indent, type: 'comment', text });
+
+      /* ════════════════════════════════════════════
+         SECTION B — Sealed Class Code
+         ════════════════════════════════════════════ */
+      const sealedLines = [
+        cml(0, '// Sealed class — compiler knows every subtype'),
+        { indent: 0, tokens: [kw('sealed class '), ty('Shape')] },
+        pll(0, ''),
+        { indent: 1, tokens: [kw('data class '), ty('Circle'), pl('('), kw('val '), vr('radius'), pl(': '), ty('Double'), pl(') : '), ty('Shape'), pl('()')] },
+        { indent: 1, tokens: [kw('data class '), ty('Rectangle'), pl('('), kw('val '), vr('w'), pl(': '), ty('Double'), pl(', '), kw('val '), vr('h'), pl(': '), ty('Double'), pl(') : '), ty('Shape'), pl('()')] },
+        { indent: 1, tokens: [kw('data class '), ty('Triangle'), pl('('), kw('val '), vr('base'), pl(': '), ty('Double'), pl(', '), kw('val '), vr('h'), pl(': '), ty('Double'), pl(') : '), ty('Shape'), pl('()')] },
+        pll(0, ''),
+        { indent: 0, tokens: [kw('fun '), fn('area'), pl('('), vr('s'), pl(': '), ty('Shape'), pl('): '), ty('Double'), pl(' = '), kw('when'), pl('('), vr('s'), pl(') {')] },
+        { indent: 1, tokens: [kw('is '), ty('Circle'), pl('    -> Math.PI * '), vr('s'), pl('.radius.pow(2)')] },
+        { indent: 1, tokens: [kw('is '), ty('Rectangle'), pl('-> '), vr('s'), pl('.w * '), vr('s'), pl('.h')] },
+        { indent: 1, tokens: [kw('is '), ty('Triangle'), pl(' -> 0.5 * '), vr('s'), pl('.base * '), vr('s'), pl('.h')] },
+        cml(1, '// ✅ No else — exhaustive!'),
+        pll(0, '}'),
+      ];
+
+      /* ════════════════════════════════════════════
+         SECTION C — Drawable Interface Code
+         ════════════════════════════════════════════ */
+      const drawableLines = [
+        cml(0, '// Polymorphism via interface'),
+        { indent: 0, tokens: [kw('interface '), ty('Drawable'), pl(' { '), kw('fun '), fn('draw'), pl('('), vr('canvas'), pl(': '), ty('DrawScope'), pl(') }')] },
+        pll(0, ''),
+        { indent: 0, tokens: [kw('data class '), ty('Circle'), pl('(...) : '), ty('Shape'), pl('(), '), ty('Drawable'), pl(' {')] },
+        { indent: 1, tokens: [kw('override fun '), fn('draw'), pl('('), vr('canvas'), pl(': '), ty('DrawScope'), pl(') = '), vr('canvas'), pl('.'), fn('drawCircle'), pl('('), vr('color'), pl(', '), vr('radius'), pl(')')] },
+        pll(0, '}'),
+        pll(0, ''),
+        cml(0, '// UI just calls draw() — never checks type'),
+        { indent: 0, tokens: [vr('shapes'), pl('.'), fn('forEach'), pl(' { '), vr('shape'), pl(' -> '), vr('shape'), pl('.'), fn('draw'), pl('(canvas) }'), cm('  // ✨ Magic!')] },
+      ];
+
+      /* ════════════════════════════════════════════
+         SECTION D — Singleton Object Code
+         ════════════════════════════════════════════ */
+      const singletonLines = [
+        cml(0, '// Singleton — one instance, always'),
+        { indent: 0, tokens: [kw('object '), ty('ShapeAnalyzer'), pl(' {')] },
+        { indent: 1, tokens: [kw('fun '), fn('largestShape'), pl('('), vr('shapes'), pl(': '), ty('List'), pl('<'), ty('Shape'), pl('>): '), ty('Shape'), pl('? = '), vr('shapes'), pl('.'), fn('maxByOrNull'), pl(' { '), fn('area'), pl('(it) }')] },
+        { indent: 1, tokens: [kw('fun '), fn('totalArea'), pl('('), vr('shapes'), pl(': '), ty('List'), pl('<'), ty('Shape'), pl('>): '), ty('Double'), pl(' = '), vr('shapes'), pl('.'), fn('sumOf'), pl(' { '), fn('area'), pl('(it) }')] },
+        pll(0, '}'),
+        pll(0, ''),
+        cml(0, '// Usage — no new(), no instance'),
+        { indent: 0, tokens: [kw('val '), vr('biggest'), pl(' = '), ty('ShapeAnalyzer'), pl('.'), fn('largestShape'), pl('(shapes)')] },
+        { indent: 0, tokens: [kw('val '), vr('total'), pl('   = '), ty('ShapeAnalyzer'), pl('.'), fn('totalArea'), pl('(shapes)')] },
+      ];
+
+      /* ════════════════════════════════════════════
+         CONCEPT PILLS
+         ════════════════════════════════════════════ */
+      const conceptPills = [
+        { emoji: '🔒', label: 'Sealed Class', sub: 'Exhaustive when()', color: YELLOW },
+        { emoji: '🪄', label: 'Polymorphism', sub: 'draw() for all', color: TEAL },
+        { emoji: '🧠', label: 'Singleton', sub: 'object keyword', color: GREEN },
+        { emoji: '🎨', label: 'Compose UI', sub: 'Canvas API', color: PINK },
+      ];
+
+      /* ════════════════════════════════════════════
+         POLL BARS
+         ════════════════════════════════════════════ */
+      const pollRows = [
+        { label: 'Sealed Classes', color: YELLOW, w: '72%' },
+        { label: 'Polymorphism', color: TEAL, w: '58%' },
+        { label: 'Singleton obj', color: GREEN, w: '45%' },
+        { label: 'Extension fns', color: PINK, w: '33%' },
+      ];
+
+      /* ════════════════════════════════════════════
+         PHONE MOCKUP SECTION
+         floating shape tags orbit the phone
+         ════════════════════════════════════════════ */
+
+      /* phone dimensions — tall enough to be a visual anchor */
+      const phoneW = 200;
+      const phoneTilt = d.phoneTilt || -4;
+      const glowOp = d.glowOpacity || 35;
+
+      /* four floating shape-stat tags that orbit the phone */
+      const orbitTags = [
+      /* top-left  */ {
+          emoji: '◎', label: 'Circle',
+          sub: 'area = 8,495 px²',
+          color: TEAL,
+          style: `top:14px;left:8px;rotate:-4deg;`
+        },
+      /* top-right */ {
+          emoji: '▭', label: 'Rectangle',
+          sub: 'area = 7,920 px²',
+          color: YELLOW,
+          style: `top:14px;right:8px;rotate:4deg;`
+        },
+      /* bot-left  */ {
+          emoji: '△', label: 'Triangle',
+          sub: 'area = 3,960 px²',
+          color: PUR,
+          style: `bottom:14px;left:8px;rotate:3deg;`
+        },
+      /* bot-right */ {
+          emoji: '⬭', label: 'Oval',
+          sub: 'area = 5,781 px²',
+          color: PINK,
+          style: `bottom:14px;right:8px;rotate:-3deg;`
+        },
+      ];
+
+      /* draw() call chips that float alongside */
+      const drawChips = [
+        { label: 'Circle.draw()', color: TEAL, style: `top:50%;left:4px;transform:translateY(-120%);` },
+        { label: 'Rect.draw()', color: YELLOW, style: `top:50%;right:4px;transform:translateY(-120%);` },
+        { label: 'shape.draw()', color: PUR, style: `top:50%;left:4px;transform:translateY(20%);` },
+        { label: 'Sealed ✅', color: GREEN, style: `top:50%;right:4px;transform:translateY(20%);` },
+      ];
+
+      const phoneMockupSection = `
+      <!-- phone container — relative so tags can be absolute inside -->
+      <div style="
+        position:relative;
+        width:100%;
+        height:340px;
+        display:flex;
+        align-items:center;
+        justify-content:center;">
+
+        <!-- soft glow behind phone -->
+        <div style="
+          position:absolute;
+          width:260px;height:340px;
+          left:50%;top:50%;
+          transform:translate(-50%,-50%);
+          background:radial-gradient(ellipse,${PUR}44 0%,${TEAL}22 45%,transparent 70%);
+          filter:blur(28px);
+          pointer-events:none;"></div>
+
+        <!-- phone mockup centred -->
+        <div style="position:relative;z-index:2;">
+          ${phoneMockup(ss, phoneW, phoneTilt, glowOp, PUR)}
+        </div>
+
+        <!-- ── orbit shape-stat tags ── -->
+        ${orbitTags.map(t => `
+          <div style="
+            position:absolute;
+            ${t.style}
+            display:flex;align-items:center;gap:6px;
+            background:${t.color}14;
+            border:1.5px solid ${t.color}66;
+            border-radius:10px;
+            padding:6px 10px;
+            box-shadow:0 0 14px ${t.color}33;
+            z-index:3;">
+            <span style="font-size:16px;color:${t.color};">${t.emoji}</span>
+            <div>
+              <div style="font-family:${mono};font-size:10px;
+                font-weight:800;color:${t.color};">${t.label}</div>
+              <div style="font-family:${mono};font-size:8px;
+                color:${t.color}88;">${t.sub}</div>
+            </div>
+          </div>`).join('')}
+
+        <!-- ── draw() call chips ── -->
+        ${drawChips.map(chip => `
+          <div style="
+            position:absolute;
+            ${chip.style}
+            white-space:nowrap;
+            background:${chip.color}12;
+            border:1px solid ${chip.color}55;
+            border-radius:999px;
+            padding:4px 10px;
+            font-family:${mono};
+            font-size:9px;font-weight:700;
+            color:${chip.color};
+            box-shadow:0 0 10px ${chip.color}33;
+            z-index:3;">${chip.label}</div>`).join('')}
+
+      </div>`;
+
+      /* ════════════════════════════════════════════
+         FULL TEMPLATE HTML
+         ════════════════════════════════════════════ */
+      return `
+
+      <!-- ▓▓▓ MASTER BACKGROUND ▓▓▓ -->
+      <div style="position:absolute;inset:0;
+        background:linear-gradient(175deg,
+          ${BG1} 0%,
+          #1E0D4A 25%,
+          #0D2840 55%,
+          #0A1520 80%,
+          ${BG1} 100%);"></div>
+
+      <!-- dot-grid texture -->
+      <div style="position:absolute;inset:0;
+        background-image:radial-gradient(${PUR}44 1px, transparent 1px);
+        background-size:32px 32px;
+        opacity:0.18;pointer-events:none;"></div>
+
+      <!-- scanline texture -->
+      <div style="position:absolute;inset:0;opacity:0.035;
+        background:repeating-linear-gradient(
+          0deg,transparent,transparent 3px,#fff 3px,#fff 4px);
+        pointer-events:none;"></div>
+
+      <!-- ▓▓▓ GLOW BLOBS ▓▓▓ -->
+      <div class="glow-blob" style="
+        width:700px;height:500px;
+        top:-180px;left:50%;transform:translateX(-50%);
+        background:radial-gradient(ellipse,${PUR}33,transparent 65%);"></div>
+      <div class="glow-blob" style="
+        width:400px;height:400px;
+        top:480px;right:-100px;
+        background:radial-gradient(circle,${TEAL}22,transparent 65%);"></div>
+      <div class="glow-blob" style="
+        width:350px;height:350px;
+        top:900px;left:-80px;
+        background:radial-gradient(circle,${YELLOW}1A,transparent 65%);"></div>
+      <div class="glow-blob" style="
+        width:300px;height:300px;
+        bottom:100px;right:-60px;
+        background:radial-gradient(circle,${GREEN}1A,transparent 65%);"></div>
+
+      <!-- ▓▓▓ TOP ACCENT BAR ▓▓▓ -->
+      <div style="position:absolute;top:0;left:0;right:0;height:6px;
+        background:linear-gradient(90deg,
+          ${PUR},${TEAL},${YELLOW},${PINK},${GREEN},${PUR});"></div>
+
+      <!-- ▓▓▓ VERTICAL LEFT RAIL ▓▓▓ -->
+      <div style="position:absolute;top:6px;left:30px;bottom:62px;width:3px;
+        background:linear-gradient(180deg,
+          ${PUR},${YELLOW},${TEAL},${GREEN},${PINK},transparent);
+        border-radius:2px;opacity:0.6;"></div>
+
+
+      <!-- ════════════════════════════════
+           HEADER
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:18px;left:52px;right:32px;">
+
+        <!-- series label -->
+        <div style="
+          font-family:${mono};
+          font-size:11px;font-weight:700;
+          letter-spacing:0.18em;text-transform:uppercase;
+          color:${YELLOW};margin-bottom:6px;">
+          ▶ Kotlin Deep Dive · OOP Series
+        </div>
+
+        <!-- main headline -->
+        <div style="margin-bottom:6px;">
+          ${gradientTextLines(
+        ['OOP in Action:', 'Building a Shape Calculator'],
+        YELLOW, TEAL,
+        d.hs > 36 ? d.hs : 38,
+        900, 0, 4
+      )}
+        </div>
+
+        <!-- sub headline -->
+        <div style="
+          font-size:18px;font-weight:800;
+          color:#ffffffcc;letter-spacing:-0.01em;
+          margin-bottom:10px;">
+          with <span style="color:${PUR};">Kotlin</span>
+          &amp; <span style="color:${TEAL};">Jetpack Compose</span>
+        </div>
+
+        <!-- divider -->
+        <div style="height:3px;width:320px;border-radius:2px;
+          background:linear-gradient(90deg,${YELLOW},${TEAL},transparent);
+          margin-bottom:10px;"></div>
+
+        <!-- concept pills row -->
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          ${conceptPills.map(p => `
+            <div style="
+              display:inline-flex;align-items:center;gap:6px;
+              background:${p.color}14;
+              border:1.5px solid ${p.color}66;
+              border-radius:10px;
+              padding:5px 12px;
+              box-shadow:0 0 12px ${p.color}22;">
+              <span style="font-size:14px;">${p.emoji}</span>
+              <div>
+                <div style="font-family:${mono};font-size:10px;
+                  font-weight:800;color:${p.color};">
+                  ${p.label}
+                </div>
+                <div style="font-family:${mono};font-size:9px;
+                  color:${p.color}88;">
+                  ${p.sub}
+                </div>
+              </div>
+            </div>`).join('')}
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════
+           SECTION 1 · Phone Mockup
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:248px;left:52px;right:32px;">
+
+        <!-- section label -->
+        <div style="
+          display:flex;align-items:center;gap:10px;
+          margin-bottom:10px;">
+          <div style="
+            width:28px;height:28px;border-radius:50%;
+            background:${PINK}22;border:1.5px solid ${PINK}77;
+            display:flex;align-items:center;justify-content:center;
+            font-size:14px;box-shadow:0 0 12px ${PINK}33;">📱</div>
+          <div style="font-family:${mono};font-size:12px;
+            font-weight:800;color:${PINK};">
+            The App · Shape Calculator UI
+          </div>
+          <div style="flex:1;height:1px;
+            background:linear-gradient(90deg,${PINK}44,transparent);"></div>
+        </div>
+
+        <!-- phone mockup with orbiting tags -->
+        ${phoneMockupSection}
+
+      </div>
+
+
+      <!-- ════════════════════════════════
+           SECTION 2 · Sealed Class
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:640px;left:52px;right:32px;">
+
+        <!-- section label -->
+        <div style="
+          display:flex;align-items:center;gap:10px;
+          margin-bottom:8px;">
+          <div style="
+            width:28px;height:28px;border-radius:50%;
+            background:${YELLOW}22;border:1.5px solid ${YELLOW}77;
+            display:flex;align-items:center;justify-content:center;
+            font-size:14px;box-shadow:0 0 12px ${YELLOW}33;">🔒</div>
+          <div style="font-family:${mono};font-size:12px;
+            font-weight:800;color:${YELLOW};">
+            Sealed Class &amp; Exhaustive When
+          </div>
+          <div style="flex:1;height:1px;
+            background:linear-gradient(90deg,${YELLOW}44,transparent);"></div>
+        </div>
+
+        <!-- two-column: code LEFT, insight RIGHT -->
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+
+          <!-- code card -->
+          <div style="flex:1;min-width:0;rotate:-0.5deg;">
+            ${kotlinCodeCard(sealedLines, YELLOW, 560)}
+          </div>
+
+          <!-- insight card -->
+          <div style="
+            width:175px;flex-shrink:0;
+            display:flex;flex-direction:column;gap:8px;">
+
+            <div style="
+              background:${YELLOW}12;
+              border:1.5px solid ${YELLOW}66;
+              border-radius:12px;padding:10px 12px;
+              box-shadow:0 0 16px ${YELLOW}22;">
+              <div style="font-family:${mono};font-size:9px;
+                font-weight:700;letter-spacing:0.1em;
+                text-transform:uppercase;color:${YELLOW}88;
+                margin-bottom:4px;">KEY INSIGHT</div>
+              <div style="font-size:11px;color:#ffffffcc;line-height:1.5;">
+                No
+                <code style="background:${YELLOW}22;padding:1px 5px;
+                  border-radius:4px;color:${YELLOW};font-size:10px;">
+                  else</code>
+                needed!<br/>
+                Compiler knows<br/>
+                <strong style="color:#fff;">every subtype</strong>
+                at compile-time.
+              </div>
+            </div>
+
+            <div style="
+              background:rgba(255,255,255,0.04);
+              border:1px solid ${YELLOW}33;
+              border-radius:10px;padding:8px 12px;">
+              <div style="font-size:10px;color:#CAC4D0cc;line-height:1.6;">
+                🛡️ <strong style="color:${YELLOW};">Sealed</strong> = compiler
+                enforces completeness<br/>
+                ⚡ Smart cast inside
+                <code style="color:${YELLOW};font-size:9px;">when</code> branches
+              </div>
+            </div>
+
+            <!-- no-else badge -->
+            <div style="
+              background:${YELLOW}1A;
+              border:2px solid ${YELLOW};
+              border-radius:10px;padding:8px 10px;
+              text-align:center;
+              box-shadow:0 0 18px ${YELLOW}44;
+              font-family:${mono};font-size:10px;
+              color:${YELLOW};font-weight:800;">
+              ✅ No else!<br/>
+              <span style="font-size:9px;color:${YELLOW}aa;">
+                Exhaustive when()
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════
+           SECTION 3 · Polymorphism
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:920px;left:52px;right:32px;">
+
+        <!-- section label -->
+        <div style="
+          display:flex;align-items:center;gap:10px;
+          margin-bottom:8px;">
+          <div style="
+            width:28px;height:28px;border-radius:50%;
+            background:${TEAL}22;border:1.5px solid ${TEAL}77;
+            display:flex;align-items:center;justify-content:center;
+            font-size:14px;box-shadow:0 0 12px ${TEAL}33;">🪄</div>
+          <div style="font-family:${mono};font-size:12px;
+            font-weight:800;color:${TEAL};">
+            Polymorphism &amp; Drawable Interface
+          </div>
+          <div style="flex:1;height:1px;
+            background:linear-gradient(90deg,${TEAL}44,transparent);"></div>
+        </div>
+
+        <!-- two-column: insight LEFT, code RIGHT -->
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+
+          <!-- shape rows insight -->
+          <div style="
+            width:200px;flex-shrink:0;
+            display:flex;flex-direction:column;gap:7px;">
+
+            ${[
+          { emoji: '◎', label: 'Circle', color: TEAL, fn: 'drawCircle(color, r)' },
+          { emoji: '▭', label: 'Rectangle', color: YELLOW, fn: 'drawRect(topLeft, sz)' },
+          { emoji: '△', label: 'Triangle', color: PINK, fn: 'drawPath(path)' },
+        ].map(s => `
+              <div style="
+                display:flex;align-items:center;gap:8px;
+                background:${s.color}11;
+                border:1px solid ${s.color}44;
+                border-radius:10px;padding:7px 10px;">
+                <span style="font-size:18px;color:${s.color};">${s.emoji}</span>
+                <div>
+                  <div style="font-weight:800;font-size:11px;color:${s.color};">
+                    ${s.label}</div>
+                  <div style="font-family:${mono};font-size:8px;
+                    color:#CAC4D0aa;margin-top:1px;">${s.fn}</div>
+                </div>
+              </div>`).join('')}
+
+            <!-- magic pill -->
+            <div style="
+              background:${TEAL}12;border:1.5px solid ${TEAL}55;
+              border-radius:10px;padding:8px 10px;margin-top:2px;
+              font-size:10px;color:#CAC4D0cc;line-height:1.5;">
+              🪄 UI calls
+              <code style="color:${TEAL};font-size:9px;">draw()</code>
+              on any shape —<br/>
+              <strong style="color:${TEAL};">never checks type!</strong>
+            </div>
+          </div>
+
+          <!-- code card -->
+          <div style="flex:1;min-width:0;rotate:0.4deg;">
+            ${kotlinCodeCard(drawableLines, TEAL, 530)}
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════
+           SECTION 4 · Singleton
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:1160px;left:52px;right:32px;">
+
+        <!-- section label -->
+        <div style="
+          display:flex;align-items:center;gap:10px;
+          margin-bottom:8px;">
+          <div style="
+            width:28px;height:28px;border-radius:50%;
+            background:${GREEN}22;border:1.5px solid ${GREEN}77;
+            display:flex;align-items:center;justify-content:center;
+            font-size:14px;box-shadow:0 0 12px ${GREEN}33;">🧠</div>
+          <div style="font-family:${mono};font-size:12px;
+            font-weight:800;color:${GREEN};">
+            Singleton · ShapeAnalyzer object
+          </div>
+          <div style="flex:1;height:1px;
+            background:linear-gradient(90deg,${GREEN}44,transparent);"></div>
+        </div>
+
+        <!-- three-column: benefits + code + cta -->
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+
+          <!-- benefits -->
+          <div style="
+            width:160px;flex-shrink:0;
+            display:flex;flex-direction:column;gap:6px;">
+            ${[
+          { icon: '1️⃣', title: 'Single Instance', body: 'One object in memory' },
+          { icon: '🚫', title: 'No new() Needed', body: 'Direct access always' },
+          { icon: '🔗', title: 'Global Access', body: 'Available everywhere' },
+          { icon: '🔍', title: 'JVM Companion', body: '= companion singleton' },
+        ].map(b => `
+              <div style="
+                display:flex;align-items:flex-start;gap:7px;
+                background:${GREEN}0F;
+                border:1px solid ${GREEN}33;
+                border-radius:8px;padding:6px 8px;">
+                <span style="font-size:13px;flex-shrink:0;">${b.icon}</span>
+                <div>
+                  <div style="font-weight:800;font-size:10px;color:${GREEN};">
+                    ${b.title}</div>
+                  <div style="font-size:9px;color:#CAC4D0aa;margin-top:1px;">
+                    ${b.body}</div>
+                </div>
+              </div>`).join('')}
+          </div>
+
+          <!-- code card -->
+          <div style="flex:1;min-width:0;rotate:-0.4deg;">
+            ${kotlinCodeCard(singletonLines, GREEN, 490)}
+          </div>
+
+          <!-- CTA column -->
+          <div style="
+            width:135px;flex-shrink:0;
+            display:flex;flex-direction:column;gap:8px;">
+
+            <!-- singleton badge -->
+            <div style="
+              background:${GREEN}1A;
+              border:2px solid ${GREEN};
+              border-radius:12px;padding:10px;
+              text-align:center;
+              box-shadow:0 0 20px ${GREEN}44;
+              font-family:${mono};">
+              <div style="font-size:22px;margin-bottom:4px;">🧠</div>
+              <div style="font-size:11px;font-weight:800;color:${GREEN};">
+                object</div>
+              <div style="font-size:9px;color:${GREEN}88;margin-top:2px;">
+                Kotlin Singleton
+              </div>
+            </div>
+
+            <!-- github link -->
+            <div style="
+              background:rgba(255,255,255,0.05);
+              border:1.5px solid ${PUR}55;
+              border-radius:12px;padding:10px;
+              box-shadow:0 0 16px ${PUR}22;">
+              <div style="display:flex;align-items:center;gap:6px;
+                margin-bottom:6px;">
+                <span style="font-size:14px;">🔗</span>
+                <div style="font-weight:800;font-size:11px;color:#fff;">
+                  Source Code</div>
+              </div>
+              <div style="
+                font-family:${mono};font-size:8px;
+                color:${TEAL};background:${TEAL}11;
+                border:1px solid ${TEAL}33;border-radius:6px;
+                padding:5px 8px;word-break:break-all;line-height:1.4;">
+                ${d.state.github || 'github.com/you/ShapeCalc-Kotlin'}
+              </div>
+            </div>
+
+            <!-- comment CTA -->
+            <div style="
+              background:linear-gradient(135deg,${PUR}22,${TEAL}22);
+              border:1.5px solid ${PUR}55;
+              border-radius:12px;padding:10px;
+              text-align:center;">
+              <div style="font-size:16px;margin-bottom:4px;">💬</div>
+              <div style="font-weight:800;font-size:10px;color:#fff;
+                margin-bottom:3px;">Drop a comment!</div>
+              <div style="font-size:9px;color:#CAC4D0cc;line-height:1.4;">
+                Which OOP concept<br/>do you use most?
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════
+           POLL BAR ROW
+           ════════════════════════════════ -->
+      <div style="position:absolute;top:1428px;left:52px;right:32px;">
+        <div style="
+          display:flex;gap:10px;align-items:center;
+          flex-wrap:nowrap;">
+
+          <div style="font-family:${mono};font-size:9px;font-weight:700;
+            letter-spacing:0.1em;text-transform:uppercase;
+            color:#CAC4D055;white-space:nowrap;flex-shrink:0;">
+            💬 Poll
+          </div>
+
+          <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
+            ${pollRows.map(opt => `
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div style="width:90px;flex-shrink:0;
+                  font-family:${mono};font-size:9px;
+                  font-weight:700;color:#fff;">${opt.label}</div>
+                <div style="flex:1;height:7px;border-radius:3px;
+                  background:rgba(255,255,255,0.06);">
+                  <div style="height:100%;width:${opt.w};border-radius:3px;
+                    background:linear-gradient(90deg,${opt.color}cc,${opt.color}55);
+                    box-shadow:0 0 6px ${opt.color}44;"></div>
+                </div>
+                <div style="width:30px;flex-shrink:0;text-align:right;
+                  font-family:${mono};font-size:9px;
+                  color:${opt.color};font-weight:800;">${opt.w}</div>
+              </div>`).join('')}
+          </div>
+
+          <!-- hashtags -->
+          <div style="
+            flex-shrink:0;
+            font-family:${mono};font-size:9px;
+            color:#CAC4D044;line-height:1.7;text-align:right;">
+            #Kotlin<br/>#AndroidDev<br/>#OOP<br/>#Compose
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ════════════════════════════════
+           SPARKLES
+           ════════════════════════════════ -->
+      <div class="sparkle" style="top:200px;right:60px;
+        animation-delay:0s;color:${YELLOW};font-size:14px;">✦</div>
+      <div class="sparkle" style="top:390px;left:120px;
+        animation-delay:0.4s;color:${PINK};font-size:10px;">✦</div>
+      <div class="sparkle" style="top:600px;right:220px;
+        animation-delay:0.8s;color:${TEAL};font-size:12px;">✦</div>
+      <div class="sparkle" style="top:900px;left:240px;
+        animation-delay:0.2s;color:${PUR};font-size:11px;">✦</div>
+      <div class="sparkle" style="top:1150px;right:50px;
+        animation-delay:1.1s;color:${GREEN};font-size:13px;">✦</div>
+      <div class="sparkle" style="top:1410px;left:300px;
+        animation-delay:0.6s;color:${PINK};font-size:9px;">✦</div>
+
+
+      <!-- ════════════════════════════════
+           FOOTER
+           ════════════════════════════════ -->
+      <div class="banner-footer-bar" style="height:62px;
+        background:rgba(10,2,24,0.88);
+        border-top:1px solid ${PUR}44;
+        backdrop-filter:blur(12px);">
+        <span style="font-family:${mono};font-size:12px;color:#CAC4D0;">
+          ${d.state.github || 'github.com/you/ShapeCalculator-Kotlin'}
+        </span>
+        <span style="font-size:11px;color:#CAC4D077;">
+          ${d.state.author || '@yourhandle'} &nbsp;·&nbsp; #Kotlin #OOP
+        </span>
+      </div>
+    `;
+    }
+  },
+
+  /* ==== TEMPLATE 28 — Shape Calculator · LinkedIn Portrait ==== */
+  {
+    id: 'shape-calculator-portrait',
+    name: 'Shape Calculator · Portrait',
+    tag: 'No Screenshot',
+    screenshots: 0,
+    thumb: {
+      bg: 'linear-gradient(160deg, #0D1B4B 0%, #1565C0 50%, #0A2472 100%)',
+      emoji: '📐',
+      label: 'Shape Calc'
+    },
+    render(d) {
+      const c = d.colors;
+
+      /* ── palette ─────────────────────────────────────────── */
+      const blue = c.a1 || '#2962FF';
+      const teal = c.a2 || '#00E5FF';
+      const hl = c.hl || '#FFD740';
+      const bg1 = c.bg1 || '#0D1B4B';
+      const bg2 = c.bg2 || '#0A2472';
+
+      /* ── canvas dims ─────────────────────────────────────── */
+      const W = d.bannerW || 1080;
+      const H = d.bannerH || 1350;
+
+      /* ── responsive scale factor (design base = 1080×1350) ─ */
+      const sc = Math.min(W / 1080, H / 1350);
+
+      /* ── helpers ─────────────────────────────────────────── */
+      const px = v => `${Math.round(v * sc)}px`;
+
+      /* ── spacing ─────────────────────────────────────────── */
+      const PAD = 80 * sc;
+      const SEC = 40 * sc;
+      const EL = 16 * sc;
+
+      /* ── section heights ─────────────────────────────────── */
+      const headerH = H * 0.20;   // ~270px
+      const previewH = H * 0.35;   // ~472px
+      const codeH = H * 0.20;   // ~270px
+      const featH = H * 0.15;   // ~202px
+
+      /* ── section Y positions ─────────────────────────────── */
+      const previewTop = headerH + SEC;
+      const codeTop = previewTop + previewH + SEC;
+      const featTop = codeTop + codeH + SEC;
+
+      /* ── phone mockup config ─────────────────────────────── */
+      // preview panel inner width = W - PAD*2, minus own padding
+      const panelInnerW = W - PAD * 2 - SEC * 2;   // usable width inside card
+      const phoneW = Math.round(panelInnerW * 0.38);  // phone takes ~38% of panel
+      const shapeAreaW = panelInnerW - phoneW - SEC;      // shapes take the rest
+
+      /* screenshot — use d.screenshots[0] if user uploaded, else null */
+      const ss = (d.screenshots && d.screenshots[0]) || null;
+
+      /* ── shapes SVG viewBox is fixed, rendered into shapeAreaW ─ */
+      const svgH = previewH - SEC * 2 - 48 * sc;  // leave room for badge
+
+      /* ── tag pills ───────────────────────────────────────── */
+      const tags = ['Sealed Classes', 'Interfaces', 'Polymorphism', 'Singleton'];
+
+      /* ── feature grid items ──────────────────────────────── */
+      const featItems = [
+        { icon: '📌', title: 'Dynamic Shape Creation', sub: 'Circle · Rect · Triangle' },
+        { icon: '📊', title: 'Area & Perimeter Calc', sub: 'Computed via sealed class' },
+        { icon: '🎨', title: 'Canvas Drawing', sub: 'Polymorphism via draw()' },
+      ];
+
+      /* ── shapes SVG ──────────────────────────────────────── */
+      const shapeSVG = `
+      <svg
+        width="${Math.round(shapeAreaW)}"
+        height="${Math.round(svgH)}"
+        viewBox="0 0 460 380"
+        xmlns="http://www.w3.org/2000/svg"
+        style="display:block;overflow:visible;flex-shrink:0;"
+      >
+        <defs>
+          <pattern id="sgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none"
+                  stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          </pattern>
+          <filter id="fr" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="10" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="fb" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="10" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="fg" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="10" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- faint grid background -->
+        <rect width="460" height="380" fill="url(#sgrid)" rx="12"/>
+
+        <!-- ── 🔴 CIRCLE (top-left) ───────────────────── -->
+        <!-- halo ring -->
+        <circle cx="105" cy="100" r="72"
+                fill="none" stroke="#FF1744" stroke-width="2" opacity="0.20"
+                filter="url(#fr)"/>
+        <!-- body -->
+        <circle cx="105" cy="100" r="58"
+                fill="rgba(255,23,68,0.14)"
+                stroke="#FF1744" stroke-width="2.5"
+                filter="url(#fr)"/>
+        <!-- label -->
+        <text x="105" y="96" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="13"
+              fill="#FF6090" opacity="0.95">Circle</text>
+        <text x="105" y="114" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="rgba(255,255,255,0.45)">r = 5.0</text>
+        <!-- formula badge -->
+        <rect x="48" y="172" width="114" height="26" rx="7"
+              fill="rgba(255,23,68,0.18)" stroke="#FF1744" stroke-width="1"/>
+        <text x="105" y="190" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="#FF6090">π·r² = 78.54</text>
+
+        <!-- ── 🔵 RECTANGLE (top-right) ───────────────── -->
+        <rect x="245" y="40" width="190" height="120" rx="10"
+              fill="rgba(41,98,255,0.14)"
+              stroke="#2979FF" stroke-width="2.5"
+              filter="url(#fb)"/>
+        <!-- dimension dashes -->
+        <line x1="245" y1="172" x2="435" y2="172"
+              stroke="#2979FF" stroke-width="1"
+              stroke-dasharray="5,4" opacity="0.55"/>
+        <line x1="446" y1="40" x2="446" y2="160"
+              stroke="#2979FF" stroke-width="1"
+              stroke-dasharray="5,4" opacity="0.55"/>
+        <text x="340" y="188" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="rgba(255,255,255,0.45)">w = 10</text>
+        <text x="460" y="105" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="rgba(255,255,255,0.45)">h=6</text>
+        <!-- label -->
+        <text x="340" y="96" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="13"
+              fill="#82B1FF" opacity="0.95">Rectangle</text>
+        <text x="340" y="114" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="rgba(255,255,255,0.45)">10 × 6</text>
+        <!-- formula badge -->
+        <rect x="248" y="200" width="184" height="26" rx="7"
+              fill="rgba(41,98,255,0.18)" stroke="#2979FF" stroke-width="1"/>
+        <text x="340" y="218" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="#82B1FF">A = 60.00 | P = 32</text>
+
+        <!-- ── 🟢 TRIANGLE (bottom-center) ────────────── -->
+        <polygon points="230,230 380,360 80,360"
+                 fill="rgba(0,200,83,0.12)"
+                 stroke="#00C853" stroke-width="2.5"
+                 filter="url(#fg)"/>
+        <!-- altitude -->
+        <line x1="230" y1="230" x2="230" y2="360"
+              stroke="#00C853" stroke-width="1"
+              stroke-dasharray="5,4" opacity="0.40"/>
+        <!-- label -->
+        <text x="230" y="318" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="13"
+              fill="#69F0AE" opacity="0.95">Triangle</text>
+        <text x="230" y="336" text-anchor="middle"
+              font-family="'JetBrains Mono',monospace" font-size="10"
+              fill="rgba(255,255,255,0.45)">b=10, h=8</text>
+      </svg>
+    `;
+
+      /* ── placeholder phone screen (shown when no screenshot) ─ */
+      const phonePlaceholder = `
+      <div style="
+        width:100%;height:100%;
+        background:linear-gradient(160deg,#0D1B4B,#1A237E);
+        display:flex;flex-direction:column;
+        align-items:center;justify-content:flex-start;
+        padding:18px 12px;
+        gap:10px;
+        font-family:'JetBrains Mono',monospace;
+      ">
+        <!-- app bar -->
+        <div style="
+          width:100%;
+          background:${blue}CC;
+          border-radius:8px;
+          padding:8px 10px;
+          font-size:10px;font-weight:700;
+          color:#fff;
+          text-align:center;
+          letter-spacing:0.3px;
+        ">📐 Shape Calculator</div>
+
+        <!-- shape selection chips -->
+        <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:center;">
+          ${[
+          { label: 'Circle', color: '#FF1744' },
+          { label: 'Rect', color: blue },
+          { label: 'Triangle', color: '#00C853' },
+        ].map(s => `
+            <div style="
+              background:${s.color}33;
+              border:1px solid ${s.color}99;
+              border-radius:6px;
+              padding:4px 8px;
+              font-size:9px;font-weight:700;
+              color:${s.color};
+            ">${s.label}</div>
+          `).join('')}
+        </div>
+
+        <!-- result card: circle -->
+        <div style="
+          width:100%;
+          background:rgba(255,23,68,0.12);
+          border:1px solid #FF174466;
+          border-radius:10px;
+          padding:9px 10px;
+        ">
+          <div style="font-size:9px;color:#FF6090;font-weight:700;margin-bottom:4px;">
+            🔴 Circle — r = 5.0
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.65);line-height:1.6;">
+            Area: 78.54<br/>
+            Perimeter: 31.42
+          </div>
+        </div>
+
+        <!-- result card: rectangle -->
+        <div style="
+          width:100%;
+          background:rgba(41,98,255,0.12);
+          border:1px solid ${blue}66;
+          border-radius:10px;
+          padding:9px 10px;
+        ">
+          <div style="font-size:9px;color:#82B1FF;font-weight:700;margin-bottom:4px;">
+            🔵 Rectangle — 10×6
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.65);line-height:1.6;">
+            Area: 60.00<br/>
+            Perimeter: 32.00
+          </div>
+        </div>
+
+        <!-- result card: triangle -->
+        <div style="
+          width:100%;
+          background:rgba(0,200,83,0.10);
+          border:1px solid #00C85366;
+          border-radius:10px;
+          padding:9px 10px;
+        ">
+          <div style="font-size:9px;color:#69F0AE;font-weight:700;margin-bottom:4px;">
+            🟢 Triangle — b=10, h=8
+          </div>
+          <div style="font-size:8px;color:rgba(255,255,255,0.65);line-height:1.6;">
+            Area: 40.00<br/>
+            Perimeter: 30.00
+          </div>
+        </div>
+
+        <!-- canvas draw label -->
+        <div style="
+          width:100%;
+          background:rgba(255,255,255,0.04);
+          border:1px solid rgba(255,255,255,0.10);
+          border-radius:8px;
+          padding:8px 10px;
+          font-size:8px;
+          color:rgba(255,255,255,0.40);
+          text-align:center;
+          letter-spacing:0.3px;
+        ">🎨 Canvas · draw() via Polymorphism</div>
+      </div>
+    `;
+
+      return `
+      <!-- ░░ BACKGROUND ░░ -->
+      <div style="
+        position:absolute;inset:0;
+        background:linear-gradient(160deg,${bg1} 0%,${bg2} 60%,${bg1} 100%);
+      "></div>
+
+      <!-- scanline texture -->
+      <div style="
+        position:absolute;inset:0;pointer-events:none;
+        background:repeating-linear-gradient(
+          0deg,transparent,transparent 3px,
+          rgba(255,255,255,0.012) 3px,rgba(255,255,255,0.012) 4px
+        );
+      "></div>
+
+      <!-- ░░ GLOW BLOBS ░░ -->
+      <div class="glow-blob" style="
+        width:${px(500)};height:${px(500)};
+        top:${px(-120)};left:${px(-150)};
+        background:radial-gradient(circle,${blue}40,transparent 65%);
+      "></div>
+      <div class="glow-blob" style="
+        width:${px(400)};height:${px(400)};
+        top:${px(300)};right:${px(-100)};
+        background:radial-gradient(circle,${teal}30,transparent 65%);
+      "></div>
+      <div class="glow-blob" style="
+        width:${px(360)};height:${px(360)};
+        bottom:${px(200)};left:${px(50)};
+        background:radial-gradient(circle,${hl}22,transparent 65%);
+      "></div>
+
+      <!-- ░░ TOP ACCENT BAR ░░ -->
+      <div style="
+        position:absolute;top:0;left:0;right:0;height:${px(5)};
+        background:linear-gradient(90deg,${blue},${teal},${hl});
+      "></div>
+
+      <!-- sparkles -->
+      <div class="sparkle" style="top:${px(60)};left:${px(W * 0.72)};color:${teal};font-size:${px(18)};animation-delay:0s;"></div>
+      <div class="sparkle" style="top:${px(130)};right:${px(85)};color:${hl};font-size:${px(12)};animation-delay:0.7s;"></div>
+      <div class="sparkle" style="top:${px(previewTop + 60)};left:${px(55)};color:${blue};font-size:${px(14)};animation-delay:1.3s;"></div>
+      <div class="sparkle" style="top:${px(codeTop + 20)};right:${px(75)};color:${teal};font-size:${px(10)};animation-delay:2s;"></div>
+
+      <!-- ══════════════════════════════════════════
+           ① HEADER SECTION  (20%)
+           ══════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${px(5)};left:0;right:0;
+        height:${px(headerH - 5)};
+        background:linear-gradient(180deg,${blue}CC 0%,${blue}88 60%,transparent 100%);
+        display:flex;flex-direction:column;
+        align-items:center;justify-content:center;
+        gap:${px(EL * 0.6)};
+        padding:${px(PAD * 0.5)} ${px(PAD)} 0;
+      ">
+        <!-- headline -->
+        <div style="text-align:center;line-height:1.1;">
+          ${gradientText('📐 Shape Calculator App', hl, teal, Math.round(42 * sc), 900, 'diagonal', -0.5)}
+        </div>
+
+        <!-- subheadline -->
+        <div style="
+          font-family:'Inter','Roboto',sans-serif;
+          font-size:${px(16 * sc)};
+          color:rgba(255,255,255,0.80);
+          font-weight:500;
+          letter-spacing:0.3px;
+          text-align:center;
+        ">Kotlin + Jetpack Compose + OOP Concepts</div>
+
+        <!-- tag pills -->
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:${px(8)};">
+          ${tags.map((t, i) => {
+        const tc = [blue, '#7C4DFF', teal, '#00C853'][i % 4];
+        return `
+              <span style="
+                font-family:'JetBrains Mono',monospace;
+                font-size:${px(10 * sc)};font-weight:600;
+                color:${tc};
+                background:${tc}22;
+                border:1px solid ${tc}66;
+                border-radius:${px(6)};
+                padding:${px(4)} ${px(10)};
+                letter-spacing:0.4px;
+              ">${t}</span>
+            `;
+      }).join('')}
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           ② VISUAL PREVIEW  (35%)
+              LEFT: shapes SVG  |  RIGHT: phone mockup
+           ══════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${px(previewTop)};
+        left:${px(PAD)};right:${px(PAD)};
+        height:${px(previewH)};
+        background:rgba(255,255,255,0.03);
+        border:1px solid rgba(255,255,255,0.08);
+        border-radius:${px(24)};
+        overflow:hidden;
+        box-shadow:0 8px 40px rgba(0,0,0,0.4);
+        display:flex;flex-direction:row;
+        align-items:center;
+        gap:${px(SEC)};
+        padding:${px(SEC * 0.8)} ${px(SEC)};
+      ">
+        <!-- inner glow -->
+        <div style="
+          position:absolute;inset:0;pointer-events:none;
+          background:radial-gradient(ellipse at 30% 0%,${blue}22,transparent 60%);
+        "></div>
+
+        <!-- ── LEFT: shapes illustration ─────────── -->
+        <div style="
+          flex:1;min-width:0;
+          display:flex;align-items:center;justify-content:center;
+          height:100%;
+        ">
+          ${shapeSVG}
+        </div>
+
+        <!-- ── RIGHT: phone mockup ────────────────── -->
+        <div style="
+          flex-shrink:0;
+          display:flex;align-items:center;justify-content:center;
+          height:100%;
+          position:relative;
+        ">
+          <!-- glow behind phone -->
+          <div style="
+            position:absolute;
+            width:${px(phoneW + 40)};height:${px(phoneW + 40)};
+            background:radial-gradient(circle,${blue}55,transparent 65%);
+            filter:blur(${px(20)});
+            pointer-events:none;
+          "></div>
+
+          ${phoneMockup(ss, phoneW, d.phoneTilt || -4, d.glowOpacity || 35, blue)}
+
+          <!-- no-screenshot overlay label (only shown when ss is null) -->
+          ${!ss ? `
+            <div style="
+              position:absolute;bottom:${px(-28)};left:50%;
+              transform:translateX(-50%);
+              font-family:'JetBrains Mono',monospace;
+              font-size:${px(9 * sc)};
+              color:rgba(255,255,255,0.30);
+              white-space:nowrap;
+              letter-spacing:0.4px;
+            ">📸 Add screenshot to replace</div>
+          ` : ''}
+        </div>
+
+        <!-- "Built in Jetpack Compose" badge (bottom-right of card) -->
+        <div style="
+          position:absolute;
+          bottom:${px(12)};right:${px(14)};
+          font-family:'JetBrains Mono',monospace;
+          font-size:${px(10 * sc)};font-weight:700;
+          color:${teal};
+          background:${teal}18;
+          border:1px solid ${teal}55;
+          border-radius:${px(8)};
+          padding:${px(5)} ${px(12)};
+          letter-spacing:0.5px;
+        ">⚡ Built in Jetpack Compose</div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           ③ CODE HIGHLIGHT  (20%)
+           ══════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${px(codeTop)};
+        left:${px(PAD)};right:${px(PAD)};
+        height:${px(codeH)};
+        display:flex;flex-direction:column;
+        gap:${px(EL)};
+      ">
+        <!-- kotlin code card -->
+        <div style="flex:1;border-radius:${px(20)};overflow:hidden;
+          box-shadow:0 6px 30px rgba(0,0,0,0.45);">
+          ${kotlinCodeCard([
+        {
+          indent: 0, tokens: [
+            { type: 'keyword', text: 'sealed class ' },
+            { type: 'type', text: 'Shape' },
+            { type: 'plain', text: ' : ' },
+            { type: 'type', text: 'Drawable' }
+          ]
+        },
+        { indent: 0, tokens: [{ type: 'punct', text: '{' }] },
+        {
+          indent: 1, tokens: [
+            { type: 'keyword', text: 'abstract fun ' },
+            { type: 'fn', text: 'area' },
+            { type: 'punct', text: '(): ' },
+            { type: 'type', text: 'Double' }
+          ]
+        },
+        {
+          indent: 1, tokens: [
+            { type: 'keyword', text: 'abstract fun ' },
+            { type: 'fn', text: 'perimeter' },
+            { type: 'punct', text: '(): ' },
+            { type: 'type', text: 'Double' }
+          ]
+        },
+        { indent: 0, tokens: [{ type: 'punct', text: '}' }] },
+        { indent: 0, tokens: [{ type: 'comment', text: '// Polymorphism via draw()' }] },
+        { indent: 0, tokens: [{ type: 'comment', text: '// Singleton → ShapeAnalyzer.analyze()' }] },
+      ], blue, Math.round(W - PAD * 2))}
+        </div>
+
+        <!-- caption row -->
+        <div style="
+          display:flex;flex-wrap:wrap;gap:${px(EL)};
+          padding:0 ${px(4)};
+        ">
+          ${[
+          '✅ Sealed class for restricted hierarchy',
+          '✅ Polymorphism via draw()',
+          '✅ Singleton ShapeAnalyzer',
+        ].map(cap => `
+            <div style="
+              font-family:'Inter',sans-serif;
+              font-size:${px(11 * sc)};
+              color:rgba(255,255,255,0.60);
+              white-space:nowrap;
+            ">${cap}</div>
+          `).join('')}
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           ④ FEATURES GRID  (15%)
+           ══════════════════════════════════════════ -->
+      <div style="
+        position:absolute;
+        top:${px(featTop)};
+        left:${px(PAD)};right:${px(PAD)};
+        height:${px(featH)};
+      ">
+        ${shapeFeatureGrid(featItems, blue, 'rgba(255,255,255,0.05)')}
+      </div>
+
+      <!-- ══════════════════════════════════════════
+           ⑤ FOOTER / CTA  (fixed 62px)
+           ══════════════════════════════════════════ -->
+
+      <!-- divider line above footer -->
+      <div style="
+        position:absolute;
+        bottom:62px;left:${px(PAD)};right:${px(PAD)};
+        height:1px;
+        background:linear-gradient(90deg,transparent,${blue}88,${teal}88,transparent);
+      "></div>
+
+      <div class="banner-footer-bar" style="
+        height:62px;
+        background:${blue}28;
+        border-top:1px solid ${blue}44;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:0 ${px(PAD)};
+        gap:${px(EL)};
+      ">
+        <!-- left -->
+        <div style="
+          font-family:'Inter',sans-serif;
+          font-size:${px(11 * sc)};
+          color:rgba(255,255,255,0.50);
+          max-width:55%;
+          line-height:1.4;
+        ">Built to demonstrate clean OOP architecture in Android.</div>
+
+        <!-- right -->
+        <div style="
+          display:flex;flex-direction:column;align-items:flex-end;gap:2px;
+        ">
+          <div style="
+            font-family:'Inter',sans-serif;
+            font-size:${px(11 * sc)};
+            color:${teal};font-weight:600;
+          ">👨‍💻 Open to feedback · ⭐ Let's connect</div>
+          <div style="
+            font-family:'Inter',sans-serif;
+            font-size:${px(10 * sc)};
+            color:rgba(255,255,255,0.38);
+          ">🔗 GitHub link in comments &nbsp;|&nbsp; ${d.state.author || '@yourhandle'}</div>
+        </div>
+      </div>
+    `;
+    }
+  },
+
+
 
 
 ];
